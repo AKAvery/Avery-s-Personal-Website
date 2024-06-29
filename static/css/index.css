@@ -2,11 +2,11 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background: blue;
+    background: beige;
 }
 
 .header {
-    background: #f53f3f;
+    background: #4F7942;
     position: fixed;
     left: 0;
     top: 0;
@@ -28,9 +28,10 @@ a {
    text-decoration: none;
    all: unset;
    margin-right: 5px;
+   color: beige;
 }
 
 .option-text:hover{
-    color: blue;
+    color: white;
     cursor: pointer;
 }
