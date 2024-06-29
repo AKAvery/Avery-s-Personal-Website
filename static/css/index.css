@@ -1,0 +1,36 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: blue;
+}
+
+.header {
+    background: #f53f3f;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 20px 100px;
+    
+}
+
+a {
+    text-decoration: none;
+}
+
+.nav-bar {
+    flex-direction: row;
+    padding-right: 100px;
+}
+
+.option-text {
+   text-decoration: none;
+   all: unset;
+   margin-right: 5px;
+}
+
+.option-text:hover{
+    color: blue;
+    cursor: pointer;
+}
