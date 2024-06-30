@@ -53,7 +53,7 @@ body {
     animation: animationOne .5s forwards ease-out,
                animationTwo .5s .5s forwards ease-in,
                animationThree .5s 1s forwards ease-out,
-               animationFour .5s 1.5s forwards ease-in;
+               animationFour .3s 1.5s forwards ease-in;
 }
 
 .page-text {
