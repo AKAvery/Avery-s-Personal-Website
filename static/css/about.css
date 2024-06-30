@@ -14,6 +14,12 @@ body {
     padding: 20px 100px;
 }
 
+.toggle-button {
+    margin-top: 200px;
+    margin-left: 600px;
+}
+
+
 .page-body {
     display: flex;
     flex-direction: row;
@@ -32,12 +38,14 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    
+    background: none;
+    z-index: 0;
 
 }
 
-.content::before {
+.content.default-mode::before {
     content: "";
+    background: none;
     position: absolute;
     top: 0;
     left: 0;
@@ -47,20 +55,32 @@ body {
     border-radius: 20px;
     z-index: -1;
     transform-origin: center center;
+    transition: all 0.5s ease;
 }
 
-.content:hover::before {
-    animation: animationOne .5s forwards ease-out,
-               animationTwo .5s .5s forwards ease-in,
-               animationThree .5s 1s forwards ease-out,
-               animationFour .3s 1.5s forwards ease-in;
+.content.default-mode:hover::before {
+    background: rgb(227, 227, 203); /* Add background only on hover */
+    animation: animationOne 0.5s forwards ease-out,
+               animationTwo 0.5s 0.5s forwards ease-in,
+               animationThree 0.5s 1s forwards ease-out,
+               animationFour 0.3s 1.5s forwards ease-in;
+}
+
+.content.alt-mode::before {
+    background: rgb(200, 200, 200);
+    margin: 0;
+    padding: 0;
+}
+
+.content.alt-mode:hover::before {
+    animation: none;
+    transform: scale(1.5, 1.5);
 }
 
 .page-text {
     color: black;
     position: relative;
     z-index: 1; 
-  
 }
 
 a {
@@ -75,7 +95,7 @@ a {
 
 .nav-text {
     text-decoration: none;
-    margin-right: 5px;
+    margin-right: 15px;
     color: beige;
 }
 
@@ -84,9 +104,9 @@ a {
     cursor: pointer;
 }
 
-.nav-logo {
-    width: 150px;
-    height: 150px;
+.option-logo {
+    width: 100px;
+    height: 100px;
 }
 
 @keyframes animationOne {

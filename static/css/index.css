@@ -5,6 +5,7 @@ body {
     background: beige;
 }
 
+
 .header {
     background: #4F7942;
     position: fixed;
@@ -15,27 +16,42 @@ body {
     
 }
 
+.toggle-button {
+    margin-top: 200px;
+}
+.background-change{
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: pink;
+}
+
+.text-body-playground {
+    color: blue;
+}
+
 a {
     text-decoration: none;
 }
 
 .nav-bar {
+    display: flex;
     flex-direction: row;
     padding-right: 100px;
 }
 
-.option-text {
+.nav-text {
    text-decoration: none;
-   margin-right: 5px;
+   margin-right: 15px;
    color: beige;
 }
 
-.option-text:hover{
+.nav-text:hover{
     color: white;
     cursor: pointer;
 }
 
 .option-logo {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
 }

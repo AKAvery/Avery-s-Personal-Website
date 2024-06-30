@@ -11,17 +11,26 @@
 <body>
     <header class="header">
         <a href="/">
-            <img src="{{ url_for('static', filename='images/css/AAlogo.png') }}" alt="logo">
+            <img class="option-logo" src="{{ url_for('static', filename='images/AAlogo.png') }}" alt="logo">
         </a>
         <nav class="nav-bar">
-            <a href="/about" class="nav-text"> About Me</a>
-            <a href="/projects" class="nav-text"> Projects</a>
+            <a href="/about" class="nav-text">About Me</a>
+            <a href="/projects" class="nav-text">Projects</a>
         </nav>
     </header>
+    <button class="toggle-button" onclick="playgroundMode()">Toggle Playground Mode</button>
+    <script>
+        function playgroundMode() {
+            var element = document.querySelector(".content");
+            element.classList.toggle("alt-mode");
+        }
+    </script>
+
     <div class="page-body">
-        <div class="content">
+        <div class="content default-mode">
             <p class="page-text"> Hello! My name is Avery Allen and I am working on this website to hone my skills and share things about me! x  x xx x x x x x x x x x x x x x x x x x x x x x x x x x x x x c x x x x x x x x x x x x xx x x x  XX  X XX X X  X XX X X X X  X XX X  XX X X X X X X X X  x x x x  x xxx x    x x x xx x x x x x x x xxx x x x x xX XX X X x </p>
         </div>
     </div>
+    
 </body>
 </html>

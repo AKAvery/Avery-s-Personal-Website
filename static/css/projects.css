@@ -20,22 +20,23 @@ a {
 }
 
 .nav-bar {
+    display: flex;
     flex-direction: row;
     padding-right: 100px;
 }
 
-.option-text {
+.nav-text {
    text-decoration: none;
-   margin-right: 5px;
+   margin-right: 15px;
    color: beige;
 }
 
-.option-text:hover{
+.nav-text:hover{
     color: white;
     cursor: pointer;
 }
 
 .option-logo {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
 }
