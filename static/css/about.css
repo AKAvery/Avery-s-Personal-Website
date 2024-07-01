@@ -5,6 +5,10 @@ body {
     background: beige;
 }
 
+.background-change {
+    background: pink;
+}
+
 .header {
     background: #4F7942;
     position: fixed;
@@ -12,6 +16,18 @@ body {
     top: 0;
     width: 100%;
     padding: 20px 100px;
+    z-index: 2;
+    transition: all 0.5s;
+}
+
+.header-scrolled {
+    background: rgb(79, 121, 66, 0.65);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 20px 100px;
+    z-index: 2;
 }
 
 .toggle-button {
@@ -19,10 +35,14 @@ body {
     margin-left: 600px;
 }
 
+.page-row-section {
 
-.page-body {
     display: flex;
     flex-direction: row;
+}
+.page-column-section {
+    display: flex;
+    flex-direction: column;
     padding-top: 50px;
     padding-left: 100px;
 }
@@ -40,10 +60,9 @@ body {
     text-align: center;
     background: none;
     z-index: 0;
-
 }
 
-.content.default-mode::before {
+.content::before {
     content: "";
     background: none;
     position: absolute;
@@ -58,24 +77,31 @@ body {
     transition: all 0.5s ease;
 }
 
+.content.default-mode::before {
+    background: rgb(227, 227, 203);
+}
+
 .content.default-mode:hover::before {
-    background: rgb(227, 227, 203); /* Add background only on hover */
+    animation: none;
+    transform: scale(1.2, 1.2);
+}
+
+.content.default-mode:hover {
+    background: none;
+}
+
+.content.alt-mode::before {
+   background: rgb(227, 227, 203);
+}
+
+.content.alt-mode:hover::before {
+    background: rgb(227, 227, 203); 
     animation: animationOne 0.5s forwards ease-out,
                animationTwo 0.5s 0.5s forwards ease-in,
                animationThree 0.5s 1s forwards ease-out,
                animationFour 0.3s 1.5s forwards ease-in;
 }
 
-.content.alt-mode::before {
-    background: rgb(200, 200, 200);
-    margin: 0;
-    padding: 0;
-}
-
-.content.alt-mode:hover::before {
-    animation: none;
-    transform: scale(1.5, 1.5);
-}
 
 .page-text {
     color: black;
@@ -105,8 +131,9 @@ a {
 }
 
 .option-logo {
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
+    /*position: absolute;*/
 }
 
 @keyframes animationOne {
