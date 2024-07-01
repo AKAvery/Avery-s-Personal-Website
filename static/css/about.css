@@ -2,7 +2,7 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background: beige;
+    background: rgb(255,255,255);
 }
 
 .background-change {
@@ -10,18 +10,20 @@ body {
 }
 
 .header {
-    background: #4F7942;
+    background: rgb(47, 54, 59);
     position: fixed;
     left: 0;
     top: 0;
     width: 100%;
     padding: 20px 100px;
     z-index: 2;
-    transition: all 0.5s;
+    transition: all 0.4s;
+    box-shadow: 0 3px 10px rgb(0, 0, 0, 0.15);
+
 }
 
 .header-scrolled {
-    background: rgb(79, 121, 66, 0.65);
+    background: rgb(47, 54, 59, 0.65);
     position: fixed;
     left: 0;
     top: 0;
@@ -54,7 +56,7 @@ body {
     margin-left: 40px;
     width: 30%;
     height: 70%;
-    border-radius: 20px;
+    border-radius: 10px;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -70,15 +72,15 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgb(227, 227, 203);
-    border-radius: 20px;
+    background: rgb(246,246,246);
+    border-radius: 10px;
     z-index: -1;
     transform-origin: center center;
     transition: all 0.5s ease;
 }
 
 .content.default-mode::before {
-    background: rgb(227, 227, 203);
+    background: rgb(246,246,246);
 }
 
 .content.default-mode:hover::before {
@@ -91,11 +93,11 @@ body {
 }
 
 .content.alt-mode::before {
-   background: rgb(227, 227, 203);
+   background: rgb(246,246,246);
 }
 
 .content.alt-mode:hover::before {
-    background: rgb(227, 227, 203); 
+    background: rgb(246,246,246); 
     animation: animationOne 0.5s forwards ease-out,
                animationTwo 0.5s 0.5s forwards ease-in,
                animationThree 0.5s 1s forwards ease-out,
@@ -122,12 +124,13 @@ a {
 .nav-text {
     text-decoration: none;
     margin-right: 15px;
-    color: beige;
+    color: rgb(246,246,246);
 }
 
 .nav-text:hover {
     color: white;
     cursor: pointer;
+    text-shadow: 0 0 40px rgb(255, 255, 255, 0.4);
 }
 
 .option-logo {
