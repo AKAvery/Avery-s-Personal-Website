@@ -17,8 +17,9 @@
             <a href="/about" class="nav-text">About Me</a>
             <a href="/projects" class="nav-text">Projects</a>
         </nav>
+        <button class="toggle-button" onclick="playgroundMode()">Playground</button>
+
     </header>
-    <button class="toggle-button" onclick="playgroundMode()">Toggle Playground Mode</button>
     <script>
         function playgroundMode() {
             var elements = document.querySelectorAll('.content');
@@ -39,40 +40,56 @@
                 headerEl.classList.remove('header-scrolled');
             }
         });
+
+        function checkVisibility() {
+            var elements = document.querySelectorAll('.selector-content');
+            elements.forEach(function(footerEl) {
+                const rect = footerEl.getBoundingClientRect();
+                if (rect.bottom <= (window.innerHeight + 10)) {
+                    footerEl.classList.add('visible-selector-content')
+                }
+                else {
+                    footerEl.classList.remove('visible-selector-content')
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkVisibility);
+        window.addEventListener('resize', checkVisibility);
+        document.addEventListener('DOMContentLoaded', checkVisibility);
+
     </script>
     <div class="page-row-section">
         <div class="page-column-section">
-            <div class="content default-mode">
-                <p class="page-text"> Hello! My name is Avery Allen and I am working on this website to hone my skills and share things about me! x  x xx x x x x x x x x x x x x x x x x x x x x x x x x x x x x c x x x x x x x x x x x x xx x x x  XX  X XX X X  X XX X X X X  X XX X  XX X X X X X X X X  x x x x  x xxx x    x x x xx x x x x x x x xxx x x x x xX XX X X x </p>
-            </div>
-        </div>
-        <div class="page-column-section">
-            <div class="content default-mode">
-                <p class="page-text"> Hello! My x is Avery Allen and I am working on this website to hone my skills and share things about me! x  x xx x x x x x x x x x x x x x x x x x x x x x x x x x x x x c x x x x x x x x x x x x xx x x x  XX  X XX X X  X XX X X X X  X XX X  XX X X X X X X X X  x x x x  x xxx x    x x x xx x x x x x x x xxx x x x x xX XX X X x </p>
+            <div class="selector-content">
+                <div class="content default-mode">
+                    <p class="page-text"> What's Up, I'm Avery Allen! I am a High School Student at Anderson High School in Austin, and I am working on this website to hone my skills and share things about me. I am currently unemployed but I divulge in many hobbies including coding fun projects, like this one, playing tennis, working out, watching youtube vidoes, and of course hanging out with friends. </p>
+                </div>
             </div>
         </div>
     </div>
     <div class="page-row-section">
         <div class="page-column-section">
-            <div class="content default-mode">
-                <p class="page-text"> Hello! My e is Avery Allen and I am working on this website to hone my skills and share things about me! x  x xx x x x x x x x x x x x x x x x x x x x x x x x x x x x x c x x x x x x x x x x x x xx x x x  XX  X XX X X  X XX X X X X  X XX X  XX X X X X X X X X  x x x x  x xxx x    x x x xx x x x x x x x xxx x x x x xX XX X X x </p>
-            </div>
-        </div>
-        <div class="page-column-section">
-            <div class="content default-mode">
-                <p class="page-text"> Hello! My a is Avery Allen and I am working on this website to hone my skills and share things about me! x  x xx x x x x x x x x x x x x x x x x x x x x x x x x x x x x c x x x x x x x x x x x x xx x x x  XX  X XX X X  X XX X X X X  X XX X  XX X X X X X X X X  x x x x  x xxx x    x x x xx x x x x x x x xxx x x x x xX XX X X x </p>
+            <div class="selector-content">
+                <div class="content default-mode">
+                    <p class="page-text"> I am currently trying to gain as much knowledge as I can while finding a passion that I truly love. I try to push my understanding of the world and the many facets between. I believe that with consistency, effort, and time, any amout of personal growth can be attained.</p>
+                </div>
             </div>
         </div>
     </div>
     <div class="page-row-section">
         <div class="page-column-section">
-            <div class="content default-mode">
-                <p class="page-text"> Hello! My j is Avery Allen and I am working on this website to hone my skills and share things about me! x  x xx x x x x x x x x x x x x x x x x x x x x x x x x x x x x c x x x x x x x x x x x x xx x x x  XX  X XX X X  X XX X X X X  X XX X  XX X X X X X X X X  x x x x  x xxx x    x x x xx x x x x x x x xxx x x x x xX XX X X x </p>
+            <div class="selector-content">
+                <div class="content default-mode">
+                    <p class="page-text"> Hello! My j is Avery Allen and I am working on this website to hone my skills and share things about me! x  x xx x x x x x x x x x x x x x x x x x x x x x x x x x x x x c x x x x x x x x x x x x xx x x x  XX  X XX X X  X XX X X X X  X XX X  XX X X X X X X X X  x x x x  x xxx x    x x x xx x x x x x x x xxx x x x x xX XX X X x </p>
+                </div>
             </div>
         </div>
         <div class="page-column-section">
-            <div class="content default-mode">
-                <p class="page-text"> Hello! My b is Avery Allen and I am working on this website to hone my skills and share things about me! x  x xx x x x x x x x x x x x x x x x x x x x x x x x x x x x x c x x x x x x x x x x x x xx x x x  XX  X XX X X  X XX X X X X  X XX X  XX X X X X X X X X  x x x x  x xxx x    x x x xx x x x x x x x xxx x x x x xX XX X X x </p>
+            <div class="selector-content">
+                <div class="content default-mode">
+                    <p class="page-text"> Hello! My j is Avery Allen and I am working on this website to hone my skills and share things about me! x  x xx x x x x x x x x x x x x x x x x x x x x x x x x x x x x c x x x x x x x x x x x x xx x x x  XX  X XX X X  X XX X X X X  X XX X  XX X X X X X X X X  x x x x  x xxx x    x x x xx x x x x x x x xxx x x x x xX XX X X x </p>
+                </div>
             </div>
         </div>
     </div>
