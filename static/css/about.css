@@ -1,3 +1,12 @@
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: beige;
+}
+
+
 .header {
     background: rgb(246, 246, 246);
     position: fixed;
@@ -11,7 +20,6 @@
     box-shadow: 0 3px 10px rgb(0, 0, 0, 0.15);
     display: flex;
     flex-direction: row;
-    /*justify-content: space-between;*/
 }
 
 .header-scrolled {
@@ -51,21 +59,6 @@
     display: flex;
 }
 
-.selector-content {
-    opacity: 0;
-    transition: all 1s;
-    animation: slidingAnimationLeft 1s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.visible-selector-content {
-    opacity: 1;
-    animation: slidingAnimationRight 1s;
-
-}
 
 .toggle-button {
     width: 150px;
@@ -95,129 +88,77 @@ body {
     margin-top: 300px;
 }
 
-.background-change {
-    background: pink;
-}
-
 .page-row-section {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin-bottom: 200px;
+    margin-bottom: 30px;
 }
+
 .page-column-section {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding-top: 50px;
-}
-
-.page-text {
-    color: black;
-    z-index: 1; 
-    font-size: 22px;
-    line-height: 1.7;
-    align-items: center;
     justify-content: center;
     text-align: center;
-    transition: all 0.5s ease;
 }
 
 .content {
     position: relative;
-    padding: 20px;
-    width: 50%;
-    border-radius: 10px;
-    background: none;
-    z-index: 0;
     display: flex;
-    font-size: 100%;
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    width: 40%;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
 }
 
-.content::before {
-    content: "";
-    background: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgb(246,246,246);
-    border-radius: 10px;
-    z-index: -1;
-    transform-origin: center center;
-    transition: all 0.5s ease;
-    box-shadow: 0 3px 10px rgb(0, 0, 0, 0.15);
+.page-text {
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    line-height: 1.7;
 }
 
-.content.default-mode::before {
-    background: rgb(246,246,246);
-    box-shadow: 0 3px 10px rgb(0, 0, 0, 0.15);
-}
-.content.default-mode:hover::before {
-    animation: none;
-    transform: scale(1.2, 1.2);
-    box-shadow: 0 3px 10px rgb(0, 0, 0, 0.15);
-}
+.background-change{
 
-.content.default-mode:hover {
-    background: none;
-    box-shadow: 0 3px 10px rgb(0, 0, 0, 0.15);
-
-}
-
-.content.default-mode:hover .page-text {
-    transform: scale(1.2, 1.2);
-}
-
-.content.alt-mode::before {
-   background: rgb(246,246,246);
-   box-shadow: 0 3px 10px rgb(0, 0, 0, 0.15);
-
-}
-
-.content.alt-mode:hover::before {
-    background: rgb(246,246,246); 
-    animation: animationOne 0.5s forwards ease-out,
-               animationTwo 0.5s 0.5s forwards ease-in,
-               animationThree 0.5s 1s forwards ease-out,
-               animationFour 0.3s 1.5s forwards ease-in;
+    background: pink;
 }
 
 a {
     text-decoration: none;
 }
 
-@keyframes animationOne {
-    0% { transform: scale(1, 1); }
-    100% { transform: scale(1.5, 0.75); }
+/* Image */
+.image-container {
+    margin-top: 100px;
+    overflow-x: hidden;
+    max-width: 768px;
+    margin: 0 auto;
 }
 
-@keyframes animationTwo {
-    0% { transform: scale(1.5, 0.75); }
-    100% { transform: scale(1, 1); }
+.image-wrapper {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% - (1.5rem * (var(--per-view) - 1))) / var(--per-view));
+    grid-gap: 1.5rem;
+    position: relative;
+    left: 0;
+    transition: 0.3s;
 }
 
-@keyframes animationThree {
-    0% { transform: scale(1, 1); }
-    100% { transform: scale(0.75, 1.5); }
+.image-wrapper > * {
+    width: 100%;
+    height: 100%;
 }
 
-@keyframes animationFour {
-    0% { transform: scale(0.75, 1.5); }
-    100% { transform: scale(1, 1); } 
+.img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    display: block; 
+    border-radius: 10px;
 }
 
-@keyframes slidingAnimationRight {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(0%); }
-}
 
-@keyframes slidingAnimationLeft {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-100%); }
-}
+/* Image */
