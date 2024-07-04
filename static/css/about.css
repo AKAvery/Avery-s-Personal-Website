@@ -1,12 +1,4 @@
 
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: beige;
-}
-
-
 .header {
     background: rgb(246, 246, 246);
     position: fixed;
@@ -95,6 +87,7 @@ body {
     justify-content: center;
     text-align: center;
     margin-bottom: 30px;
+    flex: 1;
 }
 
 .page-column-section {
@@ -102,12 +95,13 @@ body {
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    flex: 1;
 }
 
 .content {
     position: relative;
     display: flex;
-    width: 40%;
+    width: 70%;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
@@ -148,8 +142,7 @@ a {
 }
 
 .image-wrapper > * {
-    width: 100%;
-    height: 100%;
+    aspect-ratio: 4/3;
 }
 
 .img {
@@ -157,8 +150,100 @@ a {
     height: 50px;
     object-fit: cover;
     display: block; 
-    border-radius: 10px;
+    border-radius: 0.5rem;
+}
+/* Image */
+
+.floating-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.floating-img:hover {
+    cursor: pointer;
+}
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.a {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    animation: bounce1 var(--animation-time-a) infinite;
+}
+
+div.b {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    animation: bounce2 var(--animation-time-b) infinite;
+}
+
+div.c {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    animation: bounce3 var(--animation-time-c) infinite;
+}
+
+div.d {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    animation: bounce3 var(--animation-time-d) infinite;
+}
+
+:root {
+    --animation-height-a: 400px;
+    --animation-height-b: 400px;
+    --animation-height-c: 400px;
+    --animation-height-d: 400px;
+    --animation-time-a: 13s;
+    --animation-time-b: 13s;
+    --animation-time-c: 13s;
+    --animation-time-d: 13s;
+}
+
+@keyframes bounce1 {
+    0%, 100% {
+        transform: translateY(-200px);
+    }
+    50% {
+        transform: translateY(var(--animation-height-a));
+    }
 }
 
 
-/* Image */
+@keyframes bounce2 {
+    0%, 100% {
+        transform: translateY(-200px);
+    }
+    50% {
+        transform: translateY(var(--animation-height-b));
+    }
+}
+
+
+@keyframes bounce3 {
+    0%, 100% {
+        transform: translateY(-200px);
+    }
+    50% {
+        transform: translateY(var(--animation-height-c));
+    }
+}
+
+@keyframes bounce4 {
+    0%, 100% {
+        transform: translateY(-200px);
+    }
+    50% {
+        transform: translateY(var(--animation-height-d));
+    }
+}

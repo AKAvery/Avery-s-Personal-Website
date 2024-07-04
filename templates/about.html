@@ -16,39 +16,69 @@
             <a href="/about" class="nav-text">About Me</a>
             <a href="/projects" class="nav-text">Projects</a>
         </nav>
-    </header>
-    <div class="image-container">
-        <div class="image-wrapper">
-            <div>
-                <img src="{{ url_for('static', filename='images/img1.jpeg')}}">
+    </header>​
+    
+    <div class="page-row-section">
+        <div class="page-row-section">
+            <div class='a'>
+                <a href="https://www.duolingo.com/profile/AveryAllen360694" target="blank" style="all: unset;">
+                    <img class="floating-img" src="{{ url_for('static', filename='images/Duolingo.avif')  }}" alt="duolingo icon">
+                </a>
             </div>
-            <div>
-                <img src="{{ url_for('static', filename='images/img2.jpeg')}}">
+            <div class='b'>
+                <a href="https://github.com/AKAvery" target="blank" style="all: unset;">
+                <img class="floating-img" src="{{ url_for('static', filename='images/github_trans_icon.png') }}">
+            </a>
             </div>
-            <div>
-                <img src="{{ url_for('static', filename='images/img3.jpeg')}}">
+        </div>  
+        <div class="page-column-section">
+            <div class="page-column-section">
+                <div class="image-container">
+                    <div class="image-wrapper">
+                        <div>
+                            <img src="{{ url_for('static', filename='images/img1.jpeg')}}">
+                        </div>
+                        <div>
+                            <img src="{{ url_for('static', filename='images/img2.jpeg')}}">
+                        </div>
+                        <div>
+                            <img src="{{ url_for('static', filename='images/img3.jpeg')}}">
+                        </div>
+                        <div>
+                            <img src="{{ url_for('static', filename='images/img4.jpeg')}}">
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>
-                <img src="{{ url_for('static', filename='images/img4.jpeg')}}">
+            <div class="page-column-section">
+                <div class="content">
+                    <p class="page-text">
+                        What's Up, I'm Avery Allen! I am a High School Student at Anderson High School in Austin, and I am working on this website to hone my skills and share things about me. I am currently unemployed but I divulge in many hobbies including coding fun projects, like this one, playing tennis, working out, learning spanish, watching youtube vidoes, and of course hanging out with friends.
+                    </p>
+                </div>
+            </div>
+            <div class="page-column-section">
+                <div class="content">
+                    <p class="page-text">
+                        I am currently trying to gain as much knowledge as I can while finding a passion that I truly love. I try to push my understanding of the world and the many facets between. I believe that with consistency, effort, and time, any amout of personal growth can be attained.
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="page-row-section">
-        <div class="page-column-section">
-            <div class="content">
-                <p class="page-text">
-                    What's Up, I'm Avery Allen! I am a High School Student at Anderson High School in Austin, and I am working on this website to hone my skills and share things about me. I am currently unemployed but I divulge in many hobbies including coding fun projects, like this one, playing tennis, working out, learning spanish, watching youtube vidoes, and of course hanging out with friends.
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <div class="page-row-section">
-        <div class="page-column-section">
-            <div class="content">
-                <p class="page-text">
-                    I am currently trying to gain as much knowledge as I can while finding a passion that I truly love. I try to push my understanding of the world and the many facets between. I believe that with consistency, effort, and time, any amout of personal growth can be attained.
-                </p>
+        <div class="page-row-section">
+            <div clas="page-row-section">
+              </div>
+                    <div class="c">
+                        <a href="https://www.linkedin.com/in/averykallen/" target="blank" style="all: unset;">
+                            <img class="floating-img" src="{{ url_for('static', filename='images/linkedin_trans_icon.png') }}">
+                        </a>
+                    </div>
+                    <div class="d">
+                        <a href="https://app.utrsports.net/profiles/2804949" target="blank" style="all: unset;">
+                            <img class="floating-img" src="{{ url_for('static', filename='images/UTR_trans_icon.png')}}">
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -83,7 +113,67 @@
 
         }
 
+        function updateAnimationRandomsA() {
+            var randomHeightA = (Math.random() * 300) + 100;
+            var randomTimeA = (Math.random() * 5) + 12;
+            var aElement = document.querySelector('.a');
+
+            aElement.style.animation = 'none';
+            document.documentElement.style.setProperty('--animation-height-a', randomHeightA + 'px');
+            document.documentElement.style.setProperty('--animation-time-a', randomTimeA + 's');
+            aElement.offsetHeight;
+            aElement.style.animation = 'bounce1 var(--animation-time-a) infinite';
+        }
+        
+        function updateAnimationRandomsB() {
+            var randomHeightB = (Math.random() * 300) + 100;
+            var randomTimeB = (Math.random() * 5) + 12;
+            var bElement = document.querySelector('.b');
+
+            bElement.style.animation = 'none';
+            document.documentElement.style.setProperty('--animation-height-b', randomHeightB + 'px');
+            document.documentElement.style.setProperty('--animation-time-b', randomTimeB + 's');
+            bElement.offsetHeight;
+            bElement.style.animation = 'bounce2 var(--animation-time-b) infinite';
+        }
+
+        function updateAnimationRandomsC() {
+            var randomHeightC = (Math.random() * 300) + 100;
+            var randomTimeC = (Math.random() * 5) + 12;
+            var cElement = document.querySelector('.c');
+
+            cElement.style.animation = 'none';
+            document.documentElement.style.setProperty('--animation-height-c', randomHeightC+ 'px');
+            document.documentElement.style.setProperty('--animation-time-c', randomTimeC + 's');
+            cElement.offsetHeight;
+            cElement.style.animation = 'bounce3 var(--animation-time-c) infinite'; 
+        }
+
+        function updateAnimationRandomsD() {
+            var randomHeightD = (Math.random() * 300) + 100;
+            var randomTimeD = (Math.random() * 5) + 12;
+            var dElement = document.querySelector('.d');
+
+            dElement.style.animation = 'none';
+            document.documentElement.style.setProperty('--animation-height-d', randomHeightD + 'px');
+            document.documentElement.style.setProperty('--animation-time-d', randomTimeD + 's');
+            dElement.offsetHeight;
+            dElement.style.animation = 'bounce4 var(--animation-time-d) infinite';
+
+        }
+
+        updateAnimationRandomsA();
+        updateAnimationRandomsB();
+        updateAnimationRandomsC();
+        updateAnimationRandomsD();
+
+        document.querySelector('.a').addEventListener('animationiteration', updateAnimationRandomsA);
+        document.querySelector('.b').addEventListener('animationiteration', updateAnimationRandomsB);
+        document.querySelector('.c').addEventListener('animationiteration', updateAnimationRandomsC);
+        document.querySelector('.d').addEventListener('animationiteration', updateAnimationRandomsD);
+
+
 
     </script>
 </body>
-</html>
+</html
