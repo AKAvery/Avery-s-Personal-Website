@@ -154,10 +154,18 @@ a {
 }
 /* Image */
 
+.revolving-img {
+    border-radius: 0.5rem;
+    box-shadow: 0 3px 10px rgb(0, 0, 0, 0.15);
+
+}
+
 .floating-img {
     width: 50px;
     height: 50px;
     border-radius: 5px;
+    box-shadow: 0 3px 10px rgb(0, 0, 0, 0.15);
+
 }
 
 .floating-img:hover {
@@ -212,7 +220,7 @@ div.d {
 
 @keyframes bounce1 {
     0%, 100% {
-        transform: translateY(-200px);
+        transform: translateY(-400px);
     }
     50% {
         transform: translateY(var(--animation-height-a));
@@ -222,7 +230,7 @@ div.d {
 
 @keyframes bounce2 {
     0%, 100% {
-        transform: translateY(-200px);
+        transform: translateY(-400px);
     }
     50% {
         transform: translateY(var(--animation-height-b));
@@ -232,7 +240,7 @@ div.d {
 
 @keyframes bounce3 {
     0%, 100% {
-        transform: translateY(-200px);
+        transform: translateY(-400px);
     }
     50% {
         transform: translateY(var(--animation-height-c));
@@ -241,9 +249,18 @@ div.d {
 
 @keyframes bounce4 {
     0%, 100% {
-        transform: translateY(-200px);
+        transform: translateY(-400px);
     }
     50% {
         transform: translateY(var(--animation-height-d));
+    }
+}
+
+@keyframes grow {
+    0%, 100% {
+        transform: scale(1, 1);
+    }
+    50% {
+        transform: scale(1.2, 1.2);
     }
 }

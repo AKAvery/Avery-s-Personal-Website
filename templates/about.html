@@ -31,26 +31,26 @@
             </a>
             </div>
         </div>  
-        <div class="page-column-section">
+        <div class="page-column-section" style="margin-top: 90px;">
             <div class="page-column-section">
                 <div class="image-container">
                     <div class="image-wrapper">
                         <div>
-                            <img src="{{ url_for('static', filename='images/img1.jpeg')}}">
+                            <img class="revolving-img" src="{{ url_for('static', filename='images/img1.jpeg')}}">
                         </div>
                         <div>
-                            <img src="{{ url_for('static', filename='images/img2.jpeg')}}">
+                            <img class="revolving-img" src="{{ url_for('static', filename='images/img2.jpeg')}}">
                         </div>
                         <div>
-                            <img src="{{ url_for('static', filename='images/img3.jpeg')}}">
+                            <img class="revolving-img" src="{{ url_for('static', filename='images/img3.jpeg')}}">
                         </div>
                         <div>
-                            <img src="{{ url_for('static', filename='images/img4.jpeg')}}">
+                            <img class="revolving-img" src="{{ url_for('static', filename='images/img4.jpeg')}}">
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="page-column-section">
+            <div class="page-column-section"  style="margin-top: 40px;">
                 <div class="content">
                     <p class="page-text">
                         What's Up, I'm Avery Allen! I am a High School Student at Anderson High School in Austin, and I am working on this website to hone my skills and share things about me. I am currently unemployed but I divulge in many hobbies including coding fun projects, like this one, playing tennis, working out, learning spanish, watching youtube vidoes, and of course hanging out with friends.
@@ -89,7 +89,7 @@
         const imageLength = imageItems.length;
         const perView = 3
         let totalScroll = 0
-        const delay = 2500
+        const delay = 3200
 
         imageWrapper.style.setProperty('--per-view', perView)
         for(let i = 0; i < perView; i++) {
@@ -115,7 +115,7 @@
 
         function updateAnimationRandomsA() {
             var randomHeightA = (Math.random() * 300) + 100;
-            var randomTimeA = (Math.random() * 5) + 12;
+            var randomTimeA = (Math.random() * 5) + 15;
             var aElement = document.querySelector('.a');
 
             aElement.style.animation = 'none';
@@ -127,7 +127,7 @@
         
         function updateAnimationRandomsB() {
             var randomHeightB = (Math.random() * 300) + 100;
-            var randomTimeB = (Math.random() * 5) + 12;
+            var randomTimeB = (Math.random() * 5) + 15;
             var bElement = document.querySelector('.b');
 
             bElement.style.animation = 'none';
@@ -139,7 +139,7 @@
 
         function updateAnimationRandomsC() {
             var randomHeightC = (Math.random() * 300) + 100;
-            var randomTimeC = (Math.random() * 5) + 12;
+            var randomTimeC = (Math.random() * 5) + 15;
             var cElement = document.querySelector('.c');
 
             cElement.style.animation = 'none';
@@ -151,7 +151,7 @@
 
         function updateAnimationRandomsD() {
             var randomHeightD = (Math.random() * 300) + 100;
-            var randomTimeD = (Math.random() * 5) + 12;
+            var randomTimeD = (Math.random() * 5) + 15;
             var dElement = document.querySelector('.d');
 
             dElement.style.animation = 'none';

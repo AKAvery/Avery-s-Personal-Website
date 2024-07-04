@@ -4,8 +4,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    css_url = url_for('static', filename='css/index.css')
-    print(css_url)
     return render_template('index.html')
 
 @app.route('/about')
@@ -15,6 +13,10 @@ def about():
 @app.route('/projects')
 def projects():
     return render_template('projects.html')
+
+@app.route('/fistbump')
+def fistbump():
+    return render_template('individualProjects/fistbump.html')
 
 if __name__ == '__main__':
     app.run(port = 4000, debug=True)
