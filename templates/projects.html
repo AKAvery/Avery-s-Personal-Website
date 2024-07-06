@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/projects.css')}}">
-
-
+    <script defer src="node_modules/swup/dist/swup.min.js"></script>
+    <script defer src="script.js"></script>
     <title>About</title>
 </head>
 <body>
@@ -58,48 +58,51 @@
         window.addEventListener('resize', checkVisibility);
         document.addEventListener('DOMContentLoaded', checkVisibility);
 
+        swup = new Swup()
+
     </script>
-    <div class="page-row-section">
-        <div class="page-column-section">
-            <a href="/fistbump">
-                <div class="selector-content">
-                    <div class="content default-mode">
-                        <div class="page-column-section">
-                            <h1 class="page-text">Fistbump</h1>
-                            <p class="page-text"> Fistbump is an all ......... . . .  .. .  . .. . .  . . . . .. </p>
-                            <img src="{{ url_for('static', filename='images/AAlogo.png')}}">
+    <main id="swup" class="transition-fade"> 
+        <div class="page-row-section">
+            <div class="page-column-section">
+                <a href="/fistbump">
+                    <div class="selector-content">
+                        <div class="content default-mode">
+                            <div class="page-column-section">
+                                <h1 class="page-text">Fistbump</h1>
+                                <p class="page-text"> Social Media Project</p>
+                                <img src="{{ url_for('static', filename='images/fistbumpHome.jpeg')}}">
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
         </div>
-    </div>
-    <div class="page-row-section">
-        <div class="page-column-section">
-            <div class="selector-content">
-                <div class="content default-mode">
-                    <p class="page-text"> I am currently trying to gain as much knowledge as I can while finding a passion that I truly love. I try to push my understanding of the world and the many facets between. I believe that with consistency, effort, and time, any amout of personal growth can be attained.</p>
+        <div class="page-row-section">
+            <div class="page-column-section">
+                <div class="selector-content">
+                    <div class="content default-mode">
+                        <p class="page-text"> I am currently trying to gain as much knowledge as I can while finding a passion that I truly love. I try to push my understanding of the world and the many facets between. I believe that with consistency, effort, and time, any amout of personal growth can be attained.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="page-row-section">
-        <div class="page-column-section">
-            <div class="selector-content">
-                <div class="content default-mode">
-                    <p class="page-text"> Hello! My j is Avery Allen and I am working on this website to hone my skills and share things about me! x  x xx x x x x x x x x x x x x x x x x x x x x x x x x x x x x c x x x x x x x x x x x x xx x x x  XX  X XX X X  X XX X X X X  X XX X  XX X X X X X X X X  x x x x  x xxx x    x x x xx x x x x x x x xxx x x x x xX XX X X x </p>
+        <div class="page-row-section">
+            <div class="page-column-section">
+                <div class="selector-content">
+                    <div class="content default-mode">
+                        <p class="page-text"> Hello! My j is Avery Allen and I am working on this website to hone my skills and share things about me! x  x xx x x x x x x x x x x x x x x x x x x x x x x x x x x x x c x x x x x x x x x x x x xx x x x  XX  X XX X X  X XX X X X X  X XX X  XX X X X X X X X X  x x x x  x xxx x    x x x xx x x x x x x x xxx x x x x xX XX X X x </p>
+                    </div>
+                </div>
+            </div>
+            <div class="page-column-section">
+                <div class="selector-content">
+                    <div class="content default-mode">
+                        <p class="page-text"> Hello! My j is Avery Allen and I am working on this website to hone my skills and share things about me! x  x xx x x x x x x x x x x x x x x x x x x x x x x x x x x x x c x x x x x x x x x x x x xx x x x  XX  X XX X X  X XX X X X X  X XX X  XX X X X X X X X X  x x x x  x xxx x    x x x xx x x x x x x x xxx x x x x xX XX X X x </p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="page-column-section">
-            <div class="selector-content">
-                <div class="content default-mode">
-                    <p class="page-text"> Hello! My j is Avery Allen and I am working on this website to hone my skills and share things about me! x  x xx x x x x x x x x x x x x x x x x x x x x x x x x x x x x c x x x x x x x x x x x x xx x x x  XX  X XX X X  X XX X X X X  X XX X  XX X X X X X X X X  x x x x  x xxx x    x x x xx x x x x x x x xxx x x x x xX XX X X x </p>
-                </div>
-            </div>
-        </div>
-    </div>
-    
+    </main>
     
 </body>
 </html>

@@ -203,8 +203,8 @@ a {
 }
 
 img {
-    height: 50px;
-    width: 50px;
+    height: 200px;
+    width: 275px;
 }
 
 @keyframes animationOne {
@@ -235,4 +235,13 @@ img {
 @keyframes slidingAnimationLeft {
     0% { transform: translateX(0%); }
     100% { transform: translateX(-100%); }
+}
+
+.transition-fade {
+    opacity: 1;
+    transition: 5s;
+}
+
+html.is-animating .transition-fade {
+    opacity: 0;
 }
