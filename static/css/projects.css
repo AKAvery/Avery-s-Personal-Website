@@ -236,12 +236,3 @@ img {
     0% { transform: translateX(0%); }
     100% { transform: translateX(-100%); }
 }
-
-.transition-fade {
-    opacity: 1;
-    transition: 5s;
-}
-
-html.is-animating .transition-fade {
-    opacity: 0;
-}

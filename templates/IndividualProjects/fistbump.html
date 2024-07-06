@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/IndividualProjects/fistbump.css') }}">
-    <script defer src="node_modules/swup/dist/swup.min.js"></script>
-    <script defer src="script.js"></script>
     <title>Document</title>
 </head>
 <body>
-    <main id="swup" class="transition-fade"> 
+    <div> 
         <header class="header">
             <a href="/">
                 <img class="option-logo" src="{{ url_for('static', filename='images/AAlogo.png') }}" alt="logo">
@@ -19,25 +17,26 @@
                 <a href="/projects" class="nav-text">Projects</a>
             </nav>
         </header>
-
+        <main>
             <div style="margin-top: 50px; text-align: center;">
                 <img class="img-background" src="{{ url_for('static', filename='images/fistbumpHome.jpeg') }}" alt="fistbump home page">
             </div>
 
-        <div class="selector-content">
-            <div class="page-row-section">
-                <div style="margin-top: 100px; margin-bottom: 100px; margin-left: 350px; margin-right: 350px;">
-                    <p1 class="page-text"> Fistbump is a social networking app that links you with other users. Each day, you recieve 1 random user, with whom you must meet up with in person, and take a picture with them. After this, your image is shared to the wall, where everyone can see connections being made with their friends. This short act of meeting up to take your Fistbump together finishes the hardest step of meeting new people: Breaking the ice. After meeting each other, the two users are physically close and have talked, and this small connection could lead to more conversations, activities done together, shared phone numbers, and eventually, a new friendship.</p1>
+            <div class="selector-content">
+                <div class="page-row-section">
+                    <div style="margin-top: 100px; margin-bottom: 100px; margin-left: 350px; margin-right: 350px;">
+                        <p1 class="page-text"> Fistbump is a social networking app that links you with other users. Each day, you recieve 1 random user, with whom you must meet up with in person, and take a picture with them. After this, your image is shared to the wall, where everyone can see connections being made with their friends. This short act of meeting up to take your Fistbump together finishes the hardest step of meeting new people: Breaking the ice. After meeting each other, the two users are physically close and have talked, and this small connection could lead to more conversations, activities done together, shared phone numbers, and eventually, a new friendship.</p1>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="selector-content">
-            <div class="page-row-section" style="margin-bottom: 100px;">
-                <img style="margin-right: 100px;" class="img-vertical" src="{{ url_for('static', filename='images/fistbumpProfile.jpeg') }}" alt="fistbump profile page">
-                <img style="margin-left: 100px;" class="img-vertical" src="{{ url_for('static', filename='images/fistbumpPhoto.jpeg') }}" alt="fistbump picture page">>
+            <div class="selector-content">
+                <div class="page-row-section" style="margin-bottom: 100px;">
+                    <img style="margin-right: 100px;" class="img-vertical" src="{{ url_for('static', filename='images/fistbumpProfile.jpeg') }}" alt="fistbump profile page">
+                    <img style="margin-left: 100px;" class="img-vertical" src="{{ url_for('static', filename='images/fistbumpPhoto.jpeg') }}" alt="fistbump picture page">>
+                </div>
             </div>
-        </div>
-    </main>
+        </main>
+    </div>
         <script>
             function checkVisibility() {
                 var elements = document.querySelectorAll('.selector-content');
@@ -52,6 +51,7 @@
             window.addEventListener('scroll', checkVisibility);
             window.addEventListener('resize', checkVisibility);
             document.addEventListener('DOMContentLoaded', checkVisibility);
+
 
         </script>
 </body>
