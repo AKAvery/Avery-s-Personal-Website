@@ -31,7 +31,7 @@
             </a>
             </div>
         </div>  
-        <div class="page-column-section" style="margin-top: 90px;">
+        <div class="page-column-section" style="margin-top: 300px;">
             <div class="page-column-section">
                 <div class="image-container">
                     <div class="image-wrapper">
@@ -67,7 +67,7 @@
             <div class="page-column-section">
                 <div class="content">
                     <p class="page-text">
-                        I have experience with Java, Python, HTML, CSS, React Native, C++ and SQL. Click on the floating icons to see more information. Adios!
+                        I have experience with Java, Python, HTML, CSS, React Native, C++ and SQL. Click on the floating icons to see more information. Adios! X X  X X X XX X X X X X X  X X X X X  X X X X  X X X  X X X  X X X X  X X X  X X X X X X  X X X X X  X X X X X  X X 
                     </p>
                 </div>
             </div>
@@ -96,7 +96,7 @@
         const imageLength = imageItems.length;
         const perView = 3
         let totalScroll = 0
-        const delay = 3200
+        const delay = 6500
 
         imageWrapper.style.setProperty('--per-view', perView)
         for(let i = 0; i < perView; i++) {
@@ -116,13 +116,26 @@
             }
             const widthEl = document.querySelector('.image-wrapper > :first-child').offsetWidth + 24
             imageWrapper.style.left = `-${totalScroll * widthEl}px`
-            imageWrapper.style.transition = '0.3s'
+            imageWrapper.style.transition = '1s'
+            highlightCenterImage()
 
         }
 
+        function highlightCenterImage() {
+            const allItems = document.querySelectorAll('.image-wrapper > *');
+            allItems.forEach(item => item.classList.remove('center-image'));
+            let centerIndex = totalScroll + Math.floor(perView / 2);
+            if (centerIndex >= allItems.length) {
+                centerIndex = centerIndex % imageLength;
+            }
+            allItems[centerIndex].classList.add('center-image');
+        }
+
+        highlightCenterImage();
+
         function updateAnimationRandomsA() {
-            var randomHeightA = (Math.random() * 300) + 100;
-            var randomTimeA = (Math.random() * 5) + 15;
+            var randomHeightA = (Math.random() * 300) + 300;
+            var randomTimeA = (Math.random() * 5) + 25;
             var aElement = document.querySelector('.a');
 
             aElement.style.animation = 'none';
@@ -133,8 +146,8 @@
         }
         
         function updateAnimationRandomsB() {
-            var randomHeightB = (Math.random() * 300) + 100;
-            var randomTimeB = (Math.random() * 5) + 15;
+            var randomHeightB = (Math.random() * 300) + 300;
+            var randomTimeB = (Math.random() * 5) + 25;
             var bElement = document.querySelector('.b');
 
             bElement.style.animation = 'none';
@@ -145,8 +158,8 @@
         }
 
         function updateAnimationRandomsC() {
-            var randomHeightC = (Math.random() * 300) + 100;
-            var randomTimeC = (Math.random() * 5) + 15;
+            var randomHeightC = (Math.random() * 300) + 300;
+            var randomTimeC = (Math.random() * 5) + 25;
             var cElement = document.querySelector('.c');
 
             cElement.style.animation = 'none';
@@ -157,8 +170,8 @@
         }
 
         function updateAnimationRandomsD() {
-            var randomHeightD = (Math.random() * 300) + 100;
-            var randomTimeD = (Math.random() * 5) + 15;
+            var randomHeightD = (Math.random() * 300) + 300;
+            var randomTimeD = (Math.random() * 5) + 25;
             var dElement = document.querySelector('.d');
 
             dElement.style.animation = 'none';
@@ -179,7 +192,7 @@
         document.querySelector('.c').addEventListener('animationiteration', updateAnimationRandomsC);
         document.querySelector('.d').addEventListener('animationiteration', updateAnimationRandomsD);
 
-
+        highlightCenterImage();
 
     </script>
 </body>
