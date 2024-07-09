@@ -8,15 +8,17 @@
     <title>Projects</title>
 </head>
 <body>
+
     <header class="header">
         <a href="/">
             <img class="option-logo" src="{{ url_for('static', filename='images/AAlogo.png') }}" alt="logo">
         </a>
-        <nav class="nav-bar" >
+        <nav class="nav-bar" style="margin-left: 60%;">
             <a href="/about" class="nav-text">About Me</a>
             <a href="/projects" class="nav-text">Projects</a>
         </nav>
-    </header>​
+    </header>
+​
     
     <div class="page-row-section">
         <div class="page-row-section">
@@ -31,7 +33,7 @@
             </a>
             </div>
         </div>  
-        <div class="page-column-section" style="margin-top: 300px;">
+        <div class="page-column-section" style="margin-top: 375px;">
             <div class="page-column-section">
                 <div class="image-container">
                     <div class="image-wrapper">
@@ -67,8 +69,8 @@
             <div class="page-column-section">
                 <div class="content">
                     <p class="page-text">
-                        I have experience with Java, Python, HTML, CSS, React Native, C++ and SQL. Click on the floating icons to see more information. Adios! X X  X X X XX X X X X X X  X X X X X  X X X X  X X X  X X X  X X X X  X X X  X X X X X X  X X X X X  X X X X X  X X 
-                    </p>
+                        I have experience with Java, Python, HTML, CSS, React Native, C++ and SQL. Click on the floating icons to see more information. Adios! X X  X X X XX X X X X X X  X X X X X  X X X X  X X X  X X X  X X X X  X X X  X X X X X X  X X X X X  X X X X X  X X             xx   x xxx x x x  x x x x x x x x xx x x x x x x x x  x x x x x x xxx  x x x x x x  x x x x x x x x x x xxxxxxx xxx x x x  x x x x x  x x x  x x x x x  xxx x x  x x x x x   x x  x x x x  x x xxx x x x x x x x  x x  x x x x x x x x x x xx x x x x     x          x                x                 x
+                    </p>   
                 </div>
             </div>
         </div>
@@ -91,6 +93,20 @@
     </div>
 
     <script>
+
+        const headerEl = document.querySelector('.header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                headerEl.classList.add('header-scrolled');
+                headerEl.style.animation = 'none'
+
+            }
+            else if (window.scrollY <= 50) {
+                headerEl.classList.remove('header-scrolled');
+                headerEl.style.animation = 'blink var(--animation-time-h) infinite';
+            }
+        });
+
         const imageWrapper = document.querySelector('.image-wrapper');
         const imageItems = document.querySelectorAll('.image-wrapper > *');
         const imageLength = imageItems.length;
@@ -132,6 +148,15 @@
         }
 
         highlightCenterImage();
+
+        function updateRandomBlink() {
+            var randomBlink = (Math.random() * 5) + 8;
+            var hElement = document.querySelector('.header');
+
+            hElement.style.animation = 'none';
+            document.documentElement.style.setProperty('--animation-time-h', randomBlink + 's');
+            hElement.style.animation = 'blink var(--animation-time-h) infinite';
+        }
 
         function updateAnimationRandomsA() {
             var randomHeightA = (Math.random() * 300) + 300;
@@ -182,11 +207,13 @@
 
         }
 
+        updateRandomBlink();
         updateAnimationRandomsA();
         updateAnimationRandomsB();
         updateAnimationRandomsC();
         updateAnimationRandomsD();
 
+        document.querySelector('.header').addEventListener('animationiteration', updateRandomBlink);
         document.querySelector('.a').addEventListener('animationiteration', updateAnimationRandomsA);
         document.querySelector('.b').addEventListener('animationiteration', updateAnimationRandomsB);
         document.querySelector('.c').addEventListener('animationiteration', updateAnimationRandomsC);

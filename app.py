@@ -18,5 +18,9 @@ def projects():
 def fistbump():
     return render_template('individualProjects/fistbump.html')
 
+@app.route('/stockSentiment')
+def stockSentiment():
+    return render_template('individualProjects/stockSentiment.html')
+
 if __name__ == '__main__':
     app.run(port = 4000, debug=True)

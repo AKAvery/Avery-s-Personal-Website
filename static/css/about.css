@@ -1,6 +1,6 @@
 
 .header {
-    background: rgb(246, 246, 246);
+    background: rgb(255, 255, 255, 0.95);
     position: fixed;
     left: 0;
     top: 0;
@@ -9,19 +9,22 @@
     padding: 20px 100px;
     z-index: 2;
     transition: all 0.4s;
-    box-shadow: 0 3px 10px rgb(0, 0, 0, 0.15);
+    /*box-shadow: 0 3px 10px rgb(0, 0, 0, 0.15);*/
     display: flex;
     flex-direction: row;
+    animation: blink var(--animation-time-h) infinite;
 }
 
 .header-scrolled {
-    background: rgb(246, 246, 246, 0.85);
+    background: rgb(255, 255, 255, 0.95);
+    box-shadow: 0 3px 10px rgb(0, 0, 0, 0.15);
     position: fixed;
     left: 0;
     top: 0;
     width: 100%;
     padding: 20px 100px;
     z-index: 2;
+    animation: none;
 }
 
 .nav-bar {
@@ -134,7 +137,7 @@ a {
 }
 
 .image-wrapper {
-    margin-top: 50px;
+    margin-top: 70px;
     margin-bottom: 70px;
     height: 100%;
     display: grid;
@@ -162,6 +165,7 @@ a {
 .revolving-img {
     border-radius: 0.5rem;
     box-shadow: 0 3px 10px rgb(0, 0, 0, 0.45);
+    transition: 1s;
 }
 
 .center-image .revolving-img {
@@ -172,15 +176,18 @@ a {
 }
 
 .floating-img {
+    position: relative;
     width: 50px;
     height: 50px;
     border-radius: 5px;
     box-shadow: 0 3px 10px rgb(0, 0, 0, 0.15);
+    transition: all 0.3s;
 
 }
 
 .floating-img:hover {
     cursor: pointer;
+    transform: scale(1.2);
 }
 
 body {
@@ -230,6 +237,10 @@ div.d {
     --animation-time-d: 13s;
 }
 
+.remove-animation {
+    animaton: none !important;
+}
+
 @keyframes bounce1 {
     0%, 100% {
         transform: translateY(-400px);
@@ -274,5 +285,15 @@ div.d {
     }
     50% {
         transform: scale(1.2, 1.2);
+    }
+}
+
+@keyframes blink {
+    0%, 30%, 70%, 100% {
+        box-shadow: none;
+    }
+
+    50% {
+        box-shadow: 0 3px 10px rgb(0, 0, 0, 0.15);
     }
 }

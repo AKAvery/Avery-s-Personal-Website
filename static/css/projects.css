@@ -178,6 +178,14 @@ body {
     transform: scale(1.1, 1.1);
 }
 
+.content img {
+    transition: all 0.5s ease;
+}
+
+.content.default-mode:hover img {
+    transform: scale(1.1);
+}
+
 .content.alt-mode::before {
    background: rgb(246,246,246);
    box-shadow: 0 3px 10px rgb(0, 0, 0, 0.15);
