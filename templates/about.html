@@ -7,28 +7,27 @@
     
     <title>Projects</title>
 </head>
-<body>
 
+
+
+<body>
+    ​<div id="glowing-circle"></div>
     <header class="header">
-        <a href="/">
-            <img class="option-logo" src="{{ url_for('static', filename='images/AAlogo.png') }}" alt="logo">
-        </a>
+        <a href="/" class="nav-text"> Home </a>
         <nav class="nav-bar" style="margin-left: 60%;">
             <a href="/about" class="nav-text">About Me</a>
             <a href="/projects" class="nav-text">Projects</a>
         </nav>
     </header>
-​
-    
     <div class="page-row-section">
         <div class="page-row-section">
             <div class='a'>
-                <a href="https://www.duolingo.com/profile/AveryAllen360694" target="blank" style="all: unset;">
+                <a href="https://www.duolingo.com/profile/AveryAllen360694" target="_blank" style="all: unset;">
                     <img class="floating-img" src="{{ url_for('static', filename='images/Duolingo.avif')  }}" alt="duolingo icon">
                 </a>
             </div>
             <div class='b'>
-                <a href="https://github.com/AKAvery" target="blank" style="all: unset;">
+                <a href="https://github.com/AKAvery" target="_blank" style="all: unset;">
                 <img class="floating-img" src="{{ url_for('static', filename='images/github_trans_icon.png') }}">
             </a>
             </div>
@@ -75,15 +74,15 @@
             </div>
         </div>
         <div class="page-row-section">
-            <div clas="page-row-section">
+            <div>
               </div>
                     <div class="c">
-                        <a href="https://www.linkedin.com/in/averykallen/" target="blank" style="all: unset;">
+                        <a href="https://www.linkedin.com/in/averykallen/" target="_blank" style="all: unset;">
                             <img class="floating-img" src="{{ url_for('static', filename='images/linkedin_trans_icon.png') }}">
                         </a>
                     </div>
                     <div class="d">
-                        <a href="https://app.utrsports.net/profiles/2804949" target="blank" style="all: unset;">
+                        <a href="https://app.utrsports.net/profiles/2804949" target="_blank" style="all: unset;">
                             <img class="floating-img" src="{{ url_for('static', filename='images/UTR_trans_icon.png')}}">
                         </a>
                     </div>
@@ -94,18 +93,28 @@
 
     <script>
 
+        const a = document.querySelector('.a');
+        const b = document.querySelector('.b');
+        const c = document.querySelector('.c');
+        const d = document.querySelector('.d');
         const headerEl = document.querySelector('.header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                headerEl.classList.add('header-scrolled');
-                headerEl.style.animation = 'none'
 
+
+        function checkHeaderScrolled() {
+            if (window.scrollY > 30 || areDivsTouching(a, b, c, d, headerEl)) {
+                headerEl.classList.add('header-scrolled');
+                /*headerEl.style.animation = 'none';*/
             }
-            else if (window.scrollY <= 50) {
+            else {
                 headerEl.classList.remove('header-scrolled');
-                headerEl.style.animation = 'blink var(--animation-time-h) infinite';
+                /*headerEl.style.animation = 'blink var(--animation-time-h) infinite';*/
             }
-        });
+        }
+
+        window.addEventListener('resize', checkHeaderScrolled);
+        window.addEventListener('scroll', checkHeaderScrolled);
+
+        setInterval(checkHeaderScrolled, 100);
 
         const imageWrapper = document.querySelector('.image-wrapper');
         const imageItems = document.querySelectorAll('.image-wrapper > *');
@@ -149,14 +158,14 @@
 
         highlightCenterImage();
 
-        function updateRandomBlink() {
+        /*function updateRandomBlink() {
             var randomBlink = (Math.random() * 5) + 8;
             var hElement = document.querySelector('.header');
 
             hElement.style.animation = 'none';
             document.documentElement.style.setProperty('--animation-time-h', randomBlink + 's');
             hElement.style.animation = 'blink var(--animation-time-h) infinite';
-        }
+        }*/
 
         function updateAnimationRandomsA() {
             var randomHeightA = (Math.random() * 300) + 300;
@@ -204,22 +213,57 @@
             document.documentElement.style.setProperty('--animation-time-d', randomTimeD + 's');
             dElement.offsetHeight;
             dElement.style.animation = 'bounce4 var(--animation-time-d) infinite';
-
         }
 
-        updateRandomBlink();
-        updateAnimationRandomsA();
-        updateAnimationRandomsB();
-        updateAnimationRandomsC();
-        updateAnimationRandomsD();
+        function areDivsTouching(a, b, c, d, header) {
+            const rect1 = a.getBoundingClientRect();
+            const rect2 = b.getBoundingClientRect();
+            const rect3 = c.getBoundingClientRect();
+            const rect4 = d.getBoundingClientRect();
+            const rectH = header.getBoundingClientRect();
 
-        document.querySelector('.header').addEventListener('animationiteration', updateRandomBlink);
-        document.querySelector('.a').addEventListener('animationiteration', updateAnimationRandomsA);
-        document.querySelector('.b').addEventListener('animationiteration', updateAnimationRandomsB);
-        document.querySelector('.c').addEventListener('animationiteration', updateAnimationRandomsC);
-        document.querySelector('.d').addEventListener('animationiteration', updateAnimationRandomsD);
+            return (
+                (rect1.top - 50 <= rectH.bottom && rect1.bottom + 50 >= rectH.bottom) ||
+                (rect2.top - 50 <= rectH.bottom && rect2.bottom  + 50 >= rectH.bottom) ||
+                (rect3.top - 50 <= rectH.bottom && rect3.bottom + 50 >=rectH.bottom) ||
+                (rect4.top - 50 <= rectH.bottom && rect4.bottom + 50 >= rectH.bottom) 
+            );
+        }
 
-        highlightCenterImage();
+        const glowingCircle = document.getElementById('glowing-circle');
+        let mouseX = 0;
+        let mouseY = 0;
+
+        function updateGlowingCircle() {
+            glowingCircle.style.left = `${mouseX + window.scrollX}px`;
+            glowingCircle.style.top = `${mouseY + window.scrollY}px`;
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            updateGlowingCircle();
+        });
+
+        window.addEventListener('scroll', updateGlowingCircle);
+        
+      
+            /*updateRandomBlink();*/
+            updateAnimationRandomsA();
+            updateAnimationRandomsB();
+            updateAnimationRandomsC();
+            updateAnimationRandomsD();
+            highlightCenterImage();
+
+            
+
+            /*document.querySelector('.header').addEventListener('animationiteration', updateRandomBlink);*/
+            document.querySelector('.a').addEventListener('animationiteration', updateAnimationRandomsA);
+            document.querySelector('.b').addEventListener('animationiteration', updateAnimationRandomsB);
+            document.querySelector('.c').addEventListener('animationiteration', updateAnimationRandomsC);
+            document.querySelector('.d').addEventListener('animationiteration', updateAnimationRandomsD);
+        
+
 
     </script>
 </body>
