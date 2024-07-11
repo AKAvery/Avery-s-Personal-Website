@@ -1,6 +1,5 @@
 .header {
-    background: rgb(246, 246, 246);
-    box-shadow: 0 3px 10px rgb(0, 0, 0, 0.15);
+    background: white;
     position: relative;
     left: 0;
     top: 0;
@@ -18,6 +17,7 @@
     display: flex;
     flex-direction: row;
     padding-right: 100px;
+    margin-left: 60%;
  
 }
 
@@ -113,9 +113,29 @@ a {
     width: 300px;
 }
 
+#loading {
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+}
+
+#buffer-zone {
+    height: 100vh;
+    background-color: white;
+    margin-bottom: 2px;
+}
+
+.slow-container {
+    position: relative;
+    margin-top: auto;
+    height: 10%;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
 @keyframes glow {
-    0% {box-shadow: inset 0 0 1000px 1000px rgb(238, 255, 3); }
-    30% {box-shadow: inset 0 0 1000px 1000px rgb(238, 255, 3);}
+    0% {box-shadow: inset 0 0 1000px 1000px rgb(255, 64, 64, 0.8); }
+    30% {box-shadow: inset 0 0 1000px 1000px rgb(255, 64, 64, 0.8);}
     100% { opacity: 1;
         box-shadow: none;}
     

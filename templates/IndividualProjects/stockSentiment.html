@@ -9,23 +9,21 @@
 <body>
     <div> 
         <header class="header">
-            <a href="/">
-                <img class="option-logo" src="{{ url_for('static', filename='images/AAlogo.png') }}" alt="logo">
-            </a>
+            <a href="/" class="nav-text">Home</a>
             <nav class="nav-bar">
                 <a href="/about" class="nav-text">About Me</a>
                 <a href="/projects" class="nav-text">Projects</a>
             </nav>
         </header>
-        <main>
+        <main id="infinite-content">
             <div style="margin-top: 50px; text-align: center;">
-                
+                <img class="img-background" src="{{ url_for('static', filename='images/positive_data_word_cloud.jpeg') }}" alt="postive data word cloud">
             </div>
 
             <div class="selector-content">
                 <div class="page-row-section">
                     <div style="margin-top: 100px; margin-bottom: 100px; margin-left: 350px; margin-right: 350px;">
-                        
+                        <p1 class="page-text">In this portfolio project, I explored the use of Natural Language Processing (NLP) and machine learning models to predict stock market trends based on market sentiment. Through this project, I gained hands-on experience with sentiment classification in financial articles, data preprocessing, and model implementation. I worked with various techniques, including Bag-of-Words, logistic regression, Long Short-Term Memory (LSTM) networks, and the Bidirectional Encoder Representations from Transformers (BERT) model. By leveraging these models, I was able to achieve significant improvements in prediction accuracy, demonstrating the potential of NLP in enhancing financial forecasting. Here is a detailed overview of the project, highlighting the methodologies and results obtained. </p>
                     </div>
                 </div>
             </div>
@@ -36,22 +34,115 @@
             </div>
         </main>
     </div>
-        <script>
-            function checkVisibility() {
-                var elements = document.querySelectorAll('.selector-content');
-                elements.forEach(function(footerEl) {
-                    const rect = footerEl.getBoundingClientRect();
-                    if (rect.bottom <= (window.innerHeight + 200)) {
-                        footerEl.classList.add('visible-selector-content')
+
+    <div id="buffer-zone" class="page-row-section"> 
+        <div class="slow-container" id="slow-scroll"></div>
+        <img style="position: absolute;" src="{{ url_for('static', filename='images/arrow_down.png') }}">
+    </div>
+    <div id="loading" style="display: none;">Loading...</div>
+
+    <script>
+        function checkVisibility() {
+            var elements = document.querySelectorAll('.selector-content');
+            elements.forEach(function(footerEl) {
+                const rect = footerEl.getBoundingClientRect();
+                if (rect.bottom <= (window.innerHeight + 150)) {
+                    footerEl.classList.add('visible-selector-content');
+                }
+            });
+        }
+        window.addEventListener('scroll', checkVisibility);
+        window.addEventListener('resize', checkVisibility);
+        document.addEventListener('DOMContentLoaded', checkVisibility);
+    
+        document.addEventListener('DOMContentLoaded', () => {
+            const pages = [
+                '/fistbump',
+                '/stockSentiment'
+            ];
+            let currentPageIndex = 0;
+            let loading = false;
+            let bufferReached = false;
+            let scrollCount = 0;
+            let lastScrollTime = 0;
+            let scrollFactor = 1000010000;
+
+            const loadMoreContent = () => {
+                if (loading || scrollCount < 2) return;
+                loading = true;
+                document.getElementById('loading').style.display = 'block';
+
+                currentPageIndex = (currentPageIndex + 1) % pages.length;
+                fetch(pages[currentPageIndex])
+                    .then(response => response.text())
+                    .then(data => {
+                        const parser = new DOMParser();
+                        const newDocument = parser.parseFromString(data, 'text/html');
+                        const newContent = newDocument.getElementById('infinite-content').innerHTML;
+                        const newContentContainer = document.createElement('div');
+                        newContentContainer.innerHTML = newContent;
+                        document.getElementById('infinite-content').appendChild(newContentContainer);
+                        document.getElementById('loading').style.display = 'none';
+                        loading = false;
+                        bufferReached = false;
+                        scrollCount = 0;
+
+                        window.scrollTo({ top: newContentContainer.offsetTop, behavior: 'smooth' });
+                    })
+                    .catch(() => {
+                        document.getElementById('loading').style.display = 'none';
+                        loading = false;
+                        bufferReached = false;
+                    });
+            };
+
+            const bufferZone = document.getElementById('buffer-zone');
+            const slowScrollContainer = document.getElementById('slow-scroll');
+
+            window.addEventListener('scroll', () => {
+                const now = Date.now();
+                if (now - lastScrollTime < 200) return;
+                lastScrollTime = now;
+
+                const rect = bufferZone.getBoundingClientRect();
+                if ((rect.bottom - 100) <= window.innerHeight && !bufferReached) {
+                    bufferReached = true;
+                    scrollCount = 0;
+                }
+            });
+
+            window.addEventListener('wheel', (event) => {
+
+                const slowScrollRect = slowScrollContainer.getBoundingClientRect();
+                if (slowScrollRect.top <= window.innerHeight && slowScrollRect.bottom >= window.innerHeight) {
+                    event.preventDefault();
+                    window.scrollBy({
+                        top: event.deltaY * scrollFactor,
+                        behavior: 'smooth'
+                    });
+                }
+
+
+                if (bufferReached && event.deltaY > 0) { 
+                    scrollCount++;
+                    if (scrollCount >= 2 && !loading) {
+                        loadMoreContent();
                     }
-                    
-                });
-            }
-            window.addEventListener('scroll', checkVisibility);
-            window.addEventListener('resize', checkVisibility);
-            document.addEventListener('DOMContentLoaded', checkVisibility);
+                }
+            });
 
+            window.addEventListener('touchmove', () => {
+                if (bufferReached) {
+                    scrollCount++;
+                    if (scrollCount >= 2 && !loading) {
+                        loadMoreContent();
+                    }
+                }
+            });
+        });
 
-        </script>
+    </script>
+    
+    
 </body>
 </html>

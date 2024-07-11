@@ -8,9 +8,7 @@
 </head>
 <body>
     <header class="header">
-        <a href="/">
-            <img class="option-logo" src="{{ url_for('static', filename='images/AAlogo.png') }}" alt="logo">
-        </a>
+        <a href="/" class="nav-text">Home</a>
         <nav class="nav-bar" style="margin-left: 60%;">
             <a href="/about" class="nav-text">About Me</a>
             <a href="/projects" class="nav-text">Projects</a>
@@ -40,7 +38,11 @@
                 <a href="/stockSentiment">
                     <div class="selector-content">
                         <div class="content default-mode">
-                            <p class="page-text"> I am currently trying to gain as much knowledge as I can while finding a passion that I truly love. I try to push my understanding of the world and the many facets between. I believe that with consistency, effort, and time, any amout of personal growth can be attained.</p>
+                            <div class="page-column-section">
+                                <h1 class="page-text" style="font-size:  30px;"> NLP for Finance</h1>
+                                <p class="page-text"> Leverageing Machine Learning to analyze Stock Sentiment </p>
+                                <img src="{{ url_for('static', filename='images/positive_data_word_cloud.jpeg')}}">
+                            </div>
                         </div>
                     </div>
                 </a>

@@ -16,11 +16,11 @@ def projects():
 
 @app.route('/fistbump')
 def fistbump():
-    return render_template('individualProjects/fistbump.html')
+    return render_template('IndividualProjects/fistbump.html')
 
 @app.route('/stockSentiment')
 def stockSentiment():
-    return render_template('individualProjects/stockSentiment.html')
+    return render_template('IndividualProjects/stockSentiment.html')
 
 if __name__ == '__main__':
     app.run(port = 4000, debug=True)
