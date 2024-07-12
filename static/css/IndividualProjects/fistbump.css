@@ -119,18 +119,28 @@ a {
     font-size: 18px;
 }
 
-#buffer-zone {
-    height: 100vh;
+.buffer-zone {
+    height: 60vh;
     background-color: white;
-    margin-bottom: 2px;
+    transition: 0.5s all;
+
 }
 
-.slow-container {
-    position: relative;
-    margin-top: auto;
-    height: 10%;
+.buffer-zone:hover {
+    height: 40vh;
+    transform: scale(1.2);
+}
+
+.load-button {
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: white;
+}
+
+.hidden {
+    display: none;
 }
 
 @keyframes glow {

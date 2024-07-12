@@ -33,30 +33,145 @@
                     <img style="margin-left: 100px;" class="img-vertical" src="{{ url_for('static', filename='images/fistbumpPhoto.jpeg') }}" alt="fistbump picture page">
                 </div>
             </div>
+            <div class="buffer-zone page-row-section"> 
+                <button class="load-button" onmouseover="previewNextPage()" onmouseout="hideNextPage()" onclick="loadMoreContent()">
+
+                    <img style="position: relative;" src="{{ url_for('static', filename='images/arrow_down.png') }}">
+                </button>
+            </div>
+            <div id="next-page-preview" class="hidden"></div>
+
         </main>
     </div>
 
-    <div id="buffer-zone" class="page-column-section">
-        <div class="slow-container" id="slow-scroll"></div>
-        <img style="position: absolute" src="{{ url_for('static', filename='images/arrow_down.png') }}">
-    </div>
+ 
     <div id="loading" style="display: none;">Loading...</div>
 
     <script>
-        function checkVisibility() {
-            var elements = document.querySelectorAll('.selector-content');
-            elements.forEach(function(footerEl) {
-                const rect = footerEl.getBoundingClientRect();
-                if (rect.bottom <= (window.innerHeight + 150)) {
-                    footerEl.classList.add('visible-selector-content');
+        const pages = [
+            '/fistbump',
+            '/stockSentiment'
+        ];
+        let currentPageIndex = 0;
+        let loading = false;
+        let nextPageContent = '';
+
+        const disableDownScroll = (event) => {
+            if (event.deltaY > 0 || event.key === 'ArrowDown') {
+                event.preventDefault();
+            }
+        };
+
+        const enableScroll = () => {
+            window.removeEventListener('wheel', disableDownScroll, { passive: false });
+            window.removeEventListener('keydown', disableDownScroll, { passive: false });
+        };
+
+        const loadMoreContent = () => {
+            if (loading) return;
+            loading = true;
+            document.getElementById('loading').style.display = 'block';
+
+            currentPageIndex = (currentPageIndex + 1) % pages.length;
+            fetch(pages[currentPageIndex])
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const newDocument = parser.parseFromString(data, 'text/html');
+                    const newContent = newDocument.getElementById('infinite-content').innerHTML;
+                    const newContentContainer = document.createElement('div');
+                    newContentContainer.innerHTML = newContent;
+                    document.getElementById('infinite-content').appendChild(newContentContainer);
+                    document.getElementById('loading').style.display = 'none';
+                    loading = false;
+                    window.scrollBy({ top: 700, behavior: 'smooth' });
+                    enableScroll();
+                    prefetchNextPage();
+                })
+                .catch(() => {
+                    document.getElementById('loading').style.display = 'none';
+                    loading = false;
+                    enableScroll();
+                });
+        };
+
+        const prefetchNextPage = () => {
+            const nextPageIndex = (currentPageIndex + 1) % pages.length;
+            fetch(pages[nextPageIndex])
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const newDocument = parser.parseFromString(data, 'text/html');
+                    const newContent = newDocument.getElementById('infinite-content').innerHTML;
+                    nextPageContent = newContent; // Store the pre-fetched content
+                    document.getElementById('next-page-preview').innerHTML = nextPageContent;
+                })
+                .catch(() => {
+                    console.error('Failed to prefetch next page');
+                });
+        };
+
+        const previewNextPage = () => {
+            document.getElementById('next-page-preview').classList.remove('hidden');
+            document.getElementById('next-page-preview').innerHTML = nextPageContent;
+        };
+
+        const hideNextPage = () => {
+            document.getElementById('next-page-preview').classList.add('hidden');
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            function checkVisibility() {
+                var elements = document.querySelectorAll('.selector-content');
+                elements.forEach(function(footerEl) {
+                    const rect = footerEl.getBoundingClientRect();
+                    if (rect.bottom <= (window.innerHeight + 150)) {
+                        footerEl.classList.add('visible-selector-content');
+                    }
+                });
+            }
+            window.addEventListener('scroll', checkVisibility);
+            window.addEventListener('resize', checkVisibility);
+            checkVisibility();
+
+            prefetchNextPage();
+
+            window.addEventListener('scroll', () => {
+                const nextPagePreview = document.getElementById('next-page-preview');
+                const nextPagePreviewRect = nextPagePreview.getBoundingClientRect();
+                const previewHeight = nextPagePreviewRect.height;
+
+                if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - previewHeight)) {
+                    window.addEventListener('wheel', disableDownScroll, { passive: false });
+                    window.addEventListener('keydown', disableDownScroll, { passive: false });
                 }
             });
-        }
-        window.addEventListener('scroll', checkVisibility);
-        window.addEventListener('resize', checkVisibility);
-        document.addEventListener('DOMContentLoaded', checkVisibility);
+        });
+
+
+        /*window.addEventListener('scroll', () => {
+                if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 500) {
+                    loadMoreContent();
+                }
+            });*/
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
-        document.addEventListener('DOMContentLoaded', () => {
+        /*document.addEventListener('DOMContentLoaded', () => {
             const pages = [
                 '/fistbump',
                 '/stockSentiment'
@@ -66,10 +181,19 @@
             let bufferReached = false;
             let scrollCount = 0;
             let lastScrollTime = 0;
-            let scrollFactor = 1;
+            let scrollFactor = 0.5;
+            let slowScrollEnabled = true;
+
+            const freezeScroll = () => {
+                document.body.classList.add('no-scroll');
+            };
+
+            const unfreezeScroll = () => {
+                document.body.classList.remove('no-scroll');
+            };
 
             const loadMoreContent = () => {
-                if (loading || scrollCount < 2) return;
+                if (loading || scrollCount < 1) return;
                 loading = true;
                 document.getElementById('loading').style.display = 'block';
 
@@ -87,8 +211,13 @@
                         loading = false;
                         bufferReached = false;
                         scrollCount = 0;
-
                         window.scrollTo({ top: newContentContainer.offsetTop, behavior: 'smooth' });
+
+                        slowScrollEnabled = false;
+                        setTimeout(() => {
+                            slowScrollEnabled = true;
+                        }, 1000);
+
                     })
                     .catch(() => {
                         document.getElementById('loading').style.display = 'none';
@@ -100,47 +229,60 @@
             const bufferZone = document.getElementById('buffer-zone');
             const slowScrollContainer = document.getElementById('slow-scroll');
 
-
             window.addEventListener('scroll', () => {
                 const now = Date.now();
                 if (now - lastScrollTime < 200) return;
                 lastScrollTime = now;
 
                 const rect = bufferZone.getBoundingClientRect();
-                if ((rect.bottom - 100) <= window.innerHeight && !bufferReached) {
+                if ((rect.bottom - 200) <= window.innerHeight && !bufferReached) {
                     bufferReached = true;
                     scrollCount = 0;
+                    window.scrollBy({ top: -200, behavior: 'smooth' });
+                    freezeScroll();
+                    setTimeout(() => {
+                        unfreezeScroll();
+                        window.addEventListener('wheel', smoothScroll);
+                    }, 1000);
                 }
+
+                else if (!bufferReached) {
+                    window.removeEventListener('wheel', smoothScroll);
+                }
+
             });
 
-            window.addEventListener('wheel', (event) => {
-
+            const smoothScroll = (event) => {
                 const slowScrollRect = slowScrollContainer.getBoundingClientRect();
-                if (slowScrollRect.top <= window.innerHeight && slowScrollRect.bottom >= window.innerHeight) {
+                if (slowScrollEnabled && slowScrollRect.top <= window.innerHeight && slowScrollRect.bottom >= window.innerHeight) {
                     event.preventDefault();
-                    window.scrollBy({
-                        top: event.deltaY * scrollFactor,
-                        behavior: 'smooth'
+                    const targetScroll = window.scrollY + event.deltaY * scrollFactor;
+                    window.requestAnimationFrame(() => {
+                        window.scrollTo({
+                            top: targetScroll,
+                            behavior: 'smooth'
+                        });
                     });
-                }
-
+                } 
+                
                 if (bufferReached && event.deltaY > 0) { 
                     scrollCount++;
-                    if (scrollCount >= 2 && !loading) {
+                    if (scrollCount >= 1 && !loading) {
                         loadMoreContent();
                     }
                 }
-            });
+            };
+
 
             window.addEventListener('touchmove', () => {
                 if (bufferReached) {
                     scrollCount++;
-                    if (scrollCount >= 2 && !loading) {
+                    if (scrollCount >= 1 && !loading) {
                         loadMoreContent();
                     }
                 }
             });
-        });
+        });*/
 
     </script>
     
