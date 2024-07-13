@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/IndividualProjects/andersonCodingClub.css') }}">
+    <title>Anderson Coding Club</title>
+</head>
+<body>
+
+        <div> 
+            <header class="header">
+                <a href="/" class="nav-text">Home</a>
+                <nav class="nav-bar">
+                    <a href="/about" class="nav-text">About Me</a>
+                    <a href="/projects" class="nav-text">Projects</a>
+                </nav>
+            </header>
+            <main id="infinite-content">
+                <div style="margin-top: 50px; text-align: center;">
+                    <img class="img-background" src="{{ url_for('static', filename='images/img1.jpeg') }}" alt="fistbump home page">
+                </div>
+    
+                <div class="selector-content">
+                    <div class="page-row-section">
+                        <div style="margin-top: 100px; margin-bottom: 100px; margin-left: 350px; margin-right: 350px;">
+                            <p1 class="page-text"> Fistbump is a social networking app that links you with other users. Each day, you recieve 1 random user, with whom you must meet up with in person, and take a picture with them. After this, your image is shared to the wall, where everyone can see connections being made with their friends. This short act of meeting up to take your Fistbump together finishes the hardest step of meeting new people: Breaking the ice. After meeting each other, the two users are physically close and have talked, and this small connection could lead to more conversations, activities done together, shared phone numbers, and eventually, a new friendship.</p1>
+                        </div>
+                    </div>
+                </div>
+                <div class="selector-content">
+                    <div class="page-row-section" style="margin-bottom: 100px;">
+                        <img style="margin-right: 100px;" class="img-vertical" src="{{ url_for('static', filename='images/fistbumpProfile.jpeg') }}" alt="fistbump profile page">
+                        <img style="margin-left: 100px;" class="img-vertical" src="{{ url_for('static', filename='images/fistbumpPhoto.jpeg') }}" alt="fistbump picture page">
+                    </div>
+                </div>
+                <div class="buffer-zone page-row-section"> 
+                    <button class="load-button">
+                        <img style="position: relative;" src="{{ url_for('static', filename='images/arrow_down.png') }}">
+                    </button>
+                </div>
+                <div id="next-page-preview" class="hidden"></div>
+            </main>
+        </div>
+    
+        <div id="loading" style="display: none;">Loading...</div>
+        <div id="input-blocker" class="hidden"></div>
+    
+        <script>
+            const pages = [
+                '/fistbump',
+                '/stockSentiment',
+                '/andersonCodingClub'
+            ];
+            let currentPageIndex = 0;
+            let loading = false;
+            let nextPageContent = '';
+            let isPreviewFetchNextPage = false;
+
+            const disableDownScroll = (event) => {
+                if (event.deltaY > 0 || event.key === 'ArrowDown') {
+                    event.preventDefault();
+                }
+            };
+
+            const disableAllScroll = () => {
+                document.body.classList.add('no-scroll');
+            };
+
+            const enableScroll = () => {
+                window.removeEventListener('wheel', disableDownScroll, { passive: false });
+                window.removeEventListener('keydown', disableDownScroll, { passive: false });
+                document.body.classList.remove('no-scroll');
+            };
+
+            const blockUserInputs = () => {
+                document.getElementById('input-blocker').classList.add('active');
+            };
+
+            const unblockUserInputs = () => {
+                document.getElementById('input-blocker').classList.remove('active');
+            };
+
+            const attachEventListenersToButton = (button) => {
+                button.addEventListener('mouseover', previewNextPage);  // Attach mouseover event
+                button.addEventListener('mouseleave', hideNextPage);    // Attach mouseleave event
+                button.addEventListener('click', loadMoreContent);      // Attach click event
+            };
+
+
+    const smoothScrollTo = (y, duration, callback) => {
+        const startY = window.scrollY;
+        const distance = y - startY;
+        let startTime = null;
+
+        function scrollStep(timestamp) {
+            if (!startTime) startTime = timestamp;
+            const progress = timestamp - startTime;
+            const percent = Math.min(progress / duration, 1);
+            window.scrollTo(0, startY + distance * percent);
+            if (progress < duration) {
+                window.requestAnimationFrame(scrollStep);
+            } else if (callback) {
+                callback();
+            }
+        }
+
+        window.requestAnimationFrame(scrollStep);
+    };
+
+            const loadMoreContent = () => {
+                if (loading) return;
+                loading = true;
+                document.getElementById('loading').style.display = 'block';
+
+                currentPageIndex = (currentPageIndex + 1) % pages.length;
+                fetch(pages[currentPageIndex])
+                    .then(response => response.text())
+                    .then(data => {
+                        const parser = new DOMParser();
+                        const newDocument = parser.parseFromString(data, 'text/html');
+                        const newContent = newDocument.getElementById('infinite-content').innerHTML;
+                        const newContentContainer = document.createElement('div');
+                        newContentContainer.innerHTML = newContent;
+
+                        const oldContent = document.querySelectorAll('#infinite-content > div:not(#next-page-preview)');
+                        oldContent.forEach(element => element.classList.add('hidden-content'));
+
+                        document.getElementById('infinite-content').appendChild(newContentContainer);
+                        document.getElementById('loading').style.display = 'none';
+                        loading = false;
+
+                        const scrollToY = newContentContainer.offsetTop - 200;
+                        smoothScrollTo(scrollToY, 1000, () => {
+                            // Smoothly scroll down by 200 pixels
+                            smoothScrollTo(scrollToY + 200, 500, () => {
+                                // Hide old content after scrolling
+                                const oldContent = document.querySelectorAll('#infinite-content > div:not(:last-child)');
+                                oldContent.forEach(element => element.classList.add('hidden-content'));
+                            });
+                        });
+
+                        enableScroll();
+
+                        // Attach event listeners to the new load button in the newly loaded content
+                        const newButton = newContentContainer.querySelector('.load-button');
+                        attachEventListenersToButton(newButton);
+
+                        prefetchNextPage();
+
+                        const checkScrollPosition = () => {
+                            if (window.scrollY >= scrollToY + 200) {
+                                unblockUserInputs(); // Unblock user inputs
+                                window.removeEventListener('scroll', checkScrollPosition); // Remove the event listener
+                            }
+                        };
+
+                        window.addEventListener('scroll', checkScrollPosition); // Add the event listener
+                    })
+                    .catch(error => {
+                        console.error('Failed to load content:', error);
+                        document.getElementById('loading').style.display = 'none';
+                        loading = false;
+                        enableScroll();
+                    });
+            };
+
+            const prefetchNextPage = () => {
+                const nextPageIndex = (currentPageIndex + 1) % pages.length;
+                fetch(pages[nextPageIndex])
+                    .then(response => response.text())
+                    .then(data => {
+                        const parser = new DOMParser();
+                        const newDocument = parser.parseFromString(data, 'text/html');
+                        nextPageContent = newDocument.getElementById('infinite-content').innerHTML; // Store the pre-fetched content
+                    })
+                    .catch(error => {
+                        console.error('Failed to prefetch next page:', error);
+                    });
+            };
+
+            const previewNextPage = () => {
+                if (nextPageContent) {
+                    const nextPagePreview = document.getElementById('next-page-preview');
+                    nextPagePreview.innerHTML = nextPageContent; // Set the inner HTML for the preview
+                    nextPagePreview.classList.remove('hidden');  // Remove 'hidden' class to show the preview
+                    nextPagePreview.style.display = 'block'; // Make sure it's displayed
+                    isPreviewFetchNextPage = true;
+                    disableAllScroll(); // Disable scrolling
+                } else {
+                    console.warn('No content to preview');
+                }
+            };
+
+            const hideNextPage = () => {
+                const nextPagePreview = document.getElementById('next-page-preview');
+                nextPagePreview.classList.add('hidden');  // Add 'hidden' class to hide the preview
+                nextPagePreview.style.display = 'none'; // Make sure it's hidden
+                isPreviewFetchNextPage = false;
+                enableScroll(); // Re-enable scrolling
+            };
+
+            document.addEventListener('DOMContentLoaded', () => {
+                function checkVisibility() {
+                    const elements = document.querySelectorAll('.selector-content');
+                    elements.forEach(footerEl => {
+                        const rect = footerEl.getBoundingClientRect();
+                        if (rect.bottom <= (window.innerHeight + 150)) {
+                            footerEl.classList.add('visible-selector-content');
+                        }
+                    });
+                }
+                window.addEventListener('scroll', checkVisibility);
+                window.addEventListener('resize', checkVisibility);
+                checkVisibility();
+
+                prefetchNextPage();
+
+                window.addEventListener('scroll', () => {
+                    const nextPagePreview = document.getElementById('next-page-preview');
+                    const nextPagePreviewRect = nextPagePreview.getBoundingClientRect();
+                    const previewHeight = nextPagePreviewRect.height;
+
+                    if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - previewHeight) && isPreviewFetchNextPage) {
+                        window.addEventListener('wheel', disableDownScroll, { passive: false });
+                        window.addEventListener('keydown', disableDownScroll, { passive: false });
+                    }
+                });
+
+                const initialButton = document.querySelector('.load-button');
+                attachEventListenersToButton(initialButton); // Attach event listeners to the initial load button
+            });
+
+        </script>
+    
+    
+</body>
+</html>

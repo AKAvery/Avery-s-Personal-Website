@@ -22,5 +22,9 @@ def fistbump():
 def stockSentiment():
     return render_template('IndividualProjects/stockSentiment.html')
 
+@app.route('/andersonCodingClub')
+def andersonCodingClub():
+    return render_template('IndividualProjects/andersonCodingClub.html')
+
 if __name__ == '__main__':
     app.run(port = 4000, debug=True)

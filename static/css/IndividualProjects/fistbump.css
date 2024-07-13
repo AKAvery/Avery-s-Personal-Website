@@ -139,8 +139,17 @@ a {
     background-color: white;
 }
 
+.hidden-content {
+    display: none
+}
+
 .hidden {
     display: none;
+}
+
+.no-scroll {
+    overflow: hidden;
+    height: 100%;
 }
 
 @keyframes glow {
@@ -151,4 +160,39 @@ a {
     
 }
 
+#next-page-preview {
+    position: fixed; /* Fixed position to ensure it stays within the viewport */
+    bottom: -100%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center the element */
+    width: 100%; /* Adjust width as needed */
+    max-height: 70vh; /* Ensure it doesn't exceed the viewport height */
+    overflow: none; /* Add scrolling if content overflows */
+    z-index: 100; /* Ensure it is on top */
+    display: none; /* Initially hidden */
+    animation: scrollUp 0.5s forwards;
+}
 
+@keyframes scrollUp {
+    0% {
+        bottom: -100%;
+    }
+    100% {
+        bottom: -90%;
+    }
+}
+
+
+#input-blocker {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000; /* Ensure it's on top of all other elements */
+    pointer-events: none; /* Initially non-interactive */
+}
+
+#input-blocker.active {
+    pointer-events: all; /* Make it interactive */
+}
