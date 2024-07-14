@@ -33,10 +33,13 @@
                     <img style="margin-left: 100px;" class="img-vertical" src="{{ url_for('static', filename='images/fistbumpPhoto.jpeg') }}" alt="fistbump picture page">
                 </div>
             </div>
-            <div class="buffer-zone page-row-section"> 
-                <button class="load-button">
-                    <img style="position: relative;" src="{{ url_for('static', filename='images/arrow_down.png') }}">
-                </button>
+            <div class="page-column-section" style="position: relative; height: 80vh;">
+                <p class="buffer-text" style="z-index: 5; margin-bottom: 350px; position: absolute;">Next<br>Project</p>
+                <div class="buffer-zone page-row-section" style="display: flex; align-items: flex-end; height: 100%;" > 
+                    <button class="load-button" style="margin-top: auto;">
+                        <img class="buffer-img" style="position: relative;" src="{{ url_for('static', filename='images/arrow_down.png') }}">
+                    </button>
+                </div>
             </div>
             <div id="next-page-preview" class="hidden"></div>
         </main>
@@ -47,49 +50,54 @@
     
     <script>
         const pages = [
-            '/fistbump',
-            '/stockSentiment',
-            '/andersonCodingClub'
-        ];
-        let currentPageIndex = 0;
-        let loading = false;
-        let nextPageContent = '';
-        let isPreviewFetchNextPage = false;
+                '/fistbump',
+                '/stockSentiment',
+                '/andersonCodingClub'
+            ];
+            let currentPageIndex = 0;
+            let loading = false;
+            let nextPageContent = '';
+            let isPreviewFetchNextPage = false;
+            let initialPageIndex = pages.indexOf(window.location.pathname);
 
-        const disableDownScroll = (event) => {
-            if (event.deltaY > 0 || event.key === 'ArrowDown') {
-                event.preventDefault();
+            if (initialPageIndex === -1) {
+                initialPageIndex = 0; 
             }
-        };
 
-        const disableAllScroll = () => {
-            document.body.classList.add('no-scroll');
-        };
+            currentPageIndex = initialPageIndex;
 
-        const enableScroll = () => {
-            window.removeEventListener('wheel', disableDownScroll, { passive: false });
-            window.removeEventListener('keydown', disableDownScroll, { passive: false });
-            document.body.classList.remove('no-scroll');
-        };
+            const disableDownScroll = (event) => {
+                if (event.deltaY > 0 || event.key === 'ArrowDown') {
+                    event.preventDefault();
+                }
+            };
 
-        const blockUserInputs = () => {
-            document.getElementById('input-blocker').classList.add('active');
-        };
+            const disableAllScroll = () => {
+                document.body.classList.add('no-scroll');
+            };
 
-        const unblockUserInputs = () => {
-            document.getElementById('input-blocker').classList.remove('active');
-        };
+            const enableScroll = () => {
+                window.removeEventListener('wheel', disableDownScroll, { passive: false });
+                window.removeEventListener('keydown', disableDownScroll, { passive: false });
+                document.body.classList.remove('no-scroll');
+            };
 
-        const attachEventListenersToButton = (button) => {
-            button.addEventListener('mouseover', previewNextPage);  // Attach mouseover event
-            button.addEventListener('mouseleave', hideNextPage);    // Attach mouseleave event
-            button.addEventListener('click', loadMoreContent);      // Attach click event
-        };
+            const blockUserInputs = () => {
+                document.getElementById('input-blocker').classList.add('active');
+            };
 
-   
+            const unblockUserInputs = () => {
+                document.getElementById('input-blocker').classList.remove('active');
+            };
+
+            const attachEventListenersToButton = (button) => {
+                button.addEventListener('mouseover', previewNextPage); 
+                button.addEventListener('mouseleave', hideNextPage);   
+                button.addEventListener('click', loadMoreContent);      
+            };
 
 
-        const smoothScrollTo = (y, duration, callback) => {
+    const smoothScrollTo = (y, duration, callback) => {
         const startY = window.scrollY;
         const distance = y - startY;
         let startTime = null;
@@ -109,128 +117,138 @@
         window.requestAnimationFrame(scrollStep);
     };
 
-        const loadMoreContent = () => {
-            if (loading) return;
-            loading = true;
-            document.getElementById('loading').style.display = 'block';
+            const loadMoreContent = () => {
+                if (loading) return;
+                loading = true;
+                document.getElementById('loading').style.display = 'block';
 
-            currentPageIndex = (currentPageIndex + 1) % pages.length;
-            fetch(pages[currentPageIndex])
-                .then(response => response.text())
-                .then(data => {
-                    const parser = new DOMParser();
-                    const newDocument = parser.parseFromString(data, 'text/html');
-                    const newContent = newDocument.getElementById('infinite-content').innerHTML;
-                    const newContentContainer = document.createElement('div');
-                    newContentContainer.innerHTML = newContent;
+                currentPageIndex = (currentPageIndex + 1) % pages.length;
+                fetch(pages[currentPageIndex])
+                    .then(response => response.text())
+                    .then(data => {
+                        const parser = new DOMParser();
+                        const newDocument = parser.parseFromString(data, 'text/html');
+                        const newContent = newDocument.getElementById('infinite-content').innerHTML;
+                        const newContentContainer = document.createElement('div');
+                        newContentContainer.innerHTML = newContent;
 
-                    const oldContent = document.querySelectorAll('#infinite-content > div:not(#next-page-preview)');
-                    oldContent.forEach(element => element.classList.add('hidden-content'));
+                        const oldContent = document.querySelectorAll('#infinite-content > div:not(#next-page-preview)');
+                        oldContent.forEach(element => element.classList.add('hidden-content'));
 
-                    document.getElementById('infinite-content').appendChild(newContentContainer);
-                    document.getElementById('loading').style.display = 'none';
-                    loading = false;
+                        document.getElementById('infinite-content').appendChild(newContentContainer);
+                        document.getElementById('loading').style.display = 'none';
+                        loading = false;
 
-                    const scrollToY = newContentContainer.offsetTop - 200;
-                    smoothScrollTo(scrollToY, 1000, () => {
-                        // Smoothly scroll down by 200 pixels
-                        smoothScrollTo(scrollToY + 200, 500, () => {
-                            // Hide old content after scrolling
-                            const oldContent = document.querySelectorAll('#infinite-content > div:not(:last-child)');
-                            oldContent.forEach(element => element.classList.add('hidden-content'));
+                        const scrollToY = newContentContainer.offsetTop - 200;
+                        smoothScrollTo(scrollToY, 1000, () => {
+                            // Smoothly scroll down by 200 pixels
+                            smoothScrollTo(scrollToY + 200, 500, () => {
+                                // Hide old content after scrolling
+                                const oldContent = document.querySelectorAll('#infinite-content > div:not(:last-child)');
+                                oldContent.forEach(element => element.classList.add('hidden-content'));
+                            });
                         });
+
+                        enableScroll();
+
+                        const newButton = newContentContainer.querySelector('.load-button');
+                        attachEventListenersToButton(newButton);
+
+                        prefetchNextPage();
+
+                        const checkScrollPosition = () => {
+                            if (window.scrollY >= scrollToY + 200) {
+                                unblockUserInputs(); 
+                                window.removeEventListener('scroll', checkScrollPosition);
+                            }
+                        };
+
+                        window.addEventListener('scroll', checkScrollPosition); 
+                    })
+                    .catch(error => {
+                        console.error('Failed to load content:', error);
+                        document.getElementById('loading').style.display = 'none';
+                        loading = false;
+                        enableScroll();
                     });
+            };
 
-                    enableScroll();
+            const prefetchNextPage = () => {
+                const nextPageIndex = (currentPageIndex + 1) % pages.length;
+                fetch(pages[nextPageIndex])
+                    .then(response => response.text())
+                    .then(data => {
+                        const parser = new DOMParser();
+                        const newDocument = parser.parseFromString(data, 'text/html');
+                        nextPageContent = newDocument.getElementById('infinite-content').innerHTML; 
+                    })
+                    .catch(error => {
+                        console.error('Failed to prefetch next page:', error);
+                    });
+            };
 
-                    // Attach event listeners to the new load button in the newly loaded content
-                    const newButton = newContentContainer.querySelector('.load-button');
-                    attachEventListenersToButton(newButton);
+            const previewNextPage = () => {
+                if (nextPageContent) {
+                    const buffEl = document.querySelector('.buffer-zone');
+                    buffEl.classList.add('buffer-zone-move');
+                    const nextPagePreview = document.getElementById('next-page-preview');
+                    nextPagePreview.innerHTML = nextPageContent;
+                    nextPagePreview.classList.remove('hidden'); 
+                    nextPagePreview.style.display = 'block';
+                    nextPagePreview.style.animation = 'scrollUp 0.5s forwards';
+                    isPreviewFetchNextPage = true;
+                    disableAllScroll();
+                } else {
+                    console.warn('No content to preview');
+                }
+            };
 
-                    prefetchNextPage();
-
-                    const checkScrollPosition = () => {
-                        if (window.scrollY >= scrollToY + 200) {
-                            unblockUserInputs(); // Unblock user inputs
-                            window.removeEventListener('scroll', checkScrollPosition); // Remove the event listener
-                        }
-                    };
-
-                    window.addEventListener('scroll', checkScrollPosition); // Add the event listener
-                })
-                .catch(error => {
-                    console.error('Failed to load content:', error);
-                    document.getElementById('loading').style.display = 'none';
-                    loading = false;
-                    enableScroll();
-                });
-        };
-
-        const prefetchNextPage = () => {
-            const nextPageIndex = (currentPageIndex + 1) % pages.length;
-            fetch(pages[nextPageIndex])
-                .then(response => response.text())
-                .then(data => {
-                    const parser = new DOMParser();
-                    const newDocument = parser.parseFromString(data, 'text/html');
-                    nextPageContent = newDocument.getElementById('infinite-content').innerHTML; // Store the pre-fetched content
-                })
-                .catch(error => {
-                    console.error('Failed to prefetch next page:', error);
-                });
-        };
-
-        const previewNextPage = () => {
-            if (nextPageContent) {
+            const hideNextPage = () => {
+                const buffEl = document.querySelector('.buffer-zone');
+                buffEl.classList.remove('buffer-zone-move');
                 const nextPagePreview = document.getElementById('next-page-preview');
-                nextPagePreview.innerHTML = nextPageContent; // Set the inner HTML for the preview
-                nextPagePreview.classList.remove('hidden');  // Remove 'hidden' class to show the preview
-                nextPagePreview.style.display = 'block'; // Make sure it's displayed
-                isPreviewFetchNextPage = true;
-                disableAllScroll(); // Disable scrolling
-            } else {
-                console.warn('No content to preview');
-            }
-        };
+                
+                nextPagePreview.style.animation = 'scrollOut 0.5s forwards';
+                
+                nextPagePreview.addEventListener('animationend', () => {
+                    nextPagePreview.classList.add('hidden');
+                    nextPagePreview.style.display = 'none';
+                }, { once: true });
+                
+                isPreviewFetchNextPage = false;
+                enableScroll();
+            };
 
-        const hideNextPage = () => {
-            const nextPagePreview = document.getElementById('next-page-preview');
-            nextPagePreview.classList.add('hidden');  // Add 'hidden' class to hide the preview
-            nextPagePreview.style.display = 'none'; // Make sure it's hidden
-            isPreviewFetchNextPage = false;
-            enableScroll(); // Re-enable scrolling
-        };
+            document.addEventListener('DOMContentLoaded', () => {
+                function checkVisibility() {
+                    const elements = document.querySelectorAll('.selector-content');
+                    elements.forEach(footerEl => {
+                        const rect = footerEl.getBoundingClientRect();
+                        if (rect.bottom <= (window.innerHeight + 150)) {
+                            footerEl.classList.add('visible-selector-content');
+                        }
+                    });
+                }
+                window.addEventListener('scroll', checkVisibility);
+                window.addEventListener('resize', checkVisibility);
+                checkVisibility();
 
-        document.addEventListener('DOMContentLoaded', () => {
-            function checkVisibility() {
-                const elements = document.querySelectorAll('.selector-content');
-                elements.forEach(footerEl => {
-                    const rect = footerEl.getBoundingClientRect();
-                    if (rect.bottom <= (window.innerHeight + 150)) {
-                        footerEl.classList.add('visible-selector-content');
+                prefetchNextPage();
+
+                window.addEventListener('scroll', () => {
+                    const nextPagePreview = document.getElementById('next-page-preview');
+                    const nextPagePreviewRect = nextPagePreview.getBoundingClientRect();
+                    const previewHeight = nextPagePreviewRect.height;
+
+                    if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - previewHeight) && isPreviewFetchNextPage) {
+                        window.addEventListener('wheel', disableDownScroll, { passive: false });
+                        window.addEventListener('keydown', disableDownScroll, { passive: false });
                     }
                 });
-            }
-            window.addEventListener('scroll', checkVisibility);
-            window.addEventListener('resize', checkVisibility);
-            checkVisibility();
 
-            prefetchNextPage();
-
-            window.addEventListener('scroll', () => {
-                const nextPagePreview = document.getElementById('next-page-preview');
-                const nextPagePreviewRect = nextPagePreview.getBoundingClientRect();
-                const previewHeight = nextPagePreviewRect.height;
-
-                if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - previewHeight) && isPreviewFetchNextPage) {
-                    window.addEventListener('wheel', disableDownScroll, { passive: false });
-                    window.addEventListener('keydown', disableDownScroll, { passive: false });
-                }
+                const initialButton = document.querySelector('.load-button');
+                attachEventListenersToButton(initialButton);
             });
-
-            const initialButton = document.querySelector('.load-button');
-            attachEventListenersToButton(initialButton); // Attach event listeners to the initial load button
-        });
 
 
         

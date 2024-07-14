@@ -34,11 +34,15 @@
                         <img style="margin-left: 100px;" class="img-vertical" src="{{ url_for('static', filename='images/fistbumpPhoto.jpeg') }}" alt="fistbump picture page">
                     </div>
                 </div>
-                <div class="buffer-zone page-row-section"> 
-                    <button class="load-button">
-                        <img style="position: relative;" src="{{ url_for('static', filename='images/arrow_down.png') }}">
-                    </button>
+                <div class="page-column-section" style="position: relative; height: 80vh;">
+                    <p class="buffer-text" style="z-index: 5; margin-bottom: 350px; position: absolute;">Next<br>Project</p>
+                    <div class="buffer-zone page-row-section" style="display: flex; align-items: flex-end; height: 100%;" > 
+                        <button class="load-button" style="margin-top: auto;">
+                            <img class="buffer-img" style="position: relative;" src="{{ url_for('static', filename='images/arrow_down.png') }}">
+                        </button>
+                    </div>
                 </div>
+
                 <div id="next-page-preview" class="hidden"></div>
             </main>
         </div>
@@ -56,6 +60,13 @@
             let loading = false;
             let nextPageContent = '';
             let isPreviewFetchNextPage = false;
+            let initialPageIndex = pages.indexOf(window.location.pathname);
+
+            if (initialPageIndex === -1) {
+                initialPageIndex = 0; 
+            }
+
+            currentPageIndex = initialPageIndex;
 
             const disableDownScroll = (event) => {
                 if (event.deltaY > 0 || event.key === 'ArrowDown') {
@@ -82,9 +93,9 @@
             };
 
             const attachEventListenersToButton = (button) => {
-                button.addEventListener('mouseover', previewNextPage);  // Attach mouseover event
-                button.addEventListener('mouseleave', hideNextPage);    // Attach mouseleave event
-                button.addEventListener('click', loadMoreContent);      // Attach click event
+                button.addEventListener('mouseover', previewNextPage); 
+                button.addEventListener('mouseleave', hideNextPage);   
+                button.addEventListener('click', loadMoreContent);      
             };
 
 
@@ -142,7 +153,6 @@
 
                         enableScroll();
 
-                        // Attach event listeners to the new load button in the newly loaded content
                         const newButton = newContentContainer.querySelector('.load-button');
                         attachEventListenersToButton(newButton);
 
@@ -150,12 +160,12 @@
 
                         const checkScrollPosition = () => {
                             if (window.scrollY >= scrollToY + 200) {
-                                unblockUserInputs(); // Unblock user inputs
-                                window.removeEventListener('scroll', checkScrollPosition); // Remove the event listener
+                                unblockUserInputs(); 
+                                window.removeEventListener('scroll', checkScrollPosition);
                             }
                         };
 
-                        window.addEventListener('scroll', checkScrollPosition); // Add the event listener
+                        window.addEventListener('scroll', checkScrollPosition); 
                     })
                     .catch(error => {
                         console.error('Failed to load content:', error);
@@ -172,7 +182,7 @@
                     .then(data => {
                         const parser = new DOMParser();
                         const newDocument = parser.parseFromString(data, 'text/html');
-                        nextPageContent = newDocument.getElementById('infinite-content').innerHTML; // Store the pre-fetched content
+                        nextPageContent = newDocument.getElementById('infinite-content').innerHTML; 
                     })
                     .catch(error => {
                         console.error('Failed to prefetch next page:', error);
@@ -181,23 +191,34 @@
 
             const previewNextPage = () => {
                 if (nextPageContent) {
+                    const buffEl = document.querySelector('.buffer-zone');
+                    buffEl.classList.add('buffer-zone-move');
                     const nextPagePreview = document.getElementById('next-page-preview');
-                    nextPagePreview.innerHTML = nextPageContent; // Set the inner HTML for the preview
-                    nextPagePreview.classList.remove('hidden');  // Remove 'hidden' class to show the preview
-                    nextPagePreview.style.display = 'block'; // Make sure it's displayed
+                    nextPagePreview.innerHTML = nextPageContent;
+                    nextPagePreview.classList.remove('hidden'); 
+                    nextPagePreview.style.display = 'block';
+                    nextPagePreview.style.animation = 'scrollUp 0.5s forwards';
                     isPreviewFetchNextPage = true;
-                    disableAllScroll(); // Disable scrolling
+                    disableAllScroll();
                 } else {
                     console.warn('No content to preview');
                 }
             };
 
             const hideNextPage = () => {
+                const buffEl = document.querySelector('.buffer-zone');
+                buffEl.classList.remove('buffer-zone-move');
                 const nextPagePreview = document.getElementById('next-page-preview');
-                nextPagePreview.classList.add('hidden');  // Add 'hidden' class to hide the preview
-                nextPagePreview.style.display = 'none'; // Make sure it's hidden
+                
+                nextPagePreview.style.animation = 'scrollOut 0.5s forwards';
+                
+                nextPagePreview.addEventListener('animationend', () => {
+                    nextPagePreview.classList.add('hidden');
+                    nextPagePreview.style.display = 'none';
+                }, { once: true });
+                
                 isPreviewFetchNextPage = false;
-                enableScroll(); // Re-enable scrolling
+                enableScroll();
             };
 
             document.addEventListener('DOMContentLoaded', () => {
@@ -228,7 +249,7 @@
                 });
 
                 const initialButton = document.querySelector('.load-button');
-                attachEventListenersToButton(initialButton); // Attach event listeners to the initial load button
+                attachEventListenersToButton(initialButton);
             });
 
         </script>
