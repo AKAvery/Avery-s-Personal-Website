@@ -23,31 +23,37 @@
                 <a href="/fistbump">
                     <div class="selector-content">
                         <div class="content default-mode">
-                            <div class="page-column-section">
-                                <h1 class="page-text" style="font-size: 30px;">Fistbump</h1>
-                                <p class="page-text"> Social Media Project</p>
+                            <div class="page-row-section inner-row-section">
                                 <img src="{{ url_for('static', filename='images/fistbumpHome.jpeg')}}">
+                                <div class="page-column-section inner-column-section">
+                                    <h1 class="page-text" style="font-size: 30px;">Fistbump</h1>
+                                    <p class="page-text"> Social Media Project</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </a>
             </div>
         </div>
+        <hr class="gradient-hr"> 
         <div class="page-row-section">
             <div class="page-column-section">
                 <a href="/stockSentiment">
                     <div class="selector-content">
                         <div class="content default-mode">
-                            <div class="page-column-section">
-                                <h1 class="page-text" style="font-size:  30px;"> NLP for Finance</h1>
-                                <p class="page-text"> Leverageing Machine Learning to analyze Stock Sentiment </p>
+                            <div class="page-row-section inner-row-section">
                                 <img src="{{ url_for('static', filename='images/positive_data_word_cloud.jpeg')}}">
+                                <div class="page-column-section inner-column-section">
+                                    <h1 class="page-text" style="font-size: 30px;"> NLP for Finance</h1>
+                                    <p class="page-text"> Leverageing Machine Learning to analyze Stock Sentiment </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </a>
             </div>
         </div>
+        <hr class="gradient-hr">
         <div class="page-row-section">
             <div class="page-column-section">
                 <a href="/andersonCodingClub">
@@ -86,7 +92,7 @@
             var elements = document.querySelectorAll('.selector-content');
             elements.forEach(function(footerEl) {
                 const rect = footerEl.getBoundingClientRect();
-                if (rect.bottom <= (window.innerHeight + 10)) {
+                if (rect.bottom <= (window.innerHeight + 200)) {
                     footerEl.classList.add('visible-selector-content')
                 }
                 else {

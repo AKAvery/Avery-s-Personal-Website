@@ -33,11 +33,11 @@
                     <img style="margin-left: 100px;" class="img-vertical" src="{{ url_for('static', filename='images/fistbumpPhoto.jpeg') }}" alt="fistbump picture page">
                 </div>
             </div>
-            <div class="page-column-section" style="position: relative; height: 80vh;">
+            <div class="page-column-section" style="position: relative; height: 100vh;">
                 <p class="buffer-text" style="z-index: 5; margin-bottom: 350px; position: absolute;">Next<br>Project</p>
                 <div class="buffer-zone page-row-section" style="display: flex; align-items: flex-end; height: 100%;" > 
                     <button class="load-button" style="margin-top: auto;">
-                        <img class="buffer-img" style="position: relative;" src="{{ url_for('static', filename='images/arrow_down.png') }}">
+                        <img class="buffer-img" style="position: relative;" src="{{ url_for('static', filename='images/slim_down_arrow.png') }}">
                     </button>
                 </div>
             </div>
@@ -49,6 +49,7 @@
     <div id="input-blocker" class="hidden"></div>
     
     <script>
+
         const pages = [
                 '/fistbump',
                 '/stockSentiment',
@@ -97,30 +98,59 @@
             };
 
 
-    const smoothScrollTo = (y, duration, callback) => {
-        const startY = window.scrollY;
-        const distance = y - startY;
-        let startTime = null;
+            const smoothScrollTo = (y, duration, callback) => {
+                const infiniteContent = document.getElementById('infinite-content');
+                const inputBlocker = document.getElementById('input-blocker');
+                const padding = 800;
+                infiniteContent.style.paddingTop = `${padding}px`;
 
-        function scrollStep(timestamp) {
-            if (!startTime) startTime = timestamp;
-            const progress = timestamp - startTime;
-            const percent = Math.min(progress / duration, 1);
-            window.scrollTo(0, startY + distance * percent);
-            if (progress < duration) {
+                window.scrollTo(0, 100)
+
+                const startY = window.scrollY;
+                const distance = y - startY;
+
+                let startTime = null;
+
+                function easeOutCubic(t) {
+                    return 1 - Math.pow(1 - t, 3);
+                }
+
+                function scrollStep(timestamp) {
+                    if (!startTime) startTime = timestamp;
+                    const progress = timestamp - startTime;
+                    const percent = Math.min(progress / duration, 1);
+                    const easedPercent = easeOutCubic(percent);
+                    
+                    window.scrollTo(0, startY + distance * easedPercent);
+
+                    const exponentialPadding = padding * (1 - easedPercent);
+                    infiniteContent.style.paddingTop = `${exponentialPadding}px`;
+
+                    if (progress < duration) {
+                        window.requestAnimationFrame(scrollStep);
+                    } else {
+                        infiniteContent.style.paddingTop = '0px';
+                        if (callback) {
+                            callback();
+                        }
+                        unblockUserInputs();
+                        enableScroll();
+                    }
+                }
+                blockUserInputs();
+                disableAllScroll();
                 window.requestAnimationFrame(scrollStep);
-            } else if (callback) {
-                callback();
-            }
-        }
+            };
 
-        window.requestAnimationFrame(scrollStep);
-    };
 
             const loadMoreContent = () => {
                 if (loading) return;
                 loading = true;
                 document.getElementById('loading').style.display = 'block';
+
+                blockUserInputs();
+                disableAllScroll();
+
 
                 currentPageIndex = (currentPageIndex + 1) % pages.length;
                 fetch(pages[currentPageIndex])
@@ -139,36 +169,22 @@
                         document.getElementById('loading').style.display = 'none';
                         loading = false;
 
-                        const scrollToY = newContentContainer.offsetTop - 200;
-                        smoothScrollTo(scrollToY, 1000, () => {
-                            // Smoothly scroll down by 200 pixels
-                            smoothScrollTo(scrollToY + 200, 500, () => {
-                                // Hide old content after scrolling
-                                const oldContent = document.querySelectorAll('#infinite-content > div:not(:last-child)');
-                                oldContent.forEach(element => element.classList.add('hidden-content'));
-                            });
+                        smoothScrollTo(100, 2500, () => {
+                            const oldContent = document.querySelectorAll('#infinite-content > div:not(:last-child)');
+                            oldContent.forEach(element => element.classList.add('hidden-content'));
                         });
-
-                        enableScroll();
 
                         const newButton = newContentContainer.querySelector('.load-button');
                         attachEventListenersToButton(newButton);
 
                         prefetchNextPage();
 
-                        const checkScrollPosition = () => {
-                            if (window.scrollY >= scrollToY + 200) {
-                                unblockUserInputs(); 
-                                window.removeEventListener('scroll', checkScrollPosition);
-                            }
-                        };
-
-                        window.addEventListener('scroll', checkScrollPosition); 
                     })
                     .catch(error => {
                         console.error('Failed to load content:', error);
                         document.getElementById('loading').style.display = 'none';
                         loading = false;
+                        unblockUserInputs();
                         enableScroll();
                     });
             };
@@ -213,10 +229,11 @@
                 nextPagePreview.addEventListener('animationend', () => {
                     nextPagePreview.classList.add('hidden');
                     nextPagePreview.style.display = 'none';
+                    enableScroll();
+
                 }, { once: true });
                 
                 isPreviewFetchNextPage = false;
-                enableScroll();
             };
 
             document.addEventListener('DOMContentLoaded', () => {
@@ -249,144 +266,6 @@
                 const initialButton = document.querySelector('.load-button');
                 attachEventListenersToButton(initialButton);
             });
-
-
-        
-
-        /*window.addEventListener('scroll', () => {
-                if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 500) {
-                    loadMoreContent();
-                }
-            });*/
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-        /*document.addEventListener('DOMContentLoaded', () => {
-            const pages = [
-                '/fistbump',
-                '/stockSentiment'
-            ];
-            let currentPageIndex = 0;
-            let loading = false;
-            let bufferReached = false;
-            let scrollCount = 0;
-            let lastScrollTime = 0;
-            let scrollFactor = 0.5;
-            let slowScrollEnabled = true;
-
-            const freezeScroll = () => {
-                document.body.classList.add('no-scroll');
-            };
-
-            const unfreezeScroll = () => {
-                document.body.classList.remove('no-scroll');
-            };
-
-            const loadMoreContent = () => {
-                if (loading || scrollCount < 1) return;
-                loading = true;
-                document.getElementById('loading').style.display = 'block';
-
-                currentPageIndex = (currentPageIndex + 1) % pages.length;
-                fetch(pages[currentPageIndex])
-                    .then(response => response.text())
-                    .then(data => {
-                        const parser = new DOMParser();
-                        const newDocument = parser.parseFromString(data, 'text/html');
-                        const newContent = newDocument.getElementById('infinite-content').innerHTML;
-                        const newContentContainer = document.createElement('div');
-                        newContentContainer.innerHTML = newContent;
-                        document.getElementById('infinite-content').appendChild(newContentContainer);
-                        document.getElementById('loading').style.display = 'none';
-                        loading = false;
-                        bufferReached = false;
-                        scrollCount = 0;
-                        window.scrollTo({ top: newContentContainer.offsetTop, behavior: 'smooth' });
-
-                        slowScrollEnabled = false;
-                        setTimeout(() => {
-                            slowScrollEnabled = true;
-                        }, 1000);
-
-                    })
-                    .catch(() => {
-                        document.getElementById('loading').style.display = 'none';
-                        loading = false;
-                        bufferReached = false;
-                    });
-            };
-
-            const bufferZone = document.getElementById('buffer-zone');
-            const slowScrollContainer = document.getElementById('slow-scroll');
-
-            window.addEventListener('scroll', () => {
-                const now = Date.now();
-                if (now - lastScrollTime < 200) return;
-                lastScrollTime = now;
-
-                const rect = bufferZone.getBoundingClientRect();
-                if ((rect.bottom - 200) <= window.innerHeight && !bufferReached) {
-                    bufferReached = true;
-                    scrollCount = 0;
-                    window.scrollBy({ top: -200, behavior: 'smooth' });
-                    freezeScroll();
-                    setTimeout(() => {
-                        unfreezeScroll();
-                        window.addEventListener('wheel', smoothScroll);
-                    }, 1000);
-                }
-
-                else if (!bufferReached) {
-                    window.removeEventListener('wheel', smoothScroll);
-                }
-
-            });
-
-            const smoothScroll = (event) => {
-                const slowScrollRect = slowScrollContainer.getBoundingClientRect();
-                if (slowScrollEnabled && slowScrollRect.top <= window.innerHeight && slowScrollRect.bottom >= window.innerHeight) {
-                    event.preventDefault();
-                    const targetScroll = window.scrollY + event.deltaY * scrollFactor;
-                    window.requestAnimationFrame(() => {
-                        window.scrollTo({
-                            top: targetScroll,
-                            behavior: 'smooth'
-                        });
-                    });
-                } 
-                
-                if (bufferReached && event.deltaY > 0) { 
-                    scrollCount++;
-                    if (scrollCount >= 1 && !loading) {
-                        loadMoreContent();
-                    }
-                }
-            };
-
-
-            window.addEventListener('touchmove', () => {
-                if (bufferReached) {
-                    scrollCount++;
-                    if (scrollCount >= 1 && !loading) {
-                        loadMoreContent();
-                    }
-                }
-            });
-        });*/
 
     </script>
     
