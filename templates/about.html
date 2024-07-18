@@ -13,10 +13,10 @@
 <body>
     ​<div id="glowing-circle"></div>
     <header class="header">
-        <a href="/" class="nav-text"> Home </a>
+        <a href="/" class="nav-text" id="home-link"> Home </a>
         <nav class="nav-bar">
-            <a href="/about" class="nav-text">About Me</a>
-            <a href="/projects" class="nav-text">Projects</a>
+            <a href="/about" class="nav-text" id="about-link">About Me</a>
+            <a href="/projects" class="nav-text" id="projects-link">Projects</a>
         </nav>
     </header>
     <div class="page-row-section">
@@ -246,8 +246,18 @@
         });
 
         window.addEventListener('scroll', updateGlowingCircle);
-        
-      
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-text');
+            navLinks.forEach(link => {
+                if (link.href === window.location.href) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+                
+            
             /*updateRandomBlink();*/
             updateAnimationRandomsA();
             updateAnimationRandomsB();

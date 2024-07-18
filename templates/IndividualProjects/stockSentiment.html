@@ -16,7 +16,7 @@
             </nav>
         </header>
         <main id="infinite-content">
-            <div style="margin-top: 50px; text-align: center;">
+            <div style=" text-align: center;">
                 <img class="img-background" src="{{ url_for('static', filename='images/positive_data_word_cloud.jpeg') }}" alt="postive data word cloud">
             </div>
 
@@ -102,7 +102,7 @@
                 const padding = 800;
                 infiniteContent.style.paddingTop = `${padding}px`;
 
-                window.scrollTo(0, 100)
+                window.scrollTo(0, 0)
 
                 const startY = window.scrollY;
                 const distance = y - startY;
@@ -167,7 +167,7 @@
                         document.getElementById('loading').style.display = 'none';
                         loading = false;
 
-                        smoothScrollTo(100, 2500, () => {
+                        smoothScrollTo(0, 2500, () => {
                             const oldContent = document.querySelectorAll('#infinite-content > div:not(:last-child)');
                             oldContent.forEach(element => element.classList.add('hidden-content'));
                         });

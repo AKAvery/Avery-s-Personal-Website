@@ -47,6 +47,18 @@
     text-shadow: 0 0 40px rgb(0, 0, 0, 0.4);
 }
 
+.nav-text.active::after {
+    content: '•';
+    display: block;
+    text-align: center;
+    color: black;
+    margin-top: 3px;
+}
+
+.nav-text:hover::after {
+    color: lightskyblue;
+}
+
 .option-logo {
     width: 75px;
     height: 75px;

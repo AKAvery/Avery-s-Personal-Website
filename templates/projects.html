@@ -8,10 +8,10 @@
 </head>
 <body>
     <header class="header">
-        <a href="/" class="nav-text">Home</a>
+        <a href="/" class="nav-text" id="home-link">Home</a>
         <nav class="nav-bar" style="margin-left: 60%;">
-            <a href="/about" class="nav-text">About Me</a>
-            <a href="/projects" class="nav-text">Projects</a>
+            <a href="/about" class="nav-text" id="about-link">About Me</a>
+            <a href="/projects" class="nav-text" id="projects-link">Projects</a>
         </nav>
         <button class="toggle-button" onclick="playgroundMode()">Playground</button>
 
@@ -103,7 +103,16 @@
         
         window.addEventListener('scroll', checkVisibility);
         window.addEventListener('resize', checkVisibility);
-        document.addEventListener('DOMContentLoaded', checkVisibility);
+        document.addEventListener('DOMContentLoaded',function() {
+            checkVisibility(); 
+        
+            const navLinks = document.querySelectorAll('.nav-text');
+            navLinks.forEach(link => {
+                if (link.href === window.location.href) {
+                    link.classList.add('active');
+                }
+            });
+        });
     </script>
     
 </body>
