@@ -33,11 +33,11 @@
                 </div>
             </div>
             <div class="page-column-section" style="position: relative; height: 100vh;">
-                <p class="buffer-text" style="z-index: 5; margin-bottom: 350px; position: absolute;">Next<br>Project</p>
-                <div class="buffer-zone page-row-section" style="display: flex; align-items: flex-end; height: 100%;" > 
+                <div class="buffer-zone page-row-section" style="display: flex; align-items: flex-end; height: 100%;"> 
                     <button class="load-button" style="margin-top: auto;">
                         <img class="buffer-img" style="position: relative;" src="{{ url_for('static', filename='images/slim_down_arrow.png') }}">
                     </button>
+                    <p class="buffer-text" aria-hidden="true">Placeholder<br>Text</p>
                 </div>
             </div>
             <div id="next-page-preview" class="hidden"></div>
@@ -167,7 +167,7 @@
                         document.getElementById('loading').style.display = 'none';
                         loading = false;
 
-                        smoothScrollTo(0, 2500, () => {
+                        smoothScrollTo(0, 1500, () => {
                             const oldContent = document.querySelectorAll('#infinite-content > div:not(:last-child)');
                             oldContent.forEach(element => element.classList.add('hidden-content'));
                         });
@@ -175,6 +175,9 @@
 
                         const newButton = newContentContainer.querySelector('.load-button');
                         attachEventListenersToButton(newButton);
+
+                        const newCSSUrl = newDocument.querySelector('link[rel="stylesheet"]').getAttribute('href');
+                        document.querySelector('link[rel="stylesheet"]').setAttribute('href', newCSSUrl);
 
                         prefetchNextPage();
 

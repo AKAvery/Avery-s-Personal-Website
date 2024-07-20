@@ -11,19 +11,42 @@
 
 </head>
 <body>
-    <header class="header">
-        <a href="/" class="nav-text" id="home-link">Home</a>
-        <nav class="nav-bar" style="margin-left: 60%;">
-            <a href="/about" class="nav-text" id="about-link">About Me</a>
-            <a href="/projects" class="nav-text" id="projects-link">Projects</a>
-        </nav>
-    </header>
+    <div class="background-container">
+        <header class="header">
+            <a href="/" class="nav-text" id="home-link">Home</a>
+            <nav class="nav-bar">
+                <a href="/about" class="nav-text" id="about-link">About Me</a>
+                <a href="/projects" class="nav-text" id="projects-link">Projects</a>
+            </nav>
+        </header>
+        <div class="page-column-section">
+            <img class="profile-picture" src="{{ url_for('static', filename='images/personal_picture.jpeg')  }}">
+            <h1 style="font-size: 20px; margin-top: 30px; color: white;">Hi, I'm</h1>
+            <h2 style="font-size: 100px; color: rgb(255, 217, 0);">Avery Allen</h2>
+        </div>
+        <div class="content" style="padding-bottom: 1000px;">
+            <section> 
+                <p> kajkdsjkej aksdjklfej kl jes ke kjkj ;as;ej kl jefk;l fj;lka jskl;j;klfasej f;kle jawkl;ej flkasdjflk jdasifhjelwn jfsdjlkf jdsalifj lakwrelk jrwlkejflkewj lkfj diosj flkesj </p>
+            </section>
+        </div>
+    </div>
 
     <script> 
         function myFunction() {
             var element = document.body
             element.classList.toggle("background-change");
         }
+
+        const headerEl = document.querySelector('.header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 75) {
+                headerEl.classList.add('header-scrolled');
+            }
+            else if (window.scrollY < 75) {
+                headerEl.classList.remove('header-scrolled');
+            }
+
+        });
 
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-text');

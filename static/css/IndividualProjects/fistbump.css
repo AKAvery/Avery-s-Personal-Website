@@ -76,7 +76,6 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-top: none;
 }
 
 .page-text {
@@ -113,6 +112,8 @@ a {
 
 .img-background {
     width: 100%;
+    height: 100vh;
+    object-fit: cover;
 }
 
 .img-vertical {
@@ -139,7 +140,7 @@ a {
 }
 
 .load-button:hover {
-    transform: scale(1.1, 1.4);
+    transform: scale(1.05, 1.3);
 
 }
 
@@ -186,9 +187,47 @@ a {
     font-size: 40px;
     display: inline-block;
     text-align: left;
-    margin-left: 110px;
-
+    margin-left: 200px;
+    overflow: hidden;
+    visibility: hidden;
+    z-index: 5; 
+    margin-bottom: 500px; 
+    position: absolute;
 }
+
+.buffer-text::before,
+.buffer-text::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s;
+    display: block;
+    visibility: visible;
+}
+
+.buffer-text::before {
+    content: "Next \A Page";
+    white-space: pre;
+    transform: translateY(0);
+}
+
+.buffer-text::after {
+    content: "Stock \A Sentiment";
+    white-space: pre;
+    transform: translateY(-100%);
+}
+
+.load-button:hover ~ .buffer-text::before {
+    transform: translateY(100%);
+}
+
+.load-button:hover ~ .buffer-text::after {
+    transform: translateY(0);
+}
+
+
 
 @keyframes glow {
     0% {box-shadow: inset 0 0 1000px 1000px rgb(238, 255, 3); }
@@ -217,17 +256,17 @@ a {
         bottom: -100%;
     }
     100% {
-        bottom: -80%;
+        bottom: -85%;
     }
 }
 
 @keyframes scrollOut {
     0% {
-        bottom: -80%;
+        bottom: -85%;
        
     }
     100% {
-        bottom: -100%;
+        bottom: -110%;
     }
 }
 
@@ -244,4 +283,7 @@ a {
 #input-blocker.active {
     pointer-events: all;
 }
+
+
+
 
