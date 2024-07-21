@@ -10,7 +10,6 @@
     display: flex;
     flex-direction: row;
     background: transparent;
-    /*justify-content: space-between;*/
 }
 
 
@@ -231,8 +230,8 @@ a {
 
 
 @keyframes glow {
-    0% {box-shadow: inset 0 0 1000px 1000px rgb(238, 255, 3); }
-    30% {box-shadow: inset 0 0 1000px 1000px rgb(238, 255, 3);}
+    0% {box-shadow: inset 0 0 1000px 1000px rgb(0, 110, 255, 0.8); }
+    30% {box-shadow: inset 0 0 1000px 1000px rgb(0, 110, 255, 0.8);}
     100% { opacity: 1;
         box-shadow: none;}
     

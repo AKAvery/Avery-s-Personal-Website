@@ -139,3 +139,62 @@ a {
     text-decoration: none;
 }
 
+.timeline {
+    margin: 0 auto;
+    max-width: 750px;
+    padding: 25px;
+    display: grid;
+    grid-template-columns: 1fr 3px 1fr;
+    font-family: 'Arial', sans-serif;
+    color: black;
+}
+
+.timeline-component {
+    margin: 0 20px 20px 20px;
+}
+
+.timeline-component-bg {
+    padding: 1.5em;
+    background: lightgray;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.timeline-component-bottom {
+    margin-bottom: 0;
+}
+
+.timeline-date-right {
+    text-align: right;
+}
+
+.timeline-middle {
+    position: relative;
+    background: black;
+}
+
+.timeline-point {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: black;
+}
+
+.timeline-point-bottom {
+    top: initial;
+    bottom: 0;
+}
+
+.timeline-title {
+    margin: 0;
+    font-size: 1.15em;
+    font-weight: bold;
+}
+
+.timeline-paragraph {
+    line-height: 1.5;
+}
