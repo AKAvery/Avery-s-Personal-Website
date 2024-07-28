@@ -53,7 +53,7 @@
 }
 
 .visible-selector-content {
-    animation: glow 2s forwards;
+    animation: appear 1.25s forwards;
 
 }
 
@@ -229,12 +229,17 @@ a {
 
 
 
-@keyframes glow {
-    0% {box-shadow: inset 0 0 1000px 1000px rgb(238, 255, 3); }
-    30% {box-shadow: inset 0 0 1000px 1000px rgb(238, 255, 3);}
-    100% { opacity: 1;
-        box-shadow: none;}
-    
+@keyframes appear {
+    0% {
+        transform: translateY(10%);
+    }
+    15% {
+        transform: translateY(9%);
+    }
+    100% {  
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 #next-page-preview {

@@ -73,21 +73,21 @@
                 }
             };
 
-            const disableAllScroll = () => {
+            function disableAllScroll() {
                 document.body.classList.add('no-scroll');
             };
 
-            const enableScroll = () => {
+            function enableScroll() {
                 window.removeEventListener('wheel', disableDownScroll, { passive: false });
                 window.removeEventListener('keydown', disableDownScroll, { passive: false });
                 document.body.classList.remove('no-scroll');
             };
 
-            const blockUserInputs = () => {
+            function blockUserInputs() {
                 document.getElementById('input-blocker').classList.add('active');
             };
 
-            const unblockUserInputs = () => {
+            function unblockUserInputs() {
                 document.getElementById('input-blocker').classList.remove('active');
             };
 
@@ -193,7 +193,7 @@
                     });
             };
 
-            const prefetchNextPage = () => {
+            function prefetchNextPage() {
                 const nextPageIndex = (currentPageIndex + 1) % pages.length;
                 fetch(pages[nextPageIndex])
                     .then(response => response.text())
@@ -207,7 +207,7 @@
                     });
             };
 
-            const previewNextPage = () => {
+            function previewNextPage() {
                 if (nextPageContent) {
                     const buffEl = document.querySelector('.buffer-zone');
                     buffEl.classList.add('buffer-zone-move');
@@ -223,7 +223,7 @@
                 }
             };
 
-            const hideNextPage = () => {
+            function hideNextPage() {
                 const buffEl = document.querySelector('.buffer-zone');
                 buffEl.classList.remove('buffer-zone-move');
                 const nextPagePreview = document.getElementById('next-page-preview');

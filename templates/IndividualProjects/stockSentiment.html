@@ -48,7 +48,7 @@
     <div id="input-blocker" class="hidden"></div>
     
     <script>
-         const pages = [
+        const pages = [
                 '/fistbump',
                 '/stockSentiment',
                 '/andersonCodingClub'
@@ -71,21 +71,21 @@
                 }
             };
 
-            const disableAllScroll = () => {
+            function disableAllScroll() {
                 document.body.classList.add('no-scroll');
             };
 
-            const enableScroll = () => {
+            function enableScroll() {
                 window.removeEventListener('wheel', disableDownScroll, { passive: false });
                 window.removeEventListener('keydown', disableDownScroll, { passive: false });
                 document.body.classList.remove('no-scroll');
             };
 
-            const blockUserInputs = () => {
+            function blockUserInputs() {
                 document.getElementById('input-blocker').classList.add('active');
             };
 
-            const unblockUserInputs = () => {
+            function unblockUserInputs() {
                 document.getElementById('input-blocker').classList.remove('active');
             };
 
@@ -172,9 +172,9 @@
                             oldContent.forEach(element => element.classList.add('hidden-content'));
                         });
 
-
                         const newButton = newContentContainer.querySelector('.load-button');
                         attachEventListenersToButton(newButton);
+
 
                         const newCSSUrl = newDocument.querySelector('link[rel="stylesheet"]').getAttribute('href');
                         document.querySelector('link[rel="stylesheet"]').setAttribute('href', newCSSUrl);
@@ -191,7 +191,7 @@
                     });
             };
 
-            const prefetchNextPage = () => {
+            function prefetchNextPage() {
                 const nextPageIndex = (currentPageIndex + 1) % pages.length;
                 fetch(pages[nextPageIndex])
                     .then(response => response.text())
@@ -205,7 +205,7 @@
                     });
             };
 
-            const previewNextPage = () => {
+            function previewNextPage() {
                 if (nextPageContent) {
                     const buffEl = document.querySelector('.buffer-zone');
                     buffEl.classList.add('buffer-zone-move');
@@ -221,7 +221,7 @@
                 }
             };
 
-            const hideNextPage = () => {
+            function hideNextPage() {
                 const buffEl = document.querySelector('.buffer-zone');
                 buffEl.classList.remove('buffer-zone-move');
                 const nextPagePreview = document.getElementById('next-page-preview');
@@ -232,7 +232,7 @@
                     nextPagePreview.classList.add('hidden');
                     nextPagePreview.style.display = 'none';
                     enableScroll();
-                    
+
                 }, { once: true });
                 
                 isPreviewFetchNextPage = false;
@@ -268,7 +268,6 @@
                 const initialButton = document.querySelector('.load-button');
                 attachEventListenersToButton(initialButton);
             });
-
 
     </script>
     
