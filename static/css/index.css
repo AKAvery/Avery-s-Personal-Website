@@ -4,7 +4,7 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
     background-image: url('/static/images/city_background_day.jpg');
     background-size: cover;
     background-position: center;
@@ -165,7 +165,7 @@ a {
     padding-top: 25px;
     display: grid;
     grid-template-columns: 1fr 3px 1fr;
-    font-family: 'Arial', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: black;
     background-image: url('/static/images/leaves_background.jpg');
     background-size: 75%;
@@ -335,4 +335,29 @@ path {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 10px;
+    width: 90vw;
+    height: 50vh;
+    margin: 0 auto;
+}
+
+.grid-item {
+    background-color: rgb(246, 246, 246);
+    color: black;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+    transition: ease-out 0.3s;
+}
+
+.grid-item:hover {
+    transform: scale(1.2);
+    box-shadow: 0 3px 10px rgb(0, 0, 0, 0.35);
 }
