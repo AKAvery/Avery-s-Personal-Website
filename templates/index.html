@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="My name is Avery Allen, a high school student passionate about computer science. Feel free to explore my projects and achievements. Enjoy browsing my page and discovering what it has to offer!">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}">
-
-
+    <link rel="icon" href="{{ url_for('static', filename='images/AAlogo.png') }}" type="image/png">
     <title>Avery's Website</title>
 
 </head>
@@ -40,12 +39,32 @@
                 <div class="page-column-section" style="background: rgb(51, 166, 204); width: 100vw; margin-top: 75px;">
                     <h1 style="margin-top: 75px; font-size: 30px;">Skills</h1>
                     <div class="grid-container selector-content" style="margin-top: 75px; margin-bottom: 75px;">
-                        <div class="grid-item">Python</div>
-                        <div class="grid-item">Java</div>
-                        <div class="grid-item">HTML</div>
-                        <div class="grid-item">CSS</div>
-                        <div class="grid-item">Machine Learning, Artificial Intelligence</div>
-                        <div class="grid-item">C++</div>
+                        <div class="grid-item">
+                            <h1>Python</h1>
+                            <p style="margin-top: 15%; line-height: 1.4;">I have ample experience with Python due to various online resources and problem sets. I've completed <a class="link-text" href="https://pll.harvard.edu/course/cs50-introduction-computer-science" target="_blank">CS50's Introduction to Computer Science</a>, Intro To Python Book, and <a class="link-text" href="https://www.youtube.com/playlist?list=PLeo1K3hjS3uu_n_a__MI_KktGTLYopZ12" target="_blank">Data Structures & Algorithms Tutorial</a> on Youtube as well as actively completing many easy and medium problems on <a class="link-text" href="https://leetcode.com/progress/?page=1" target="_blank">Leetcode</a> with Python3.</p>
+                        </div>
+                        <div class="grid-item">
+                            <h1>Java</h1>
+                            <p style="margin-top: 15%; line-height: 1.4;">I am very comfortable with Java as a result of my school courses and being involved in robotics. I was familiarized with Java learning from <a class="link-text" href="https://runestone.academy/ns/books/published/csawesome/index.html" target="_blank"> CSAwesome's AP CSA Java Course</a> and furthered my Java understanding working on Motor Controls with PID's and  LazerCAN sensor's for the AustinCAN's FRC Robot.</p>
+                        </div>
+                        <div class="grid-item">
+                            <h1>HTML, CSS, JavaScript</h1>
+                            <p style="margin-top: 15%; line-height: 1.4;">I've worked on numerous projects with my friends and by myself using HTML/CSS/JavaScript such as <a class="link-text" href="/andersonCodingClub">my coding club's web page</a>, various hackathon projects, and this <a class="link-text" href="place-holder">personal website</a>.</p>
+                        </div>
+                        <div class="grid-item">
+                            <h1>React Native, TypeScript</h1>
+                            <p style="margin-top: 15%; line-height: 1.4;">Due to my work on <a class="link-text" href="/fistbump">Fistbump</a>, I have gained front-end skills working with React Native/TypeScript. With continuous work and goals to expand this app as well as hopes of creating many more apps in the future, I know these skills will continue to grow.</p>
+                            </div>
+                        <div class="grid-item">
+                            <h2 style="font-size: 17px;">Machine Learning, Artificial Intelligence</h2>
+                            <p style="font-size: 15px; margin-top: 15%; line-height: 1.4;">Over the past year I have had substantial involvment with machine learning taking <a class="link-text" href="https://www.inspiritai.com/" target="_blank">Inspirit AI's Scholar</a> program, <a class="link-text" href="https://www.inspiritai.com/blogs/ai-student-blog/inspirit-ai-overview-by-an-ai-ambassador" target="_blank">Inspirit AI's Ambassador</a> program (link to blog page by fellow ambassador), and am currently taking <a class="link-text" href="https://www.inspiritai.com/returning-students" target="_blank">Inspirit AI's Independent Project Mentorship</a> program where I am in the proccess of making a research paper using CNN and NLP models.</p>
+
+                        </div>
+                        <div class="grid-item">
+                            <h1>C++, SQL</h1>
+                            <p style="margin-top: 15%; line-height: 1.4;">I have a sufficient understanding of C++ and SQL as I learned the fundamental's of these languages in <a class="link-text" href="https://pll.harvard.edu/course/cs50-introduction-computer-science" target="_blank">CS50's Introduction to Computer Science</a>.</p>
+                        </div>
+
                     </div>
                 </div>
             </section>
@@ -230,16 +249,16 @@
                             </p>
                         </div>
                         <div class="timeline-component timeline-component-bg">
-                            <h2 class="timeline-title">Day of timeline creation</h2>
+                            <h2 class="timeline-title">Devpost Hackathons</h2>
                             <p class="timeline-paragraph">
-                                This was when I created this timeline and learned how to do this.
+                                Throughout this time period, my friends and I were actively involved in online hackathons and even placed top 5 in an event. I grew due to the entire process of creating ideas, websites, and presentations for the judges. Enhancing my HTML/CSS/Javascript skills, we worked on a generative education tutor website, a phishing protector website, and a website version of Fistbump, our social media app.
                             </p>
                         </div>
                         <div class="timeline-middle">
                             <div class="timeline-point"></div>
                         </div>
                         <div class="timeline-component">
-                            <div class="timeline-date">Jul 20, 2024</div>
+                            <div class="timeline-date">Nov 1st, 2023 - Feb 11th, 2024</div>
                         </div>
                         <div class="timeline-component">
                             <div class="timeline-date timeline-date-right">Jul 20, 2024</div>
@@ -331,7 +350,7 @@
                 const elements = document.querySelectorAll('.selector-content');
                 elements.forEach(footerEl => {
                     const rect = footerEl.getBoundingClientRect();
-                    if (rect.bottom <= (window.innerHeight + 150)) {
+                    if (rect.bottom <= (window.innerHeight + 200)) {
                         footerEl.classList.add('visible-selector-content');
                     }
                 })

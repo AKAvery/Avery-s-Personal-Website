@@ -169,7 +169,7 @@
                             document.getElementById('loading').style.display = 'none';
                             loading = false;
     
-                            smoothScrollTo(0, 1500, () => {
+                            smoothScrollTo(0, 1000, () => {
                                 const oldContent = document.querySelectorAll('#infinite-content > div:not(:last-child)');
                                 oldContent.forEach(element => element.classList.add('hidden-content'));
                             });

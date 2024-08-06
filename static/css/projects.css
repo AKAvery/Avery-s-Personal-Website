@@ -1,5 +1,5 @@
 .header {
-    background: rgb(255, 255, 255, 0.97);
+    background: rgba(255, 255, 255, 0.97);
     position: fixed;
     left: 0;
     top: 0;
@@ -14,8 +14,8 @@
 }
 
 .header-scrolled {
-    background: rgb(255, 255, 255, 0.98);
-    box-shadow: 0 3px 10px rgb(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
     position: fixed;
     left: 0;
     top: 0;
@@ -30,7 +30,6 @@
     display: flex;
     flex-direction: row;
     padding-right: 100px;
- 
 }
 
 .nav-text {
@@ -44,7 +43,7 @@
 .nav-text:hover {
     color: rgb(72, 71, 71);
     cursor: pointer;
-    text-shadow: 0 0 40px rgb(0, 0, 0, 0.4);
+    text-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
 }
 
 .nav-text.active::after {
@@ -69,7 +68,7 @@
     width: 100%;
     opacity: 0;
     transition: all 1s;
-    animation: slidingAnimationLeft 1s;
+    animation: slidingAnimationLeft 1s forwards;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -78,8 +77,7 @@
 
 .visible-selector-content {
     opacity: 1;
-    animation: slidingAnimationRight 1s;
-
+    animation: slidingAnimationRight 1s forwards;
 }
 
 .toggle-button {
@@ -106,7 +104,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: rgb(255,255,255);
+    background: rgb(255, 255, 255);
     margin-top: 300px;
 }
 
@@ -117,32 +115,35 @@ body {
 .page-row-section {
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: center;
-    text-align: center;
     margin-bottom: 100px;
     margin-top: 100px;
 }
+
 .page-column-section {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .inner-row-section {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start; 
+    align-items: flex-end;
+    justify-content: flex-end; 
     height: 100%; 
 }
 
 .inner-column-section {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
     justify-content: flex-start; 
-    height: 100%; 
+    height: 100%;
+}
+
+.page-column-section.inner-column-section {
+    align-items: flex-end; 
+    text-align: right;
 }
 
 .page-text {
@@ -152,12 +153,13 @@ body {
     line-height: 1.7;
     align-items: center;
     justify-content: center;
-    text-align: left;
+    text-align: center;
     transition: all 0.5s ease;
 }
 
 .content {
     position: relative;
+    background: rgb(246, 246, 246);
     padding: 20px;
     width: 75vw;
     height: 400px;
@@ -185,27 +187,27 @@ body {
     z-index: -1;
     transform-origin: center center;
     transition: all 0.5s ease;
-    box-shadow: 0 3px 10px rgb(0, 0, 0, 0.00);
+    box-shadow: 0 3px 10px rgb(0, 0, 0, 0.15);
 }
 
 .content.default-mode::before {
-    background: white;
-    box-shadow: 0 3px 10px rgb(0, 0, 0, 0.00);
+    background: rgb(246, 246, 246);
+    box-shadow: 0 3px 10px rgb(0, 0, 0, 0.15);
 }
+
 .content.default-mode:hover::before {
     animation: none;
-    transform: scale(1.1, 1.1);
-    box-shadow: 0 3px 10px rgb(0, 0, 0, 0.00);
+    transform: scale(1.05, 1.05);
+    box-shadow: 0 3px 10px rgb(0, 0, 0, 0.15);
 }
 
 .content.default-mode:hover {
     background: none;
-    box-shadow: 0 3px 10px rgb(0, 0, 0, 0.00);
-
+    box-shadow: 0 3px 10px rgb(0, 0, 0, 0.15);
 }
 
 .content.default-mode:hover .page-text {
-    transform: scale(1.1, 1.1);
+    transform: scale(1.05, 1.05);
 }
 
 .content img {
@@ -214,12 +216,12 @@ body {
 }
 
 .content.default-mode:hover img {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .content.alt-mode::before {
-   background: white;
-   box-shadow: 0 3px 10px rgb(0, 0, 0, 0.00);
+    background: white;
+    box-shadow: 0 3px 10px rgb(0, 0, 0, 0);
 }
 
 .content.alt-mode:hover::before {
@@ -282,4 +284,3 @@ img {
     0% { transform: translateX(0%); }
     100% { transform: translateX(-100%); }
 }
-

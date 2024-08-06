@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/projects.css')}}">
+    <link rel="icon" href="{{ url_for('static', filename='images/AAlogo.png') }}" type="image/png">
     <title>About</title>
 </head>
 <body>
@@ -13,8 +14,6 @@
             <a href="/about" class="nav-text" id="about-link">About Me</a>
             <a href="/projects" class="nav-text" id="projects-link">Projects</a>
         </nav>
-        <button class="toggle-button" onclick="playgroundMode()">Playground</button>
-
     </header>
     
     <main> 
@@ -27,14 +26,14 @@
                                 <img src="{{ url_for('static', filename='images/fistbumpHome.jpeg')}}">
                                 <div class="page-column-section inner-column-section">
                                     <h1 class="page-text" style="font-size: 45px;">Fistbump</h1>
-                                    <p class="page-text" style="font-size: 20px; color: darkgrey;"> Social Media Project</p>
+                                    <p class="page-text" style="font-size: 20px; color: darkgrey;">Innovative Social Media App and Website Joint Project</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </a>
             </div>
-        </div>
+        </div>             
         <hr class="gradient-hr"> 
         <div class="page-row-section">
             <div class="page-column-section">
@@ -44,8 +43,8 @@
                             <div class="page-row-section inner-row-section">
                                 <img src="{{ url_for('static', filename='images/positive_data_word_cloud.jpeg')}}">
                                 <div class="page-column-section inner-column-section">
-                                    <h1 class="page-text" style="font-size: 45px;"> NLP for Finance</h1>
-                                    <p class="page-text" style="font-size: 20px; color: darkgrey;"> Leverageing Machine Learning to analyze Stock Sentiment </p>
+                                    <h1 class="page-text" style="font-size: 45px;">NLP for Finance</h1>
+                                    <p class="page-text" style="font-size: 20px; color: darkgrey;"> Leveraging Machine Learning to analyze Stock Sentiment</p>
                                 </div>
                             </div>
                         </div>
@@ -63,7 +62,7 @@
                                 <img src="{{ url_for('static', filename='images/anderson_coding_club.jpeg')}}">
                                 <div class="page-column-section inner-column-section">
                                     <h1 class="page-text" style="font-size: 45px;">Anderson Coding Club</h1>
-                                    <p class="page-text" style="font-size: 20px; color: darkgrey;"> Leverageing Machine Learning to analyze Stock Sentiment </p>
+                                    <p class="page-text" style="font-size: 20px; color: darkgrey;">Website page for all needed information about coding club</p>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +97,7 @@
             var elements = document.querySelectorAll('.selector-content');
             elements.forEach(function(footerEl) {
                 const rect = footerEl.getBoundingClientRect();
-                if (rect.bottom <= (window.innerHeight + 200)) {
+                if (rect.bottom <= (window.innerHeight + 300)) {
                     footerEl.classList.add('visible-selector-content')
                 }
                 else {

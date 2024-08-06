@@ -361,3 +361,9 @@ path {
     transform: scale(1.2);
     box-shadow: 0 3px 10px rgb(0, 0, 0, 0.35);
 }
+
+.link-text {
+    text-decoration: none;
+    color: crimson;
+    font-weight: bold;
+}
