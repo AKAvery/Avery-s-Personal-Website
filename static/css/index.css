@@ -37,7 +37,7 @@ header {
     top: 0;
     width: 100%;
     padding: 20px 100px;
-    z-index: 3;
+    z-index: 9999;
     animation: none;
     transform: scale(1.0035);
 }
@@ -127,6 +127,7 @@ header {
     width: 400px;
     margin-top: 220px;
     object-fit: cover;
+    object-position: center 10%;
 }
 
 .toggle-button {
@@ -158,6 +159,7 @@ header {
 a {
     text-decoration: none;
 }
+
 
 .timeline {
     margin: 0 auto;
@@ -338,6 +340,7 @@ path {
 }
 
 .grid-container {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 10px;
@@ -347,19 +350,34 @@ path {
 }
 
 .grid-item {
-    background-color: rgb(246, 246, 246);
+    position: relative; 
+    overflow: hidden; 
+    background-color: white;
     color: black;
     padding: 20px;
     border-radius: 5px;
     text-align: left;
     justify-content: center;
     align-items: center;
-    transition: ease-out 0.3s;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease-out, border-radius 0.7s ease-in-out;
+    animation: subtleRippleEffect 5s infinite ease-in-out alternate;
+}
+
+
+.link-text {
+    text-decoration: none;
+    color: crimson;
+    font-weight: bold;
 }
 
 .grid-item:hover {
+    background-color: white;
+    animation: bigRippleEffect .7s ease-in-out forwards;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     transform: scale(1.2);
-    box-shadow: 0 3px 10px rgb(0, 0, 0, 0.35);
+    z-index: 15;
+
 }
 
 .link-text {
@@ -367,3 +385,67 @@ path {
     color: crimson;
     font-weight: bold;
 }
+
+
+
+@keyframes subtleRippleEffect {
+    0% {
+        border-radius: 2.5% 2.5% / 2.5% 2.5%; 
+    }
+ 
+    20% {
+        border-radius: 5% 4% 5% 4% / 4% 5% 4% 5%; 
+    }
+
+    40% {
+        border-radius: 7% 6% 7% 6% / 6% 7% 6% 7%; 
+    }
+    50% {
+        border-radius: 8% 7% 8% 7% / 7% 8% 7% 8%; 
+    }
+    60% {
+        border-radius: 7% 6% 7% 6% / 6% 7% 6% 7%;
+    }
+    80% {
+        border-radius: 5% 4% 5% 4% / 4% 5% 4% 5%; 
+    }
+    100% {
+        border-radius: 2.5% 2.5% / 2.5% 2.5%; 
+    }
+}
+
+  
+@keyframes bigRippleEffect {
+    0% {
+        border-radius: 5% 5% / 5% 5%; 
+    }
+
+    14% {
+        border-radius: 40% 15% 40% 15% / 15% 40% 15% 40%; 
+    }
+    27% {
+        border-radius: 35% 25% 35% 25% / 25% 35% 25% 35%; 
+    }
+    9% {
+        border-radius: 30% 20% 30% 20% / 20% 30% 20% 30%; 
+    }
+    50% {
+        border-radius: 25% 15% 25% 15% / 15% 25% 15% 25%; 
+    }
+    60% {
+        border-radius: 20% 12% 20% 12% / 12% 20% 12% 20%;
+    }
+    70% {
+        border-radius: 15% 10% 15% 10% / 10% 15% 10% 15%; 
+    }
+    80% {
+        border-radius: 10% 8% 10% 8% / 8% 10% 8% 10%; 
+    }
+    90% {
+        border-radius: 7% 5% 7% 5% / 5% 7% 5% 7%;
+    }
+    100% {
+        border-radius: 5% 5% 5% 5% / 5% 5% 5% 5%;
+    }
+}
+

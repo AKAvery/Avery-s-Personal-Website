@@ -148,10 +148,10 @@ a {
 }
 
 .image-wrapper {
-    margin-top: 70px;
-    margin-bottom: 70px;
-    margin-right: 15px;
-    margin-left: 15px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-right: 10px;
+    margin-left: 10px;
     height: 100%;
     display: grid;
     grid-auto-flow: column;
@@ -176,16 +176,19 @@ a {
 /* Image */
 
 .revolving-img {
-    border-radius: 0.5rem;
+    height: 180px;
+    width: 240px;
+    object-fit: cover;
+    border-radius: 5px;
     box-shadow: 0 3px 10px rgb(0, 0, 0, 0.45);
     transition: 1s;
 }
 
 .center-image .revolving-img {
     transition: transform 1s;
-    transform: scale(1.6); 
+    transform: scale(1.9); 
     z-index: 2;
-    border-radius: 0.5rem;
+    border-radius: 5px;
 }
 
 .floating-img {

@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}">
     <link rel="icon" href="{{ url_for('static', filename='images/AAlogo.png') }}" type="image/png">
     <title>Avery's Website</title>
-
 </head>
 <body>
     <div class="background-container">
@@ -19,17 +18,19 @@
             </nav>
         </header>
         <div class="page-column-section">
-            <img class="profile-picture" src="{{ url_for('static', filename='images/personal_picture.jpeg')  }}">
+            <img class="profile-picture" src="{{ url_for('static', filename='images/personal_picture.jpeg') }}">
             <h1 class="expand" style="font-size: 20px; margin-top: 30px; color: white;">Hi, I'm</h1>
             <h2 class="expand" style="font-size: 100px; color: rgb(255, 217, 0);">Avery Allen</h2>
         </div>
         <div class="content page-column-section" style="padding-bottom: 0px;">
             <section>
                 <div class="selector-content">
-                    <div class="page-row-section" style="margin-top: 150px;">
-                        <img style="margin-left: 200px;" src="{{ url_for('static', filename='images/index_about_me.jpeg')  }}">
+                    <div class="page-row-section" style="margin-top: 100px;">
+                        <img style="margin-left: 200px; height: 25%; width: 25%; margin-bottom: 20px; border-radius: 5px;" src="{{ url_for('static', filename='images/index_about_me.jpeg') }}">
                         <div class="page-column-section">
-                            <div class="page-text" style="width: 70%; margin-left: 150px; margin-right: 150px;"> Hi, I'm Avery Allen and this is my Personal Website! I love pushing the boundaries of coding and exploring the different possibilities that can be achieved from code! While I am learning different Algorithms, Data Stuctures, Machine Learning Model, and various software for Robotics skills, this website was made to hone my front-end and back-end skills for Web Design/App Devlopment and really show who I am! I hope you explore my whole website and enjoy the extra visual features I added!</div>
+                            <div class="page-text" style="width: 70%; margin-left: 150px; margin-right: 150px;">
+                                Hi, I'm Avery Allen and this is my Personal Website! I love pushing the boundaries of coding and exploring the different possibilities that can be achieved from code! While I am learning different Algorithms, Data Structures, Machine Learning Model, and various software for Robotics skills, this website was made to hone my front-end and back-end skills for Web Design/App Development and really show who I am! I hope you explore my whole website and enjoy the extra visual features I added!
+                            </div>
                             <a href="/about" class="button-link">About Me</a>
                         </div>
                     </div>
@@ -37,7 +38,7 @@
             </section>
             <section>
                 <div class="page-column-section" style="background: rgb(51, 166, 204); width: 100vw; margin-top: 75px;">
-                    <h1 style="margin-top: 75px; font-size: 30px;">Skills</h1>
+                    <h1 style="margin-top: 100px; font-size: 30px;">Skills</h1>
                     <div class="grid-container selector-content" style="margin-top: 75px; margin-bottom: 75px;">
                         <div class="grid-item">
                             <h1>Python</h1>
@@ -45,7 +46,7 @@
                         </div>
                         <div class="grid-item">
                             <h1>Java</h1>
-                            <p style="margin-top: 15%; line-height: 1.4;">I am very comfortable with Java as a result of my school courses and being involved in robotics. I was familiarized with Java learning from <a class="link-text" href="https://runestone.academy/ns/books/published/csawesome/index.html" target="_blank"> CSAwesome's AP CSA Java Course</a> and furthered my Java understanding working on Motor Controls with PID's and  LazerCAN sensor's for the AustinCAN's FRC Robot.</p>
+                            <p style="margin-top: 15%; line-height: 1.4;">I am very comfortable with Java as a result of my school courses and being involved in robotics. I was familiarized with Java learning from <a class="link-text" href="https://runestone.academy/ns/books/published/csawesome/index.html" target="_blank"> CSAwesome's AP CSA Java Course</a> and furthered my Java understanding working on Motor Controls with PID's and LazerCAN sensor's for the AustinCAN's FRC Robot.</p>
                         </div>
                         <div class="grid-item">
                             <h1>HTML, CSS, JavaScript</h1>
@@ -54,21 +55,19 @@
                         <div class="grid-item">
                             <h1>React Native, TypeScript</h1>
                             <p style="margin-top: 15%; line-height: 1.4;">Due to my work on <a class="link-text" href="/fistbump">Fistbump</a>, I have gained front-end skills working with React Native/TypeScript. With continuous work and goals to expand this app as well as hopes of creating many more apps in the future, I know these skills will continue to grow.</p>
-                            </div>
+                        </div>
                         <div class="grid-item">
-                            <h2 style="font-size: 17px;">Machine Learning, Artificial Intelligence</h2>
-                            <p style="font-size: 15px; margin-top: 15%; line-height: 1.4;">Over the past year I have had substantial involvment with machine learning taking <a class="link-text" href="https://www.inspiritai.com/" target="_blank">Inspirit AI's Scholar</a> program, <a class="link-text" href="https://www.inspiritai.com/blogs/ai-student-blog/inspirit-ai-overview-by-an-ai-ambassador" target="_blank">Inspirit AI's Ambassador</a> program (link to blog page by fellow ambassador), and am currently taking <a class="link-text" href="https://www.inspiritai.com/returning-students" target="_blank">Inspirit AI's Independent Project Mentorship</a> program where I am in the proccess of making a research paper using CNN and NLP models.</p>
-
+                            <h1 style="font-size: 17px;">Machine Learning, Artificial Intelligence</h1>
+                            <p style="font-size: 14.8px; margin-top: 15%; line-height: 1.4;">Over the past year I have had substantial involvement with machine learning taking <a class="link-text" href="https://www.inspiritai.com/" target="_blank">Inspirit AI's Scholar</a> program, <a class="link-text" href="https://www.inspiritai.com/blogs/ai-student-blog/inspirit-ai-overview-by-an-ai-ambassador" target="_blank">Inspirit AI's Ambassador</a> program (link to blog page by fellow ambassador), and am currently taking <a class="link-text" href="https://www.inspiritai.com/returning-students" target="_blank">Inspirit AI's Independent Project Mentorship</a> program where I am in the process of making a research paper using CNN and NLP models.</p>
                         </div>
                         <div class="grid-item">
                             <h1>C++, SQL</h1>
-                            <p style="margin-top: 15%; line-height: 1.4;">I have a sufficient understanding of C++ and SQL as I learned the fundamental's of these languages in <a class="link-text" href="https://pll.harvard.edu/course/cs50-introduction-computer-science" target="_blank">CS50's Introduction to Computer Science</a>.</p>
+                            <p style="margin-top: 15%; line-height: 1.4;">I have a sufficient understanding of C++ and SQL as I learned the fundamentals of these languages in <a class="link-text" href="https://pll.harvard.edu/course/cs50-introduction-computer-science" target="_blank">CS50's Introduction to Computer Science</a>.</p>
                         </div>
-
                     </div>
                 </div>
             </section>
-            <section>  
+            <section>
                 <div class="spacer"></div>
                 <h1 style="font-size: 45px; margin-top: 75px; text-align: center; margin-bottom: 75px">My Computer Science Timeline</h1>
                 <div class="scroller">
@@ -161,7 +160,6 @@
                             S 110 840, 20 845"
                             stroke-linecap="round" stroke-linejoin="round" stroke="black" fill="none" pointer-events="all"/>
                         </svg>
-                                                    
                     </div>
                     <div class="timeline">
                         <div class="timeline-component">
@@ -177,9 +175,8 @@
                             </p>
                         </div>
                         <div class="timeline-component timeline-component-bg">
-                            <h2 class="timeline-title">Day of timeline creation</h2>
+                            <h2 class="timeline-title"></h2>
                             <p class="timeline-paragraph">
-                                This was when I created this timeline and learned how to do this.
                             </p>
                         </div>
                         <div class="timeline-middle">
@@ -221,13 +218,13 @@
                         <div class="timeline-component timeline-component-bg">
                             <h2 class="timeline-title">AP Computer Science</h2>
                             <p class="timeline-paragraph">
-                                Enrolled in my schools AP Computer Science courese which enriched my Java skills and laid a foundation for the application of Java in projects and other practical use cases.
+                                Enrolled in my schools AP Computer Science course which enriched my Java skills and laid a foundation for the application of Java in projects and other practical use cases.
                             </p>
                         </div>
                         <div class="timeline-component timeline-component-bg">
                             <h2 class="timeline-title">Joined austinCANS Robotics Team</h2>
                             <p class="timeline-paragraph">
-                                Joining the robotics team improved my programming skills taught me what is it like to work in a collaborative STEM environment. I learned how to manipulate motors and utilize LazerCAN sensors to achieve various functions that were neccesary for the robot. I also learned how to use Path Planner to automate the movement of the robot to achieve specific paths and motions.
+                                Joining the robotics team improved my programming skills taught me what is it like to work in a collaborative STEM environment. I learned how to manipulate motors and utilize LazerCAN sensors to achieve various functions that were necessary for the robot. I also learned how to use Path Planner to automate the movement of the robot to achieve specific paths and motions.
                             </p>
                         </div>
                         <div class="timeline-middle">
@@ -245,7 +242,7 @@
                         <div class="timeline-component timeline-component-bg">
                             <h2 class="timeline-title">Creation of Competitive Coding Club</h2>
                             <p class="timeline-paragraph">
-                                On this day the idea of creating a Competitive Coding Club was sprouted and the first official website creation was commited to Github. This club was a major turning point for me because it was a space where I spent a lot of time harnessing my programming skills by competing in friendly Leetcode battles with other members and where I would work on Hackathon Projects with my teamates.
+                                On this day the idea of creating a Competitive Coding Club was sprouted and the first official website creation was committed to Github. This club was a major turning point for me because it was a space where I spent a lot of time harnessing my programming skills by competing in friendly Leetcode battles with other members and where I would work on Hackathon Projects with my teammates.
                             </p>
                         </div>
                         <div class="timeline-component timeline-component-bg">
@@ -311,12 +308,11 @@
                     </div>
                 </div>
             </section>
+
             <button class="scroll-button" onclick="scrollToTopButton()">Back To Top</button>
     </div>
-    
-    <script> 
-
-        function scrollToTopButton () {
+    <script>
+        function scrollToTopButton() {
             window.scrollTo({
                 top: 0, behavior: 'smooth'
             });
@@ -331,14 +327,12 @@
         window.addEventListener('scroll', () => {
             if (window.scrollY > 75) {
                 headerEl.classList.add('header-scrolled');
-            }
-            else if (window.scrollY < 75) {
+            } else if (window.scrollY < 75) {
                 headerEl.classList.remove('header-scrolled');
             }
-
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const navLinks = document.querySelectorAll('.nav-text');
             navLinks.forEach(link => {
                 if (link.href === window.location.href) {
@@ -359,14 +353,9 @@
             window.addEventListener('scroll', checkVisibility);
             window.addEventListener('resize', checkVisibility);
             checkVisibility();
+
         });
 
-        /*document.addEventListener('DOMContentLoaded', function() {
-            const path = document.getElementById('timelinePath');
-            const length = path.getTotalLength();
-            console.log('Path length:', length);
-            alert('Total length of the path: ' + length)
-        });*/
     </script>
 </body>
 </html>
