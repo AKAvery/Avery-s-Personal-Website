@@ -13,8 +13,8 @@
         <header class="header">
             <a href="/" class="nav-text" id="home-link">Home</a>
             <nav class="nav-bar">
-                <a href="/about" class="nav-text" id="about-link">About Me</a>
-                <a href="/projects" class="nav-text" id="projects-link">Projects</a>
+                <a href="{{ url_for('about') }}" class="nav-text" id="about-link">About Me</a>
+                <a href="{{ url_for('about') }}" class="nav-text" id="projects-link">Projects</a>
             </nav>
         </header>
         <div class="page-column-section">
@@ -72,94 +72,33 @@
                 <h1 style="font-size: 45px; margin-top: 0px; text-align: center; margin-bottom: 0px;">My Computer Science Timeline</h1>
                 <div class="scroller">
                     <div class="mask">
-                        <svg width="100%" height="100%" viewBox="-50 0 300 400" direction="ltr" xmlns="http://www.w3.org/2000/svg">
-                            <path id="timelinePath" d="M20 0 
-                            C 90 5, 110 10, 180 15 
-                            S 120 20, 30 25 
-                            S 100 30, 160 35 
-                            S 110 40, 20 45 
-                            S 90 50, 180 55 
-                            S 110 60, 30 65 
-                            S 80 70, 170 75 
-                            S 130 80, 20 85 
-                            S 90 90, 180 95 
-                            S 100 100, 30 105 
-                            S 100 110, 160 115 
-                            S 110 120, 20 125 
-                            S 90 130, 170 135 
-                            S 120 140, 30 145 
-                            S 100 150, 180 155 
-                            S 110 160, 20 165 
-                            S 120 170, 160 175 
-                            S 100 180, 30 185 
-                            S 80 190, 190 195 
-                            S 110 200, 20 205
-                            S 90 210, 180 215 
-                            S 110 220, 30 225 
-                            S 80 230, 170 235 
-                            S 130 240, 20 245 
-                            S 90 250, 180 255 
-                            S 100 260, 30 265 
-                            S 100 270, 160 275 
-                            S 110 280, 20 285 
-                            S 90 290, 170 295 
-                            S 120 300, 30 305 
-                            S 100 310, 180 315 
-                            S 110 320, 20 325 
-                            S 120 330, 160 335 
-                            S 100 340, 30 345 
-                            S 80 350, 190 355 
-                            S 110 360, 20 365
-                            S 90 370, 180 375 
-                            S 110 380, 30 385 
-                            S 80 390, 170 395 
-                            S 130 400, 20 405 
-                            S 90 410, 180 415 
-                            S 100 420, 30 425 
-                            S 100 430, 160 435 
-                            S 110 440, 20 445 
-                            S 90 450, 170 455 
-                            S 120 460, 30 465 
-                            S 100 470, 180 475 
-                            S 110 480, 20 485 
-                            S 120 490, 160 495 
-                            S 100 500, 30 505 
-                            S 80 510, 190 515 
-                            S 110 520, 20 525
-                            S 90 530, 180 535 
-                            S 110 540, 30 545 
-                            S 80 550, 170 555 
-                            S 130 560, 20 565 
-                            S 90 570, 180 575 
-                            S 100 580, 30 585 
-                            S 100 590, 160 595 
-                            S 110 600, 20 605 
-                            S 90 610, 170 615 
-                            S 120 620, 30 625 
-                            S 100 630, 180 635 
-                            S 110 640, 20 645 
-                            S 120 650, 160 655 
-                            S 100 660, 30 665 
-                            S 80 670, 190 675 
-                            S 110 680, 20 685
-                            S 90 690, 180 695 
-                            S 110 700, 30 705 
-                            S 80 710, 170 715 
-                            S 130 720, 20 725 
-                            S 90 730, 180 735 
-                            S 100 740, 30 745 
-                            S 100 750, 160 755 
-                            S 110 760, 20 765 
-                            S 90 770, 170 775 
-                            S 120 780, 30 785 
-                            S 100 790, 180 795 
-                            S 110 800, 20 805 
-                            S 120 810, 160 815 
-                            S 100 820, 30 825 
-                            S 80 830, 190 835 
-                            S 110 840, 20 845"
-                            stroke-linecap="round" stroke-linejoin="round" stroke="black" fill="none" pointer-events="all"/>
-                        </svg>
+                        <!-- Apple-style squircle hero (16:9, continuous rounded look) -->
+                        <figure class="apple-hero">
+                            <svg viewBox="0 0 1600 900" class="apple-mask" aria-hidden="true" focusable="false">
+                            <defs>
+                                <!-- Rounded super-rectangle (Apple-like). Tweak R for softer corners -->
+                                <clipPath id="apple-squircle" clipPathUnits="userSpaceOnUse">
+                                <!-- width=1600, height=900, corner radius R=180 -->
+                                <path d="M180,0 H1420
+                                        A180,180 0 0 1 1600,180
+                                        V720
+                                        A180,180 0 0 1 1420,900
+                                        H180
+                                        A180,180 0 0 1 0,720
+                                        V180
+                                        A180,180 0 0 1 180,0 Z"/>
+                                </clipPath>
+                            </defs>
+                        
+                            <!-- keep your image — only the clipping changes -->
+                            <image
+                                href="{{ url_for('static', filename='images/personal_picture.jpeg') }}"
+                                width="1600" height="900"
+                                preserveAspectRatio="xMidYMid slice"
+                                clip-path="url(#apple-squircle)"/>
+                            </svg>
+                        </figure>
+                        
                     </div>
                     <div class="timeline">
                         <div class="timeline-component">

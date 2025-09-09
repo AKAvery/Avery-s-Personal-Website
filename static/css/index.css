@@ -449,3 +449,31 @@ path {
     }
 }
 
+/* Prevent the first section from being hidden behind the header */
+:root { --header-h: 80px; }           /* set to your actual header height */
+html { scroll-padding-top: var(--header-h); }
+body { padding-top: calc(var(--header-h) + 12px); }
+
+/* Apple hero container */
+.apple-hero {
+  width: min(1200px, 94vw);
+  margin: clamp(72px, 8vw, 112px) auto 48px; /* extra top margin fixes the “cut off” */
+  overflow: visible;
+}
+.apple-hero .apple-mask {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
+/* If your nav is a list, kill the stray bullet that shows up */
+nav ul { list-style: none; margin: 0; padding: 0; }
+
+/* Ensure timeline blocks aren’t cropped by any parent overflow */
+.timeline, .timeline-section { overflow: visible; }
+.timeline:first-child, .timeline-section:first-child {
+  margin-top: clamp(24px, 4vw, 56px);
+}
+
+
