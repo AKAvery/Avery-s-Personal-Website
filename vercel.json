@@ -1,8 +1,6 @@
 {
     "functions": {
-      "api/index.py": {
-        "runtime": "python3.11"
-      }
+      "api/index.py": { "runtime": "python3.11" }
     },
     "routes": [
       { "src": "/static/(.*)", "dest": "/static/$1" },
