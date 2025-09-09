@@ -20,8 +20,8 @@
         </nav>
     </header>
     <div class="page-row-section">
-        <div class="page-row-section">
-            <div class='a'>
+        <div class="page-row-section" style="margin-right: 120px;"> 
+            <div class='a' style="margin-right: 25px;">
                 <a href="https://www.duolingo.com/profile/AveryAllen360694" target="_blank" style="all: unset;">
                     <img class="floating-img" src="{{ url_for('static', filename='images/Duolingo.avif')  }}" alt="duolingo icon">
                 </a>
@@ -32,8 +32,8 @@
             </a>
             </div>
         </div>  
-        <div class="page-column-section" style="margin-top: 475px;">
-            <div class="page-column-section" style="margin-top: 100px;">
+        <div class="page-column-section" style="margin-top: 325px;">
+            <div class="page-column-section" style="margin-top: 130px;">
                 <div class="image-container">
                     <div class="image-wrapper">
                         <div>
@@ -51,10 +51,26 @@
                     </div>
                 </div>
             </div>
-            <div class="page-column-section"  style="margin-top: 100px;">
+            <div class="page-column-section" style="margin-top: 50px; margin-bottom: 0px;">
+                <div class="content">
+                    <svg class="page-text" viewBox="0 0 800 100">
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#ff7e5f; stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#feb47b; stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <text x="0" y="50%" style="font-size: 50px; font-weight: bold;" dominant-baseline="middle" text-anchor="start" fill="url(#gradient)">
+                            Hi again, I'm Avery.
+                        </text>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="page-column-section" style="margin-top: none;">
                 <div class="content">
                     <p class="page-text">
-                        What's Up, I'm Avery Allen! I am a High School Student at Anderson High School in Austin, and I am working on this website to hone my skills and share things about me. I am currently unemployed but I divulge in many hobbies including coding fun projects, like this one, playing tennis, working out, learning spanish, watching youtube vidoes, and of course hanging out with friends.
+                        I'm a High School Student at Anderson High School in Austin, and I am working on this website to hone my skills and share things about me. I am currently unemployed but I divulge in many hobbies including coding fun projects, like this one, playing tennis, working out, learning spanish, watching youtube vidoes, and of course hanging out with friends.
                     </p>
                 </div>
             </div>
@@ -73,7 +89,7 @@
                 </div>
             </div>
         </div>
-        <div class="page-row-section">
+        <div class="page-row-section" style="margin-left: 120px;">
             <div>
               </div>
                     <div class="c">
@@ -81,7 +97,7 @@
                             <img class="floating-img" src="{{ url_for('static', filename='images/linkedin_trans_icon.png') }}">
                         </a>
                     </div>
-                    <div class="d">
+                    <div class="d" style="margin-left: 25px;">
                         <a href="https://app.utrsports.net/profiles/2804949" target="_blank" style="all: unset;">
                             <img class="floating-img" src="{{ url_for('static', filename='images/UTR_trans_icon.png')}}">
                         </a>
@@ -119,7 +135,7 @@
         const imageLength = imageItems.length;
         const perView = 3
         let totalScroll = 0
-        const delay = 6500
+        const delay = 7500
 
         imageWrapper.style.setProperty('--per-view', perView)
         for(let i = 0; i < perView; i++) {

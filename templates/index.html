@@ -29,7 +29,7 @@
                         <img style="margin-left: 200px; height: 25%; width: 25%; margin-bottom: 20px; border-radius: 5px;" src="{{ url_for('static', filename='images/index_about_me.jpeg') }}">
                         <div class="page-column-section">
                             <div class="page-text" style="width: 70%; margin-left: 150px; margin-right: 150px;">
-                                Hi, I'm Avery Allen and this is my Personal Website! I love pushing the boundaries of coding and exploring the different possibilities that can be achieved from code! While I am learning different Algorithms, Data Structures, Machine Learning Model, and various software for Robotics skills, this website was made to hone my front-end and back-end skills for Web Design/App Development and really show who I am! I hope you explore my whole website and enjoy the extra visual features I added!
+                                I'm Avery Allen and this is my Personal Website! I love pushing the boundaries of coding and exploring the different possibilities that can be achieved from code! While I am learning different Algorithms, Data Structures, Machine Learning Model, and various software for Robotics skills, this website was made to hone my front-end and back-end skills for Web Design/App Development and really show who I am! I hope you explore my whole website and enjoy the extra visual features I added!
                             </div>
                             <a href="/about" class="button-link">About Me</a>
                         </div>
@@ -37,8 +37,8 @@
                 </div>
             </section>
             <section>
-                <div class="page-column-section" style="background: rgb(51, 166, 204); width: 100vw; margin-top: 75px;">
-                    <h1 style="margin-top: 100px; font-size: 30px;">Skills</h1>
+                <div class="page-column-section" style="background-color: rgb(248, 252, 252); width: 100vw; margin-top: 75px;">
+                    <h1 style="margin-top: 75px; font-size: 35px;">Skills</h1>
                     <div class="grid-container selector-content" style="margin-top: 75px; margin-bottom: 75px;">
                         <div class="grid-item">
                             <h1>Python</h1>
@@ -67,9 +67,9 @@
                     </div>
                 </div>
             </section>
-            <section>
+            <section style="background-color: rgb(248, 252, 252);">
                 <div class="spacer"></div>
-                <h1 style="font-size: 45px; margin-top: 75px; text-align: center; margin-bottom: 75px">My Computer Science Timeline</h1>
+                <h1 style="font-size: 45px; margin-top: 0px; text-align: center; margin-bottom: 0px;">My Computer Science Timeline</h1>
                 <div class="scroller">
                     <div class="mask">
                         <svg width="100%" height="100%" viewBox="-50 0 300 400" direction="ltr" xmlns="http://www.w3.org/2000/svg">
@@ -258,15 +258,15 @@
                             <div class="timeline-date">Nov 1st, 2023 - Feb 11th, 2024</div>
                         </div>
                         <div class="timeline-component">
-                            <div class="timeline-date timeline-date-right">Jul 20, 2024</div>
+                            <div class="timeline-date timeline-date-right">Feb 12th, 2024 - Present</div>
                         </div>
                         <div class="timeline-middle">
                             <div class="timeline-point"></div>
                         </div>
                         <div class="timeline-component timeline-component-bg">
-                            <h2 class="timeline-title">Day of timeline creation</h2>
+                            <h2 class="timeline-title">Fistbump</h2>
                             <p class="timeline-paragraph">
-                                This was when I created this timeline and learned how to do this.
+                                My friends and I are currently working on a social media app. Using React Native to work on both the front-end and back-end code. This app uses a responsive algorithm to expand the user's network.
                             </p>
                         </div>
                         <div class="timeline-component timeline-component-bg">
@@ -325,9 +325,9 @@
 
         const headerEl = document.querySelector('.header');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 75) {
+            if (window.scrollY > 100) {
                 headerEl.classList.add('header-scrolled');
-            } else if (window.scrollY < 75) {
+            } else if (window.scrollY < 100) {
                 headerEl.classList.remove('header-scrolled');
             }
         });
@@ -344,7 +344,7 @@
                 const elements = document.querySelectorAll('.selector-content');
                 elements.forEach(footerEl => {
                     const rect = footerEl.getBoundingClientRect();
-                    if (rect.bottom <= (window.innerHeight + 200)) {
+                    if (rect.bottom <= (window.innerHeight + 150)) {
                         footerEl.classList.add('visible-selector-content');
                     }
                 })

@@ -122,13 +122,14 @@ body {
 }
 
 .page-text {
-    width: 90%;
+    width: 100%;
     align-items: center;
     justify-content: center;
     text-align: left;
     line-height: 1.7;
     font-size: 15px;
 }
+
 
 .background-change{
 
@@ -186,7 +187,7 @@ a {
 
 .center-image .revolving-img {
     transition: transform 1s;
-    transform: scale(1.9); 
+    transform: scale(1.7); 
     z-index: 2;
     border-radius: 5px;
 }

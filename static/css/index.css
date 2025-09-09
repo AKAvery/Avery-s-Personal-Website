@@ -68,7 +68,7 @@ header {
     text-decoration: none;
     margin-right: 15px;
     color: black;
-    margin-top: 50px;
+    margin-top: 30px;
     margin-left: 40px;
 }
 
@@ -251,7 +251,7 @@ a {
 }
 
 .mask {
-    background: white;
+    background: rgb(248,252, 252);
 }
 
 path {
@@ -363,7 +363,7 @@ path {
     transition: transform 0.3s ease-out, border-radius 0.7s ease-in-out;
     animation: subtleRippleEffect 5s infinite ease-in-out alternate;
 }
-
+ 
 
 .link-text {
     text-decoration: none;

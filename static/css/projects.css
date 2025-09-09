@@ -172,40 +172,21 @@ body {
     justify-content: flex-start;
     text-align: center;
     transition: transform 0.5s ease, box-shadow 0.5s ease;
-}
-
-.content::before, content::after{
-    content: "";
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    background: white;
-    border-radius: 4px;
-    z-index: 100;
-    transform-origin: center center;
-    transition: all 0.5s ease;
     box-shadow: 0 3px 10px 1px rgb(0, 0, 0, 0.2);
     animation: subtleRippleEffect 5s infinite ease-in-out alternate;
 }
 
-.content.default-mode::before {
-    background: transparent;
-}
 
-.content.default-mode:hover::before {
+
+.content:hover {
     animation: bigRippleEffect .7s ease-in-out forwards;
-    transform: scale(1.05, 1.05);
+    transform: scale(1.03, 1.03);
     box-shadow: 0 3px 10px 1px rgb(0, 0, 0, 0.2);
 }
 
-.content.default-mode:hover {
-    background: none;
-}
 
-.content.default-mode:hover .page-text {
-    transform: scale(1.05, 1.05);
+.content:hover .page-text {
+    transform: scale(1.0, 1.0);
 }
 
 .content img {
@@ -214,7 +195,7 @@ body {
 }
 
 .content.default-mode:hover img {
-    transform: scale(1.05);
+    transform: scale(1.0);
 }
 
 .content.alt-mode::before {
@@ -263,25 +244,6 @@ img {
     animation: smallRippleEffect .6s ease-in-out forwards;
 }
 
-@keyframes animationOne {
-    0% { transform: scale(1, 1); }
-    100% { transform: scale(1.5, 0.75); }
-}
-
-@keyframes animationTwo {
-    0% { transform: scale(1.5, 0.75); }
-    100% { transform: scale(1, 1); }
-}
-
-@keyframes animationThree {
-    0% { transform: scale(1, 1); }
-    100% { transform: scale(0.75, 1.5); }
-}
-
-@keyframes animationFour {
-    0% { transform: scale(0.75, 1.5); }
-    100% { transform: scale(1, 1); } 
-}
 
 @keyframes slidingAnimationRight {
     0% { transform: translateX(100%); }
