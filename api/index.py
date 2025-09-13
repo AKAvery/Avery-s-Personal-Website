@@ -1,14 +1,13 @@
 from flask import Flask, render_template, abort
 from jinja2 import TemplateNotFound
 
+# api/index.py lives under /api, so go up one level for templates/static
 app = Flask(__name__, static_folder="../static", template_folder="../templates")
 
-# Home
 @app.get("/")
 def home():
     return render_template("index.html")
 
-# Explicit simple pages
 @app.get("/about")
 def about():
     return render_template("about.html")
@@ -17,29 +16,28 @@ def about():
 def projects():
     return render_template("projects.html")
 
-@app.route('/fistbump')
+# Individual project pages (match your template filenames exactly, case-sensitive!)
+@app.get("/kneeEd")
+def knee_ed():
+    return render_template("IndividualProjects/KneeEd.html")
+
+@app.get("/fistbump")
 def fistbump():
-    return render_template('IndividualProjects/fistbump.html')
+    return render_template("IndividualProjects/fistbump.html")
 
-@app.route('/stockSentiment')
-def stockSentiment():
-    return render_template('IndividualProjects/stockSentiment.html')
+@app.get("/andersonCodingClub")
+def anderson_coding_club():
+    return render_template("IndividualProjects/andersonCodingClub.html")
 
-@app.route('/andersonCodingClub')
-def andersonCodingClub():
-    return render_template('IndividualProjects/andersonCodingClub.html')
+@app.get("/canKiosk")
+def can_kiosk():
+    return render_template("IndividualProjects/canKiosk.html")
 
-@app.route('/kneeEd')
-def kneeEd():
-    return render_template('IndividualProjects/KneeEd.html')
+@app.get("/stockSentiment")
+def stock_sentiment():
+    return render_template("IndividualProjects/stockSentiment.html")
 
-@app.route('/canKiosk')
-def canKiosk():
-    return render_template('IndividualProjects/canKiosk.html')
-
-# Generic fallback: serve any template by path
-# Supports /page  -> templates/page.html
-#         /foo/bar -> templates/foo/bar.html
+# Optional generic fallback: /foo -> templates/foo.html, /foo/bar -> templates/foo/bar.html
 @app.get("/<path:page>")
 def serve_page(page):
     for name in (page, f"{page}.html"):
@@ -48,3 +46,5 @@ def serve_page(page):
         except TemplateNotFound:
             pass
     abort(404)
+
+# No app.run() here; Vercel imports `app`
