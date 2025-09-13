@@ -17,6 +17,26 @@ def about():
 def projects():
     return render_template("projects.html")
 
+@app.route('/fistbump')
+def fistbump():
+    return render_template('IndividualProjects/fistbump.html')
+
+@app.route('/stockSentiment')
+def stockSentiment():
+    return render_template('IndividualProjects/stockSentiment.html')
+
+@app.route('/andersonCodingClub')
+def andersonCodingClub():
+    return render_template('IndividualProjects/andersonCodingClub.html')
+
+@app.route('/kneeEd')
+def kneeEd():
+    return render_template('IndividualProjects/KneeEd.html')
+
+@app.route('/canKiosk')
+def canKiosk():
+    return render_template('IndividualProjects/canKiosk.html')
+
 # Generic fallback: serve any template by path
 # Supports /page  -> templates/page.html
 #         /foo/bar -> templates/foo/bar.html
