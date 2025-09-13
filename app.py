@@ -26,6 +26,17 @@ def stockSentiment():
 def andersonCodingClub():
     return render_template('IndividualProjects/andersonCodingClub.html')
 
+@app.route('/kneeEd')
+def kneeEd():
+    return render_template('IndividualProjects/KneeEd.html')
+
+@app.route('/canKiosk')
+def canKiosk():
+    return render_template('IndividualProjects/canKiosk.html')
+
+
+
+
 if __name__ == '__main__':
     app.run(port = 4000, debug=True)
     #app.run(debug=False,host='0.0.0.0')

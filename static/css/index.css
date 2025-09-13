@@ -161,21 +161,6 @@ a {
 }
 
 
-.timeline {
-    margin: 0 auto;
-    max-width: 750px;
-    padding-top: 25px;
-    display: grid;
-    grid-template-columns: 1fr 3px 1fr;
-    font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: black;
-    background-image: url('/static/images/leaves_background.jpg');
-    background-size: 75%;
-    background-position: 175px center;
-    padding-right: 350px;
-    padding-left: 350px;
-}
-
 .timeline-component {
     margin: 0 20px 20px 20px;
 }
@@ -231,39 +216,70 @@ a {
     line-height: 1.5;
 }
 
-.scroller {
+/* Timeline stays transparent so the background shows through the stroke */
+.timeline {
+    margin: 0 auto;
+    max-width: 750px;
+    padding-top: 25px;
     display: grid;
+    grid-template-columns: 1fr 3px 1fr;
+    color: black;
+    background: transparent;        /* ⬅️ no image here */
+    padding-right: 350px;
+    padding-left: 350px;
+  }
+  
+  /* Full-width background sits behind, so the stroke reveals it everywhere */
+  .scroller { 
+    display: grid;
+    background-image: url('/static/images/leaves_background.jpg');
+    background-size: cover;         /* ⬅️ fills the width */
+    background-position: center; 
+  }
+  .scroller > * { grid-area: 1 / 1; width: 100%; }
+  
 
-    & > * {
-        grid-area: 1 / 1;
-        width: 100%;
-    }
-
-    .mask {
-        mix-blend-mode: lighten;
-        z-index: 2;
-    }
-
-    svg {
-        width: 100%;
-        height: 100%;
-    }
+/* Sticky scribble behind the timeline, with lightening blend */
+.mask{
+  position: sticky;
+  top: 100px;                  /* clear the fixed header; tweak if needed */
+  mix-blend-mode: lighten;
+  z-index: 2;
+  background: rgb(248,252,252);
 }
 
+/* Make the SVG span the viewport width */
+#scribble { width: 100vw !important; }
+
+/* The hand-drawn line */
+#scribble path {
+    stroke: black;
+    fill: none;
+    stroke-width: 76px;          /* adjust to taste */
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;   /* ← keeps thickness constant */
+  
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 0.06s linear;
+    will-change: stroke-dashoffset;
+  }
+  
+
+
+.scroller svg { width: 100%; height: 100%; }
+
+
+/* Keep the scribble in place as content scrolls under it */
 .mask {
-    background: rgb(248,252, 252);
-}
+    position: sticky;
+    top: 100px;          /* clear your fixed header */
+    mix-blend-mode: lighten;
+    z-index: 2;
+    background: rgb(248,252,252);
+  }
 
-path {
-    stroke-width: 14.7;
-    stroke-dasharray: 16586.056640625;
-    stroke-dashoffset: 16586.056640625;
-    view-timeline-name: --scribble-path;
-    view-timeline-axis: block;
-    animation: linear draw both;
-    animation-timeline: --scribble-path;
-    animation-range: entry 25% cover 80%; 
-}
 
 @keyframes draw {
     to {
