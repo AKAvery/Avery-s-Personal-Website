@@ -69,7 +69,7 @@
             </section>
             <section style="background-color: rgb(248, 252, 252);">
                 <div class="spacer"></div>
-                <h1 style="font-size: 45px; margin-top: -50px; text-align: center; margin-bottom: 50px;">My Computer Science Timeline</h1>
+                <h1 style="font-size: 45px; margin-top: -50px; text-align: center; margin-bottom: 75px;">My Computer Science Timeline</h1>
               
                 <div class="scroller">
                   <!-- Sticky mask that holds the SVG scribble -->
@@ -202,7 +202,7 @@
                         <div class="timeline-component">
                             <div class="timeline-date">Feb 15th, 2025</div>
                         </div>
-  
+                        <div style="margin-bottom: 100px;"></div>
                     </div>
                 </div>
             </section>
@@ -259,113 +259,126 @@
     </script>
     <script>
         (function () {
-          /* =======================
-             REVEAL SPEED KNOB
-             ======================= */
-          const SPEED = 1.2;  // ⬅️ increase to reveal faster (e.g., 1.5–2.5). 1 = original speed
-        
-          function buildScribblePath(totalHeight, W, {
+        /* ===== reveal / feel (unchanged) ===== */
+        const SPEED = 1.2;      // 1 = original; higher = faster
+        const STEP  = 120;      // height of one wave
+        const EXTRA_WAVES = 0;  // keep at 0 unless you want more length
+
+        /** ----- SYMMETRIC PATH BUILDER (no 'S', mirrored jitter) ----- **/
+        function buildScribblePath(totalHeight, W, {
             topPad  = 140,
-            step    = 120,
+            step    = STEP,
             ampFrac = 0.38,
-            jitter  = 12
-          } = {}) {
+            jitterX = 22,   // horizontal wiggle
+            jitterY = 12    // vertical wiggle
+        } = {}) {
             const cx  = W / 2;
             const amp = W * ampFrac;
+
+            // simple helpers
+            const j  = n => (Math.random() * 2 - 1) * n;
+            const pair = n => { const v = Math.random() * n; return [-v, +v]; }; // mirrored ±v
+
             let y = 0;
             let d = `M ${cx} 0`;
-            const j = n => (Math.random() * 2 - 1) * n;
-        
+
             while (y < totalHeight + topPad) {
-              const y1 = y + 0.30 * step, y2 = y + 0.60 * step, y3 = y + step;
-              const left = cx - amp, right = cx + amp;
-        
-              d += ` C ${left  + j(jitter)} ${y1 + j(jitter)}, ${left  + j(jitter)} ${y2 + j(jitter)}, ${cx + j(jitter)} ${y2 + j(jitter)}`
-                 + ` S ${right + j(jitter)} ${y3 + j(jitter)}, ${right + j(jitter)} ${y3 + j(jitter)}`
-                 + ` S ${cx    + j(jitter)} ${y3 + j(jitter)}, ${cx    + j(jitter)} ${y3 + j(jitter)}`;
-              y += step;
+            const yMid  = y + step * 0.50;
+            const yNext = y + step;
+
+            // MIRRORED x-jitter so left/right deviate equally
+            const [jxL1, jxR1] = pair(jitterX);
+            const [jxL2, jxR2] = pair(jitterX);
+            const [jxPm, jxPn] = pair(jitterX * 0.35);
+
+            // A) center -> mid (LEFT swing)
+            const c1xA = cx - amp * 0.80 + jxL1;
+            const c1yA = y  + step * 0.20 + j(jitterY);
+            const c2xA = cx - amp * 1.00 + jxL2;
+            const c2yA = y  + step * 0.40 + j(jitterY);
+            const p1xA = cx + jxPm;
+            const p1yA = yMid + j(jitterY);
+            d += ` C ${c1xA} ${c1yA}, ${c2xA} ${c2yA}, ${p1xA} ${p1yA}`;
+
+            // B) mid -> next (RIGHT swing)
+            const c1xB = cx + amp * 0.80 + jxR1;
+            const c1yB = y  + step * 0.60 + j(jitterY);
+            const c2xB = cx + amp * 1.00 + jxR2;
+            const c2yB = y  + step * 0.80 + j(jitterY);
+            const p2xB = cx + jxPn;
+            const p2yB = yNext + j(jitterY);
+            d += ` C ${c1xB} ${c1yB}, ${c2xB} ${c2yB}, ${p2xB} ${p2yB}`;
+
+            y += step;
             }
             return { d, height: y + topPad, width: W };
-          }
-        
-          let path, len, startY, endY;
-        
-          // ---- REVEAL TIMING KNOBS ----
-            // how many viewport-heights BEFORE the timeline enters we start drawing
-            const LEAD_IN_SCREENS = 0.8;   // was ~0.30; higher = starts sooner (try 0.8–1.2)
-            // how many viewport-heights BEFORE the very end we finish drawing
-            const TAIL_OUT_SCREENS = 0.10; // lower = finishes later
-            // optional extra pixel nudge
-            const START_PIXEL_OFFSET = 20; // add pixels to start even earlier
+        }
 
-            function computeBounds() {
+        let path, len, startY, endY;
+
+        // ---- timing (unchanged) ----
+        const LEAD_IN_SCREENS  = 0.8;
+        const TAIL_OUT_SCREENS = 0.10;
+        const START_PIXEL_OFFSET = 20;
+
+        function computeBounds() {
             const tl = document.querySelector('.timeline');
             const vh = window.innerHeight || document.documentElement.clientHeight;
-
             const top    = tl.getBoundingClientRect().top + window.scrollY;
             const height = tl.scrollHeight;
-
             const leadIn  = vh * LEAD_IN_SCREENS + START_PIXEL_OFFSET;
             const tailOut = vh * TAIL_OUT_SCREENS;
-
-            // Start earlier (above the title), finish a bit before bottom
             startY = top - leadIn;
             endY   = top + height - tailOut;
-            }
+        }
 
-        
-          function sizeScribble() {
+        function sizeScribble() {
             const tl  = document.querySelector('.timeline');
             const svg = document.getElementById('scribble');
             if (!tl || !svg) return;
-        
+
             const W = Math.max(window.innerWidth, document.documentElement.clientWidth);
-            const H = tl.scrollHeight + 300;
-        
-            const { d, height, width } = buildScribblePath(H, W);
-        
+            const H = tl.scrollHeight + 300 + (EXTRA_WAVES * STEP); // your extra length
+
+            const { d, height, width } = buildScribblePath(H, W, { step: STEP });
+
             svg.innerHTML = '';
             path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
             path.setAttribute('d', d);
             path.setAttribute('vector-effect', 'non-scaling-stroke');
             svg.appendChild(path);
-        
+
             svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
             svg.style.width  = '100vw';
             svg.style.height = `${height}px`;
-        
+
             len = path.getTotalLength();
             path.style.strokeDasharray  = `${len}`;
             path.style.strokeDashoffset = `${len}`;
-        
+
             computeBounds();
             updateDrawFromContainer();
-          }
-        
-          let ticking = false;
-          function updateDrawFromContainer() {
+        }
+
+        let ticking = false;
+        function updateDrawFromContainer() {
             if (ticking) return;
             ticking = true;
             requestAnimationFrame(() => {
-              const y = window.scrollY;
-              const base = (y - startY) / (endY - startY);     // 0..1 based on timeline travel
-              const sped = base * SPEED;                       // ⬅️ faster reveal
-              const progress = Math.max(0, Math.min(1, sped)); // clamp
-              path.style.strokeDashoffset = `${len * (1 - progress)}`;
-              ticking = false;
+            const y = window.scrollY;
+            const base = (y - startY) / (endY - startY);
+            const sped = base * SPEED;
+            const progress = Math.max(0, Math.min(1, sped));
+            path.style.strokeDashoffset = `${len * (1 - progress)}`;
+            ticking = false;
             });
-          }
-        
-          window.addEventListener('load',  sizeScribble);
-          window.addEventListener('resize', sizeScribble);
-          window.addEventListener('scroll', updateDrawFromContainer, { passive: true });
+        }
+
+        window.addEventListener('load',  sizeScribble);
+        window.addEventListener('resize', sizeScribble);
+        window.addEventListener('scroll', updateDrawFromContainer, { passive: true });
         })();
-        </script>
-        
+    </script>
     
-    
-    
-        
-        
 </body>
 </html>
