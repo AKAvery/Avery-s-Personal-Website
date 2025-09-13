@@ -259,57 +259,80 @@
     </script>
     <script>
         (function () {
-        /* ===== reveal / feel (unchanged) ===== */
-        const SPEED = 1.2;      // 1 = original; higher = faster
-        const STEP  = 120;      // height of one wave
-        const EXTRA_WAVES = 0;  // keep at 0 unless you want more length
+        /* ===== Aesthetics / feel ===== */
+        const SPEED = 1.2;          // 1 = baseline reveal speed
+        const STEP  = 120;          // nominal vertical distance per wave
+        const EXTRA_WAVES = 0;      // keep unless you want more length
 
-        /** ----- SYMMETRIC PATH BUILDER (no 'S', mirrored jitter) ----- **/
+        /* Make it wider + add micro-wiggle inside each wave */
+        const AMP_FRAC   = 0.65;    // was ~0.38 — wider swings (clamped by viewport)
+        const JX         = 26;      // horizontal jitter per control point (px)
+        const JY         = 14;      // vertical jitter per control point (px)
+        const MICRO_FRAC = 0.18;    // inner wiggle as a fraction of A (0.12–0.22 looks nice)
+
+        /* ----- PATH BUILDER (non-mirrored jitter + inner wiggle) ----- */
         function buildScribblePath(totalHeight, W, {
             topPad  = 140,
             step    = STEP,
-            ampFrac = 0.38,
-            jitterX = 22,   // horizontal wiggle
-            jitterY = 12    // vertical wiggle
+            ampFrac = AMP_FRAC,
+            jitterX = JX,
+            jitterY = JY,
+            micro   = MICRO_FRAC
         } = {}) {
             const cx  = W / 2;
-            const amp = W * ampFrac;
-
-            // simple helpers
-            const j  = n => (Math.random() * 2 - 1) * n;
-            const pair = n => { const v = Math.random() * n; return [-v, +v]; }; // mirrored ±v
+            const A0  = W * ampFrac;              // base swing (no corridor clamp here)
+            const j   = n => (Math.random() * 2 - 1) * n;  // zero-mean jitter
+            const vary = (base, pct=0.15) => base * (1 + j(pct)); // mild per-wave variance
 
             let y = 0;
             let d = `M ${cx} 0`;
 
             while (y < totalHeight + topPad) {
-            const yMid  = y + step * 0.50;
-            const yNext = y + step;
+            const A    = Math.abs(vary(A0, 0.12));         // width variation per wave
+            const stp  = Math.abs(vary(step, 0.18));       // step variation per wave
 
-            // MIRRORED x-jitter so left/right deviate equally
-            const [jxL1, jxR1] = pair(jitterX);
-            const [jxL2, jxR2] = pair(jitterX);
-            const [jxPm, jxPn] = pair(jitterX * 0.35);
+            // Vertical anchors for this wave
+            const yQ1  = y + 0.25 * stp;
+            const yMid = y + 0.50 * stp;
+            const yQ3  = y + 0.75 * stp;
+            const yNext= y + stp;
 
-            // A) center -> mid (LEFT swing)
-            const c1xA = cx - amp * 0.80 + jxL1;
-            const c1yA = y  + step * 0.20 + j(jitterY);
-            const c2xA = cx - amp * 1.00 + jxL2;
-            const c2yA = y  + step * 0.40 + j(jitterY);
-            const p1xA = cx + jxPm;
-            const p1yA = yMid + j(jitterY);
-            d += ` C ${c1xA} ${c1yA}, ${c2xA} ${c2yA}, ${p1xA} ${p1yA}`;
+            // Micro-wiggle amplitude (small S inside each half wave)
+            const m    = A * micro * (Math.random() < 0.5 ? 1 : -1);
 
-            // B) mid -> next (RIGHT swing)
-            const c1xB = cx + amp * 0.80 + jxR1;
-            const c1yB = y  + step * 0.60 + j(jitterY);
-            const c2xB = cx + amp * 1.00 + jxR2;
-            const c2yB = y  + step * 0.80 + j(jitterY);
-            const p2xB = cx + jxPn;
-            const p2yB = yNext + j(jitterY);
-            d += ` C ${c1xB} ${c1yB}, ${c2xB} ${c2yB}, ${p2xB} ${p2yB}`;
+            /* -------- LEFT SWING (center -> Q1 -> mid) in two Béziers -------- */
+            // center -> quarter
+            {
+                const c1x = cx - 0.55*A + j(jitterX),  c1y = y    + 0.15*stp + j(jitterY);
+                const c2x = cx - 0.85*A + j(jitterX),  c2y = y    + 0.22*stp + j(jitterY);
+                const px  = cx - m*0.8  + j(jitterX*0.3), py = yQ1 + j(jitterY);
+                d += ` C ${c1x} ${c1y}, ${c2x} ${c2y}, ${px} ${py}`;
+            }
+            // quarter -> mid (slight counter-curve back toward center)
+            {
+                const c1x = cx - 0.70*A + j(jitterX),  c1y = yQ1  + 0.07*stp + j(jitterY);
+                const c2x = cx - 0.35*A + j(jitterX),  c2y = yQ1  + 0.22*stp + j(jitterY);
+                const px  = cx + m*0.6  + j(jitterX*0.25), py = yMid + j(jitterY);
+                d += ` C ${c1x} ${c1y}, ${c2x} ${c2y}, ${px} ${py}`;
+            }
 
-            y += step;
+            /* -------- RIGHT SWING (mid -> Q3 -> next) in two Béziers -------- */
+            // mid -> three-quarters
+            {
+                const c1x = cx + 0.55*A + j(jitterX),  c1y = yMid + 0.10*stp + j(jitterY);
+                const c2x = cx + 0.85*A + j(jitterX),  c2y = yMid + 0.26*stp + j(jitterY);
+                const px  = cx + m*0.8  + j(jitterX*0.3), py = yQ3  + j(jitterY);
+                d += ` C ${c1x} ${c1y}, ${c2x} ${c2y}, ${px} ${py}`;
+            }
+            // three-quarters -> next (counter-curve)
+            {
+                const c1x = cx + 0.70*A + j(jitterX),  c1y = yQ3  + 0.06*stp + j(jitterY);
+                const c2x = cx + 0.35*A + j(jitterX),  c2y = yQ3  + 0.20*stp + j(jitterY);
+                const px  = cx - m*0.5  + j(jitterX*0.25), py = yNext + j(jitterY);
+                d += ` C ${c1x} ${c1y}, ${c2x} ${c2y}, ${px} ${py}`;
+            }
+
+            y += stp;
             }
             return { d, height: y + topPad, width: W };
         }
@@ -322,9 +345,9 @@
         const START_PIXEL_OFFSET = 20;
 
         function computeBounds() {
-            const tl = document.querySelector('.timeline');
-            const vh = window.innerHeight || document.documentElement.clientHeight;
-            const top    = tl.getBoundingClientRect().top + window.scrollY;
+            const tl  = document.querySelector('.timeline');
+            const vh  = window.innerHeight || document.documentElement.clientHeight;
+            const top = tl.getBoundingClientRect().top + window.scrollY;
             const height = tl.scrollHeight;
             const leadIn  = vh * LEAD_IN_SCREENS + START_PIXEL_OFFSET;
             const tailOut = vh * TAIL_OUT_SCREENS;
@@ -338,7 +361,7 @@
             if (!tl || !svg) return;
 
             const W = Math.max(window.innerWidth, document.documentElement.clientWidth);
-            const H = tl.scrollHeight + 300 + (EXTRA_WAVES * STEP); // your extra length
+            const H = tl.scrollHeight + 300 + (EXTRA_WAVES * STEP);
 
             const { d, height, width } = buildScribblePath(H, W, { step: STEP });
 
@@ -366,7 +389,7 @@
             ticking = true;
             requestAnimationFrame(() => {
             const y = window.scrollY;
-            const base = (y - startY) / (endY - startY);
+            const base = (y - startY) / (endY - startY);      // 0..1 across timeline
             const sped = base * SPEED;
             const progress = Math.max(0, Math.min(1, sped));
             path.style.strokeDashoffset = `${len * (1 - progress)}`;
@@ -379,6 +402,7 @@
         window.addEventListener('scroll', updateDrawFromContainer, { passive: true });
         })();
     </script>
+
     
 </body>
 </html>
