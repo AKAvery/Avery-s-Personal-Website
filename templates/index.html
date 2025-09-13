@@ -258,150 +258,207 @@
 
     </script>
     <script>
-        (function () {
-        /* ===== Aesthetics / feel ===== */
-        const SPEED = 1.2;          // 1 = baseline reveal speed
-        const STEP  = 120;          // nominal vertical distance per wave
-        const EXTRA_WAVES = 0;      // keep unless you want more length
+(function () {
+  /* ===== Aesthetics / feel ===== */
+  const SPEED = 1.2;          // 1 = baseline reveal speed
+  const STEP  = 120;          // nominal vertical distance per wave
+  const EXTRA_WAVES = 0;      // keep unless you want more length
 
-        /* Make it wider + add micro-wiggle inside each wave */
-        const AMP_FRAC   = 0.65;    // was ~0.38 — wider swings (clamped by viewport)
-        const JX         = 26;      // horizontal jitter per control point (px)
-        const JY         = 14;      // vertical jitter per control point (px)
-        const MICRO_FRAC = 0.18;    // inner wiggle as a fraction of A (0.12–0.22 looks nice)
+  /* Wider + inner micro-wiggle */
+  const AMP_FRAC   = 0.65;
+  const JX         = 26;
+  const JY         = 14;
+  const MICRO_FRAC = 0.18;
 
-        /* ----- PATH BUILDER (non-mirrored jitter + inner wiggle) ----- */
-        function buildScribblePath(totalHeight, W, {
-            topPad  = 140,
-            step    = STEP,
-            ampFrac = AMP_FRAC,
-            jitterX = JX,
-            jitterY = JY,
-            micro   = MICRO_FRAC
-        } = {}) {
-            const cx  = W / 2;
-            const A0  = W * ampFrac;              // base swing (no corridor clamp here)
-            const j   = n => (Math.random() * 2 - 1) * n;  // zero-mean jitter
-            const vary = (base, pct=0.15) => base * (1 + j(pct)); // mild per-wave variance
+  /* ----- PATH BUILDER (non-mirrored jitter + inner wiggle) ----- */
+  function buildScribblePath(totalHeight, W, {
+    topPad  = 140,
+    step    = STEP,
+    ampFrac = AMP_FRAC,
+    jitterX = JX,
+    jitterY = JY,
+    micro   = MICRO_FRAC
+  } = {}) {
+    const cx  = W / 2;
+    const A0  = W * ampFrac;
+    const j   = n => (Math.random() * 2 - 1) * n;            // zero-mean jitter
+    const vary = (base, pct=0.15) => base * (1 + j(pct));     // mild per-wave variance
 
-            let y = 0;
-            let d = `M ${cx} 0`;
+    let y = 0;
+    let d = `M ${cx} 0`;
 
-            while (y < totalHeight + topPad) {
-            const A    = Math.abs(vary(A0, 0.12));         // width variation per wave
-            const stp  = Math.abs(vary(step, 0.18));       // step variation per wave
+    while (y < totalHeight + topPad) {
+      const A    = Math.abs(vary(A0, 0.12));
+      const stp  = Math.abs(vary(step, 0.18));
 
-            // Vertical anchors for this wave
-            const yQ1  = y + 0.25 * stp;
-            const yMid = y + 0.50 * stp;
-            const yQ3  = y + 0.75 * stp;
-            const yNext= y + stp;
+      const yQ1  = y + 0.25 * stp;
+      const yMid = y + 0.50 * stp;
+      const yQ3  = y + 0.75 * stp;
+      const yNext= y + stp;
 
-            // Micro-wiggle amplitude (small S inside each half wave)
-            const m    = A * micro * (Math.random() < 0.5 ? 1 : -1);
+      const m    = A * micro * (Math.random() < 0.5 ? 1 : -1);
+      const jv   = () => (Math.random()*2-1) * JY;
 
-            /* -------- LEFT SWING (center -> Q1 -> mid) in two Béziers -------- */
-            // center -> quarter
-            {
-                const c1x = cx - 0.55*A + j(jitterX),  c1y = y    + 0.15*stp + j(jitterY);
-                const c2x = cx - 0.85*A + j(jitterX),  c2y = y    + 0.22*stp + j(jitterY);
-                const px  = cx - m*0.8  + j(jitterX*0.3), py = yQ1 + j(jitterY);
-                d += ` C ${c1x} ${c1y}, ${c2x} ${c2y}, ${px} ${py}`;
-            }
-            // quarter -> mid (slight counter-curve back toward center)
-            {
-                const c1x = cx - 0.70*A + j(jitterX),  c1y = yQ1  + 0.07*stp + j(jitterY);
-                const c2x = cx - 0.35*A + j(jitterX),  c2y = yQ1  + 0.22*stp + j(jitterY);
-                const px  = cx + m*0.6  + j(jitterX*0.25), py = yMid + j(jitterY);
-                d += ` C ${c1x} ${c1y}, ${c2x} ${c2y}, ${px} ${py}`;
-            }
+      /* LEFT: center -> Q1 */
+      {
+        const c1x = cx - 0.55*A + j(JX),  c1y = y    + 0.15*stp + jv();
+        const c2x = cx - 0.85*A + j(JX),  c2y = y    + 0.22*stp + jv();
+        const px  = cx - m*0.8  + j(JX*0.3), py = yQ1 + jv();
+        d += ` C ${c1x} ${c1y}, ${c2x} ${c2y}, ${px} ${py}`;
+      }
+      /* LEFT: Q1 -> mid (counter-curve) */
+      {
+        const c1x = cx - 0.70*A + j(JX),  c1y = yQ1  + 0.07*stp + jv();
+        const c2x = cx - 0.35*A + j(JX),  c2y = yQ1  + 0.22*stp + jv();
+        const px  = cx + m*0.6  + j(JX*0.25), py = yMid + jv();
+        d += ` C ${c1x} ${c1y}, ${c2x} ${c2y}, ${px} ${py}`;
+      }
+      /* RIGHT: mid -> Q3 */
+      {
+        const c1x = cx + 0.55*A + j(JX),  c1y = yMid + 0.10*stp + jv();
+        const c2x = cx + 0.85*A + j(JX),  c2y = yMid + 0.26*stp + jv();
+        const px  = cx + m*0.8  + j(JX*0.3), py = yQ3  + jv();
+        d += ` C ${c1x} ${c1y}, ${c2x} ${c2y}, ${px} ${py}`;
+      }
+      /* RIGHT: Q3 -> next (counter-curve) */
+      {
+        const c1x = cx + 0.70*A + j(JX),  c1y = yQ3  + 0.06*stp + jv();
+        const c2x = cx + 0.35*A + j(JX),  c2y = yQ3  + 0.20*stp + jv();
+        const px  = cx - m*0.5  + j(JX*0.25), py = yNext + jv();
+        d += ` C ${c1x} ${c1y}, ${c2x} ${c2y}, ${px} ${py}`;
+      }
+      y += stp;
+    }
+    return { d, height: y + topPad, width: W };
+  }
 
-            /* -------- RIGHT SWING (mid -> Q3 -> next) in two Béziers -------- */
-            // mid -> three-quarters
-            {
-                const c1x = cx + 0.55*A + j(jitterX),  c1y = yMid + 0.10*stp + j(jitterY);
-                const c2x = cx + 0.85*A + j(jitterX),  c2y = yMid + 0.26*stp + j(jitterY);
-                const px  = cx + m*0.8  + j(jitterX*0.3), py = yQ3  + j(jitterY);
-                d += ` C ${c1x} ${c1y}, ${c2x} ${c2y}, ${px} ${py}`;
-            }
-            // three-quarters -> next (counter-curve)
-            {
-                const c1x = cx + 0.70*A + j(jitterX),  c1y = yQ3  + 0.06*stp + j(jitterY);
-                const c2x = cx + 0.35*A + j(jitterX),  c2y = yQ3  + 0.20*stp + j(jitterY);
-                const px  = cx - m*0.5  + j(jitterX*0.25), py = yNext + j(jitterY);
-                d += ` C ${c1x} ${c1y}, ${c2x} ${c2y}, ${px} ${py}`;
-            }
+  /* ---------- Guard-rails & reveal ---------- */
+  let path, len = 0, startY = 0, endY = 0;
+  let settleAttempts = 0, lastH = -1, stableFrames = 0;
 
-            y += stp;
-            }
-            return { d, height: y + topPad, width: W };
-        }
+  const LEAD_IN_SCREENS  = 0.8;
+  const TAIL_OUT_SCREENS = 0.10;
+  const START_PIXEL_OFFSET = 20;
 
-        let path, len, startY, endY;
+  function computeBounds() {
+    const tl  = document.querySelector('.timeline');
+    const vh  = window.innerHeight || document.documentElement.clientHeight;
+    const top = tl.getBoundingClientRect().top + window.scrollY;
+    const height = tl.scrollHeight;
+    const leadIn  = vh * LEAD_IN_SCREENS + START_PIXEL_OFFSET;
+    const tailOut = vh * TAIL_OUT_SCREENS;
+    startY = top - leadIn;
+    endY   = top + height - tailOut;
+  }
 
-        // ---- timing (unchanged) ----
-        const LEAD_IN_SCREENS  = 0.8;
-        const TAIL_OUT_SCREENS = 0.10;
-        const START_PIXEL_OFFSET = 20;
+  function forceRevealNow() {
+    if (!path || !len) return;
+    const span = Math.max(1, endY - startY);
+    let base = (window.scrollY - startY) / span;
+    base = Math.max(0, Math.min(1, base * SPEED));
+    path.style.strokeDashoffset = `${len * (1 - base)}`;
+  }
 
-        function computeBounds() {
-            const tl  = document.querySelector('.timeline');
-            const vh  = window.innerHeight || document.documentElement.clientHeight;
-            const top = tl.getBoundingClientRect().top + window.scrollY;
-            const height = tl.scrollHeight;
-            const leadIn  = vh * LEAD_IN_SCREENS + START_PIXEL_OFFSET;
-            const tailOut = vh * TAIL_OUT_SCREENS;
-            startY = top - leadIn;
-            endY   = top + height - tailOut;
-        }
+  function sizeScribble() {
+    const tl  = document.querySelector('.timeline');
+    const svg = document.getElementById('scribble');
+    if (!tl || !svg) return;
 
-        function sizeScribble() {
-            const tl  = document.querySelector('.timeline');
-            const svg = document.getElementById('scribble');
-            if (!tl || !svg) return;
+    const W = Math.max(window.innerWidth, document.documentElement.clientWidth);
+    const H = tl.scrollHeight + 300 + (EXTRA_WAVES * STEP);
 
-            const W = Math.max(window.innerWidth, document.documentElement.clientWidth);
-            const H = tl.scrollHeight + 300 + (EXTRA_WAVES * STEP);
+    const { d, height, width } = buildScribblePath(H, W, { step: STEP });
 
-            const { d, height, width } = buildScribblePath(H, W, { step: STEP });
+    svg.innerHTML = '';
+    path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', d);
+    path.setAttribute('vector-effect', 'non-scaling-stroke');
+    svg.appendChild(path);
 
-            svg.innerHTML = '';
-            path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-            path.setAttribute('d', d);
-            path.setAttribute('vector-effect', 'non-scaling-stroke');
-            svg.appendChild(path);
+    svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+    svg.style.width  = '100vw';
+    svg.style.height = `${height}px`;
 
-            svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
-            svg.style.width  = '100vw';
-            svg.style.height = `${height}px`;
+    // get path length (retry if we get 0 during layout)
+    len = path.getTotalLength();
+    if (!len || len === 0) {
+      requestAnimationFrame(() => {
+        try { len = path.getTotalLength(); } catch {}
+        finalizeRevealFrame();
+      });
+    } else {
+      finalizeRevealFrame();
+    }
+  }
 
-            len = path.getTotalLength();
-            path.style.strokeDasharray  = `${len}`;
-            path.style.strokeDashoffset = `${len}`;
+  function finalizeRevealFrame() {
+    if (!path) return;
+    path.style.strokeDasharray  = `${len}`;
+    path.style.strokeDashoffset = `${len}`;
+    computeBounds();
+    // Force correct position immediately + on the next frames (covers scroll restoration)
+    forceRevealNow();
+    requestAnimationFrame(forceRevealNow);
+    setTimeout(forceRevealNow, 60);
+    setTimeout(forceRevealNow, 180);
+  }
 
-            computeBounds();
-            updateDrawFromContainer();
-        }
+  // Wait for layout to settle (heights stable) before building the path
+  function settleLayoutThenDraw() {
+    const tl = document.querySelector('.timeline');
+    if (!tl) return;
 
-        let ticking = false;
-        function updateDrawFromContainer() {
-            if (ticking) return;
-            ticking = true;
-            requestAnimationFrame(() => {
-            const y = window.scrollY;
-            const base = (y - startY) / (endY - startY);      // 0..1 across timeline
-            const sped = base * SPEED;
-            const progress = Math.max(0, Math.min(1, sped));
-            path.style.strokeDashoffset = `${len * (1 - progress)}`;
-            ticking = false;
-            });
-        }
+    const h = tl.scrollHeight;
+    if (h <= 0) {
+      if (settleAttempts++ < 60) return requestAnimationFrame(settleLayoutThenDraw);
+      // give up gracefully
+      return sizeScribble();
+    }
 
-        window.addEventListener('load',  sizeScribble);
-        window.addEventListener('resize', sizeScribble);
-        window.addEventListener('scroll', updateDrawFromContainer, { passive: true });
-        })();
-    </script>
+    if (Math.abs(h - lastH) <= 1) {
+      stableFrames++;
+    } else {
+      stableFrames = 0;
+      lastH = h;
+    }
+
+    if (stableFrames >= 2 || settleAttempts++ > 60) {
+      sizeScribble();
+    } else {
+      requestAnimationFrame(settleLayoutThenDraw);
+    }
+  }
+
+  /* ---------- Event wiring with guards ---------- */
+  function kick() {
+    // If document already restored/complete, go now.
+    if (document.readyState !== 'loading') requestAnimationFrame(settleLayoutThenDraw);
+  }
+
+  window.addEventListener('load', () => requestAnimationFrame(settleLayoutThenDraw));
+  // Reload / back-forward cache scroll restoration
+  window.addEventListener('pageshow', () => requestAnimationFrame(settleLayoutThenDraw));
+  // If user reloads while tab hidden, fix on visibility change
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) requestAnimationFrame(settleLayoutThenDraw);
+  });
+
+  // On resize, re-settle (heights shift with breakpoints)
+  window.addEventListener('resize', () => {
+    settleAttempts = 0; lastH = -1; stableFrames = 0;
+    requestAnimationFrame(settleLayoutThenDraw);
+  });
+
+  // Normal scroll reveal updates
+  window.addEventListener('scroll', () => {
+    // If len is 0 because draw hasn’t settled yet, we’ll force after settle
+    if (len) forceRevealNow();
+  }, { passive: true });
+
+  kick();
+})();
+</script>
+
 
     
 </body>
