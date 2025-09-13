@@ -217,17 +217,18 @@ a {
 }
 
 /* Timeline stays transparent so the background shows through the stroke */
-.timeline {
-    margin: 0 auto;
-    max-width: 750px;
-    padding-top: 25px;
-    display: grid;
-    grid-template-columns: 1fr 3px 1fr;
-    color: black;
-    background: transparent;        /* ⬅️ no image here */
-    padding-right: 350px;
-    padding-left: 350px;
-  }
+.timeline{
+  margin: 0 auto;
+  max-width: 750px;
+  padding-top: 25px;
+  display: grid;
+  grid-template-columns: 1fr 3px 1fr;
+  color: black;
+  background: transparent;
+  padding-left: clamp(16px, 6vw, 350px);
+  padding-right: clamp(16px, 6vw, 350px);
+}
+
   
   /* Full-width background sits behind, so the stroke reveals it everywhere */
   .scroller { 
@@ -249,7 +250,7 @@ a {
 }
 
 /* Make the SVG span the viewport width */
-#scribble { width: 100vw !important; }
+#scribble { width: 100% !important; }   /* no more vw overflow */
 
 /* The hand-drawn line */
 #scribble path {
@@ -465,3 +466,9 @@ a {
     }
 }
 
+/* Prevent any sideways scroll, even if something mis-measures by a pixel */
+html, body {
+  max-width: 100%;
+  overflow-x: clip;            /* modern */
+  /* overflow-x: hidden; */    /* fallback if you ever need it */
+}
