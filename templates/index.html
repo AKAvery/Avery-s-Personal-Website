@@ -162,49 +162,45 @@
                                 My friends and I are currently working on a social media app. Using React Native to work on both the front-end and back-end code. This app uses a responsive algorithm to expand the user's network.
                             </p>
                         </div>
-                        <!-- KneeEd -->
-                        <div class="timeline-component">
-                            <div class="timeline-date timeline-date-right">Mar 1st, 2024 – Present</div>
-                        </div>
-                        <div class="timeline-middle">
-                            <div class="timeline-point"></div>
-                        </div>
                         <div class="timeline-component timeline-component-bg">
                             <h2 class="timeline-title">KneeEd</h2>
                             <p class="timeline-paragraph">
-                            KneeEd is my AI-guided recovery and performance platform. I’m building the website/app from scratch—
-                            daily “recipes,” check-ins, and adaptive plans—while learning full-stack, databases, and AI integration.
-                            </p>
+                                KneeEd is my AI-guided recovery and performance platform. I’m building the website/app from scratch—
+                                daily “recipes,” check-ins, and adaptive plans—while learning full-stack, databases, and AI integration.
+                                </p>                            </p>
                         </div>
-                        
-                        <!-- CANKiosk -->
+                        <div class="timeline-middle">
+                            <div class="timeline-point"></div>
+                        </div>
+                        <div class="timeline-component">
+                            <div class="timeline-date">Mar 1st, 2024</div>
+                        </div>
+                        <div class="timeline-component">
+                            <div class="timeline-date timeline-date-right">Oct 15th, 2023 – Feb 10th, 2024</div>
+                        </div>
+                        <div class="timeline-middle">
+                            <div class="timeline-point"></div>
+                        </div>
                         <div class="timeline-component timeline-component-bg">
                             <h2 class="timeline-title">CANKiosk</h2>
                             <p class="timeline-paragraph">
-                            An interactive kiosk for robotics competitions that let judges, students, and other teams explore our robot,
-                            strategy, and results when we weren’t at the pit. It tracked every click so we could see what visitors cared about
-                            and refine our presentation.
-                            </p>
+                                An interactive kiosk for robotics competitions that let judges, students, and other teams explore our robot,
+                                strategy, and results when we weren’t at the pit. It tracked every click so we could see what visitors cared about
+                                and refine our presentation.
                         </div>
-                        <div class="timeline-middle">
-                            <div class="timeline-point"></div>
-                        </div>
-                        <div class="timeline-component">
-                            <div class="timeline-date">Oct 15th, 2023 – Feb 10th, 2024</div>
-                        </div>
-                        
-                        <!-- Admitted to UT Austin -->
-                        <div class="timeline-component">
-                            <div class="timeline-date timeline-date-right">Feb 15th, 2025</div>
-                        </div>
-                        <div class="timeline-middle">
-                            <div class="timeline-point"></div>
-                        </div>
+                    
                         <div class="timeline-component timeline-component-bg">
                             <h2 class="timeline-title">Admitted to UT Austin</h2>
                             <p class="timeline-paragraph">
-                            Admitted for Fall 2025—one of my proudest milestones, reflecting years of projects, leadership, and growth.
+                                Admitted for Fall 2025—one of my proudest milestones, reflecting years of projects, leadership, and growth.
+
                             </p>
+                        </div>
+                        <div class="timeline-middle">
+                            <div class="timeline-point"></div>
+                        </div>
+                        <div class="timeline-component">
+                            <div class="timeline-date">Feb 15th, 2025</div>
                         </div>
   
                     </div>
@@ -266,7 +262,7 @@
           /* =======================
              REVEAL SPEED KNOB
              ======================= */
-          const SPEED = 1.8;  // ⬅️ increase to reveal faster (e.g., 1.5–2.5). 1 = original speed
+          const SPEED = 1.2;  // ⬅️ increase to reveal faster (e.g., 1.5–2.5). 1 = original speed
         
           function buildScribblePath(totalHeight, W, {
             topPad  = 140,
@@ -294,19 +290,29 @@
         
           let path, len, startY, endY;
         
-          function computeBounds() {
+          // ---- REVEAL TIMING KNOBS ----
+            // how many viewport-heights BEFORE the timeline enters we start drawing
+            const LEAD_IN_SCREENS = 0.8;   // was ~0.30; higher = starts sooner (try 0.8–1.2)
+            // how many viewport-heights BEFORE the very end we finish drawing
+            const TAIL_OUT_SCREENS = 0.10; // lower = finishes later
+            // optional extra pixel nudge
+            const START_PIXEL_OFFSET = 20; // add pixels to start even earlier
+
+            function computeBounds() {
             const tl = document.querySelector('.timeline');
             const vh = window.innerHeight || document.documentElement.clientHeight;
-        
+
             const top    = tl.getBoundingClientRect().top + window.scrollY;
             const height = tl.scrollHeight;
-        
-            const leadIn  = vh * 0.30;   // start earlier
-            const tailOut = vh * 0.10;   // finish a bit before the very end
-        
+
+            const leadIn  = vh * LEAD_IN_SCREENS + START_PIXEL_OFFSET;
+            const tailOut = vh * TAIL_OUT_SCREENS;
+
+            // Start earlier (above the title), finish a bit before bottom
             startY = top - leadIn;
             endY   = top + height - tailOut;
-          }
+            }
+
         
           function sizeScribble() {
             const tl  = document.querySelector('.timeline');

@@ -5,6 +5,12 @@
     "routes": [
         { "handle": "filesystem" },
         { "src": "/(.*)", "dest": "/api/index.py" }
+    ],
+    
+    "rewrites": [
+      { "source": "/kneeEd", "destination": "/kneeEd.html" },
+      { "source": "/cankiosk", "destination": "/cankiosk.html" },
+      { "source": "/fistbump", "destination": "/fistbump.html" }
     ]
-}
+  }
   

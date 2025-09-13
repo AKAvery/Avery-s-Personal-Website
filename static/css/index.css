@@ -255,7 +255,7 @@ a {
 #scribble path {
     stroke: black;
     fill: none;
-    stroke-width: 76px;          /* adjust to taste */
+    stroke-width: 84px;          /* adjust to taste */
     stroke-linecap: round;
     stroke-linejoin: round;
     vector-effect: non-scaling-stroke;   /* ← keeps thickness constant */
