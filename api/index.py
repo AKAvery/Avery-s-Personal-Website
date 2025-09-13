@@ -19,7 +19,7 @@ def projects():
 # Individual project pages (match your template filenames exactly, case-sensitive!)
 @app.get("/kneeEd")
 def knee_ed():
-    return render_template("IndividualProjects/KneeEd.html")
+    return render_template("IndividualProjects/kneeEd.html")
 
 @app.get("/fistbump")
 def fistbump():
