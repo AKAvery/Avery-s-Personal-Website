@@ -472,3 +472,12 @@ html, body {
   overflow-x: clip;            /* modern */
   /* overflow-x: hidden; */    /* fallback if you ever need it */
 }
+
+/* tighten card padding slightly (optional) */
+.timeline-component-bg { padding: 16px 18px; }
+
+/* kill the default bottom margin on the final paragraph/element in a card */
+.timeline-component-bg > *:last-child { margin-bottom: 0 !important; }
+
+/* tame the space between cards a touch */
+.timeline-component { margin: 0 20px 14px; }
