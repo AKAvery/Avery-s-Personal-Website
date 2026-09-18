@@ -18,7 +18,10 @@
             </header>
             <main id="infinite-content">
                 <div style=" text-align: center;">
-                    <img class="img-background" src="{{ url_for('static', filename='images/CANKiosk3.jpg') }}" alt="CANKiosk home page">
+                    <picture>
+                      <source type="image/webp" srcset="{{ url_for('static', filename='images/CANKiosk3.webp') }}">
+                      <img class="img-background" src="{{ url_for('static', filename='images/CANKiosk3.jpg') }}" alt="CANKiosk home page" decoding="async" fetchpriority="high">
+                    </picture>
                 </div>
     
                 <div class="selector-content">
@@ -32,15 +35,14 @@
                     <div class="page-row-section" style="margin-bottom: 100px;">
                       <video
                         class="img-horizontal"
-                        autoplay
                         muted
                         loop
                         playsinline
-                        preload="metadata"
+                        preload="none"
                         poster="{{ url_for('static', filename='images/CANKiosk1.jpeg') }}"
                         aria-label="canKiosk demo 1"
                       >
-                        <source src="{{ url_for('static', filename='images/CANKioskVideo1.mov') }}" type="video/quicktime">
+                        <source src="{{ url_for('static', filename='images/CANKioskVideo1.mp4') }}" type="video/mp4">
                         Your browser does not support the video tag.
                       </video>
                     </div>
@@ -50,15 +52,14 @@
                     <div class="page-row-section" style="margin-bottom: 100px;">
                       <video
                         class="img-horizontal"
-                        autoplay
                         muted
                         loop
                         playsinline
-                        preload="metadata"
+                        preload="none"
                         poster="{{ url_for('static', filename='images/CANKiosk2.jpeg') }}"
                         aria-label="canKiosk demo 2"
                       >
-                        <source src="{{ url_for('static', filename='images/CANKioskVideo2.mov') }}" type="video/quicktime">
+                        <source src="{{ url_for('static', filename='images/CANKioskVideo2.mp4') }}" type="video/mp4">
                         Your browser does not support the video tag.
                       </video>
                     </div>
@@ -67,7 +68,10 @@
                 <div class="page-column-section" style="position: relative; height: 100vh;">
                     <div class="buffer-zone page-row-section" style="display: flex; align-items: flex-end; height: 100%;"> 
                         <button class="load-button" style="margin-top: auto;">
-                            <img class="buffer-img" style="position: relative;" src="{{ url_for('static', filename='images/slim_down_arrow.png') }}">
+                            <picture>
+                              <source type="image/webp" srcset="{{ url_for('static', filename='images/slim_down_arrow.webp') }}">
+                              <img class="buffer-img" alt="" style="position: relative;" src="{{ url_for('static', filename='images/slim_down_arrow.png') }}" decoding="async" loading="lazy">
+                            </picture>
                         </button>
                         <p class="buffer-text" aria-hidden="true">Placeholder<br>Text</p>
                     </div>
@@ -80,6 +84,25 @@
         <div id="input-blocker" class="hidden"></div>
     
         <script>
+        /* preload="none" means nothing is fetched until we ask. Start each
+           clip when it scrolls into view and pause it when it leaves, so the
+           page costs 0 bytes of video until the visitor reaches it. */
+        document.addEventListener('DOMContentLoaded', () => {
+            const vids = document.querySelectorAll('video.img-horizontal');
+            if (!vids.length) return;
+            if (!('IntersectionObserver' in window)) {
+                vids.forEach(v => { v.preload = 'metadata'; });
+                return;
+            }
+            const io = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) { e.target.play().catch(() => {}); }
+                    else { e.target.pause(); }
+                });
+            }, { rootMargin: '200px' });
+            vids.forEach(v => io.observe(v));
+        });
+
             const pages = [
                     '/kalshiBot',
                     '/cossmology',
