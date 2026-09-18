@@ -37,6 +37,26 @@ def can_kiosk():
 def stock_sentiment():
     return render_template("IndividualProjects/stockSentiment.html")
 
+@app.get("/kalshiBot")
+def kalshi_bot():
+    return render_template("IndividualProjects/kalshiBot.html")
+
+@app.get("/cossmology")
+def cossmology():
+    return render_template("IndividualProjects/cossmology.html")
+
+@app.get("/premedCopilot")
+def premed_copilot():
+    return render_template("IndividualProjects/premedCopilot.html")
+
+@app.get("/longhornNeurotech")
+def longhorn_neurotech():
+    return render_template("IndividualProjects/longhornNeurotech.html")
+
+@app.get("/orcaStrike")
+def orca_strike():
+    return render_template("IndividualProjects/orcaStrike.html")
+
 # Optional generic fallback: /foo -> templates/foo.html, /foo/bar -> templates/foo/bar.html
 @app.get("/<path:page>")
 def serve_page(page):

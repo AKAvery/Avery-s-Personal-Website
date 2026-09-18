@@ -2,6 +2,9 @@ from flask import Flask, render_template, url_for
 
 app = Flask(__name__)
 
+# Endpoint names must match api/index.py, because the templates call
+# url_for('knee_ed'), url_for('stock_sentiment'), etc.
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -19,24 +22,40 @@ def fistbump():
     return render_template('IndividualProjects/fistbump.html')
 
 @app.route('/stockSentiment')
-def stockSentiment():
+def stock_sentiment():
     return render_template('IndividualProjects/stockSentiment.html')
 
 @app.route('/andersonCodingClub')
-def andersonCodingClub():
+def anderson_coding_club():
     return render_template('IndividualProjects/andersonCodingClub.html')
 
 @app.route('/kneeEd')
-def kneeEd():
-    return render_template('IndividualProjects/KneeEd.html')
+def knee_ed():
+    return render_template('IndividualProjects/kneeEd.html')
 
 @app.route('/canKiosk')
-def canKiosk():
+def can_kiosk():
     return render_template('IndividualProjects/canKiosk.html')
 
+@app.route('/kalshiBot')
+def kalshi_bot():
+    return render_template('IndividualProjects/kalshiBot.html')
 
+@app.route('/cossmology')
+def cossmology():
+    return render_template('IndividualProjects/cossmology.html')
 
+@app.route('/premedCopilot')
+def premed_copilot():
+    return render_template('IndividualProjects/premedCopilot.html')
+
+@app.route('/longhornNeurotech')
+def longhorn_neurotech():
+    return render_template('IndividualProjects/longhornNeurotech.html')
+
+@app.route('/orcaStrike')
+def orca_strike():
+    return render_template('IndividualProjects/orcaStrike.html')
 
 if __name__ == '__main__':
-    app.run(port = 4000, debug=True)
-    #app.run(debug=False,host='0.0.0.0')
+    app.run(port=4000, debug=True)
