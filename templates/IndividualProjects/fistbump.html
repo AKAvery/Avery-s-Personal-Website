@@ -23,7 +23,7 @@
             <div class="selector-content">
                 <div class="page-row-section">
                     <div style="margin-top: 100px; margin-bottom: 100px; margin-left: 350px; margin-right: 350px;">
-                        <p1 class="page-text"> Fistbump is a social networking app that links you with other users. Each day, you recieve 1 random user, with whom you must meet up with in person, and take a picture with them. After this, your image is shared to the wall, where everyone can see connections being made with their friends. This short act of meeting up to take your Fistbump together finishes the hardest step of meeting new people: Breaking the ice. After meeting each other, the two users are physically close and have talked, and this small connection could lead to more conversations, activities done together, shared phone numbers, and eventually, a new friendship.</p1>
+                        <p class="page-text"> Fistbump is a social networking app that links you with other users. Each day, you recieve 1 random user, with whom you must meet up with in person, and take a picture with them. After this, your image is shared to the wall, where everyone can see connections being made with their friends. This short act of meeting up to take your Fistbump together finishes the hardest step of meeting new people: Breaking the ice. After meeting each other, the two users are physically close and have talked, and this small connection could lead to more conversations, activities done together, shared phone numbers, and eventually, a new friendship.</p>
                     </div>
                 </div>
             </div>
@@ -56,8 +56,8 @@
                     <p class="buffer-text" aria-hidden="true">Placeholder<br>Text</p>
                 </div>
             </div>
-            <div id="next-page-preview" class="hidden"></div>
         </main>
+            <div id="next-page-preview" class="hidden"></div>
     </div>
 
     <div id="loading" style="display: none;">Loading...</div>
@@ -66,6 +66,11 @@
     <script>
 
         const pages = [
+                    '/kalshiBot',
+                    '/cossmology',
+                    '/premedCopilot',
+                    '/longhornNeurotech',
+                    '/orcaStrike',
                     '/kneeEd',
                     '/fistbump',
                     '/stockSentiment',
@@ -291,5 +296,31 @@
     </script>
     
     
+
+        <script>
+            // The shared reveal above fires when an element's BOTTOM crosses the
+            // fold. That works for rows of images, but a prose block taller than
+            // the viewport never satisfies it, so the text sat at opacity 0 while
+            // you were reading it. Reveal those on their TOP entering the fold
+            // instead. Purely additive -- it only ever adds the class, and it
+            // re-queries on each scroll so content injected by the page loader
+            // below is covered too (an image page can inject a text page).
+            (function () {
+                function revealProse() {
+                    const fold = window.innerHeight - 120;
+                    document.querySelectorAll('.prose-block').forEach(block => {
+                        const wrap = block.closest('.selector-content');
+                        if (wrap && block.getBoundingClientRect().top <= fold) {
+                            wrap.classList.add('visible-selector-content');
+                        }
+                    });
+                }
+                window.addEventListener('scroll', revealProse, { passive: true });
+                window.addEventListener('resize', revealProse, { passive: true });
+                document.addEventListener('DOMContentLoaded', revealProse);
+                revealProse();
+            })();
+        </script>
+
 </body>
 </html>

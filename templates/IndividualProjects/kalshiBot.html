@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/IndividualProjects/kneeEd.css') }}">
-    <title>kneeEd</title>
+    <meta name="description" content="A live algorithmic trading bot placing real orders on Kalshi prediction markets.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/IndividualProjects/kalshiBot.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/AAlogo.png') }}" type="image/png">
+    <title>Kalshi Trading Bot</title>
 </head>
 <body>
 
-        <div> 
+        <div>
             <header class="header">
                 <a href="/" class="nav-text">Home</a>
                 <nav class="nav-bar">
@@ -17,49 +19,71 @@
                 </nav>
             </header>
             <main id="infinite-content">
-                <div style=" text-align: center;">
-                    <img class="img-background" src="{{ url_for('static', filename='images/kneeEd1.jpeg') }}" alt="fistbump home page">
+                <div class="project-hero">
+                    <p class="project-eyebrow">Oct 2025 &ndash; Present &middot; Solo Project</p>
+                    <h1 class="project-title">Kalshi Algorithmic Trading Bot</h1>
+                    <p class="project-tagline">A live algorithmic trading bot placing real orders on Kalshi prediction markets.</p>
+                    <ul class="stack-list">
+                            <li>Python</li>
+                            <li>asyncio</li>
+                            <li>Kalshi REST API</li>
+                            <li>WebSockets</li>
+                            <li>JSONL persistence</li>
+                    </ul>
                 </div>
-    
+
                 <div class="selector-content">
-                    <div class="page-row-section">
-                        <div style="margin-top: 100px; margin-bottom: 100px; margin-left: 350px; margin-right: 350px;">
-                            <p class="page-text"> KneeEd is an AI-guided recovery and performance platform that turns rehab into simple daily “Recipes.” Each day you get a short set of movements tuned to your body and goals, you complete the session and do a 30-second check-in, and the plan adapts for tomorrow. The premise is that the hardest part of rehab is starting, so making that effortless is what compounds into real mobility and strength.</p>
-                            <p class="page-text" style="margin-top: 22px;"> Underneath, the plans come out of an 8-stage AI pipeline I built solo: extraction, protocol match, selection, safety validation, and an LLM-as-judge evaluator, running across 9 body-region clinical protocols. Safety validation and the evaluator stage matter more than anything else here — an AI that confidently recommends the wrong movement to someone recovering from surgery is worse than no AI at all.</p>
-                            <p class="page-text" style="margin-top: 22px;"> The production app is Next.js 16 and TypeScript on Supabase, currently 256 API routes and 81 row-level-security migrations, with Stripe and PayPal billing and MediaPipe pose tracking for form feedback. I have been building it since 2024 and it is still the project I spend the most time on.</p>
-                        </div>
+                    <div class="metric-row">
+                            <div class="metric">
+                                <span class="metric-value">$3.6K+</span>
+                                <span class="metric-label">live volume traded</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">4</span>
+                                <span class="metric-label">market classes covered</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">Solo</span>
+                                <span class="metric-label">built and deployed</span>
+                            </div>
                     </div>
                 </div>
+
                 <div class="selector-content">
-                    <div class="page-row-section" style="margin-bottom: 100px;">
-                        <img style="margin-right: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd2.jpg') }}" alt="fistbump profile page">
-                        <img style="margin-left: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd3.jpg') }}" alt="fistbump picture page">
+                    <div class="prose-block">
+                        <h2 class="section-heading">Overview</h2>
+                            <p class="page-text">Kalshi is a regulated prediction market: contracts settle at $1 or $0 depending on whether an event happens. That makes it an unusually clean place to test an execution system &mdash; the payoff is binary, settlement is unambiguous, and the interesting edge sits in the last minutes before expiry, where prices drift away from what the underlying data already implies.</p>
+                            <p class="page-text">I built and deployed this bot end to end by myself. It has traded over $3.6K in live volume. Everything below runs against real money, which is the part that taught me the most: a bug here is not a failing test, it is a filled order.</p>
                     </div>
                 </div>
-               
+
                 <div class="selector-content">
-                    <div class="page-row-section" style="margin-bottom: 100px;">
-                        <img style="margin-right: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd4.jpg') }}" alt="fistbump profile page">
-                        <img style="margin-left: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd5.jpg') }}" alt="fistbump picture page">
+                    <div class="prose-block">
+                        <h2 class="section-heading">Strategies</h2>
+                            <p class="page-text">The bot runs several strategies concurrently, each with its own risk budget:</p>
+                            <ul class="bullet-list"><li><strong>Near-expiry sports markets</strong> &mdash; contracts minutes from settlement where the live game state has effectively already decided the outcome.</li><li><strong>Weather markets</strong> &mdash; temperature and precipitation contracts checked against forecast and observation data.</li><li><strong>Economic markets</strong> &mdash; event contracts on scheduled data releases.</li><li><strong>S&amp;P 500 tail-bracket mispricing</strong> &mdash; far out-of-the-money daily brackets that stay bid above their fair value.</li></ul>
                     </div>
                 </div>
-           
+
                 <div class="selector-content">
-                    <div class="page-row-section" style="margin-bottom: 100px;">
-                        <img style="margin-right: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd6.jpg') }}" alt="fistbump profile page">
-                        <img style="margin-left: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd7.jpg') }}" alt="fistbump picture page">
+                    <div class="prose-block">
+                        <h2 class="section-heading">Execution and risk</h2>
+                            <p class="page-text">The core is an async Python pipeline built on <code class="inline-code">asyncio</code>, combining Kalshi&rsquo;s REST API for order placement with a WebSocket feed for live book updates. Orders go out immediate-or-cancel so the bot never leaves resting liquidity it did not intend.</p>
+                            <p class="page-text">Most of the engineering effort went into the things that keep it from losing money badly rather than the things that make it money:</p>
+                            <ul class="bullet-list"><li><strong>Circuit breakers</strong> that halt trading when loss or error rates cross a threshold.</li><li><strong>Per-strategy position limits</strong>, so one strategy misfiring cannot consume the whole book.</li><li><strong>Liquidity gates</strong> that refuse to trade markets too thin to exit.</li><li><strong>JSONL state persistence</strong>, so a crash mid-session recovers its open positions instead of waking up blind.</li></ul>
                     </div>
                 </div>
-             
+
                 <div class="selector-content">
-                    <div class="page-row-section" style="margin-bottom: 100px;">
-                        <img style="margin-right: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd8.jpg') }}" alt="fistbump profile page">
-                        <img style="margin-left: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd9.jpg') }}" alt="fistbump picture page">
+                    <div class="prose-block">
+                        <h2 class="section-heading">Settlement verification</h2>
+                            <p class="page-text">Trading near expiry means the bot has to know whether an event has actually resolved, and it cannot just trust the market price to tell it. So I built an external outcome verifier that queries ESPN, weather.gov, Coinbase, and Yahoo Finance to independently confirm near-expiry settlement before the bot commits.</p>
+                            <p class="page-text">The edge cases here are where the real work lives. Each league has its own way of ruining a naive settlement rule, so the verifier carries per-league soft-locks: overtime guards for NBA and WNBA, outs-based settlement logic for MLB. I tuned all of it by reconciling against trades that had already settled, which surfaced failure modes I would never have guessed at from the API docs.</p>
                     </div>
                 </div>
-             
+
                 <div class="page-column-section" style="position: relative; height: 100vh;">
-                    <div class="buffer-zone page-row-section" style="display: flex; align-items: flex-end; height: 100%;"> 
+                    <div class="buffer-zone page-row-section" style="display: flex; align-items: flex-end; height: 100%;">
                         <button class="load-button" style="margin-top: auto;">
                             <img class="buffer-img" style="position: relative;" src="{{ url_for('static', filename='images/slim_down_arrow.png') }}">
                         </button>
@@ -69,10 +93,10 @@
             </main>
             <div id="next-page-preview" class="hidden"></div>
         </div>
-    
+
         <div id="loading" style="display: none;">Loading...</div>
         <div id="input-blocker" class="hidden"></div>
-    
+
         <script>
             const pages = [
                     '/kalshiBot',
@@ -305,6 +329,7 @@
         </script>
     
     
+
 
         <script>
             // The shared reveal above fires when an element's BOTTOM crosses the

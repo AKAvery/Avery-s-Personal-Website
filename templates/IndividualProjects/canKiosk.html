@@ -18,13 +18,13 @@
             </header>
             <main id="infinite-content">
                 <div style=" text-align: center;">
-                    <img class="img-background" src="{{ url_for('static', filename='images/CANKiosk3.png') }}" alt="CANKiosk home page">
+                    <img class="img-background" src="{{ url_for('static', filename='images/CANKiosk3.jpg') }}" alt="CANKiosk home page">
                 </div>
     
                 <div class="selector-content">
                     <div class="page-row-section">
                         <div style="margin-top: 100px; margin-bottom: 100px; margin-left: 350px; margin-right: 350px;">
-                            <p1 class="page-text"> CANKiosk is an interactive kiosk built for robotics competitions to showcase our team and robot. When judges, students, or other teams visited our pit while we were away, they could use the kiosk to browse information about our designs, strategies, and achievements. Every click was tracked, allowing us to see what visitors were most interested in and adjust our presentations accordingly. By giving others a way to explore our work independently, CANKiosk not only shared our story but also provided valuable data on how to engage future visitors more effectively.</p1>
+                            <p class="page-text"> CANKiosk is an interactive kiosk built for robotics competitions to showcase our team and robot. When judges, students, or other teams visited our pit while we were away, they could use the kiosk to browse information about our designs, strategies, and achievements. Every click was tracked, allowing us to see what visitors were most interested in and adjust our presentations accordingly. By giving others a way to explore our work independently, CANKiosk not only shared our story but also provided valuable data on how to engage future visitors more effectively.</p>
                         </div>
                     </div>
                 </div>
@@ -72,8 +72,8 @@
                         <p class="buffer-text" aria-hidden="true">Placeholder<br>Text</p>
                     </div>
                 </div>
-                <div id="next-page-preview" class="hidden"></div>
             </main>
+            <div id="next-page-preview" class="hidden"></div>
         </div>
     
         <div id="loading" style="display: none;">Loading...</div>
@@ -81,6 +81,11 @@
     
         <script>
             const pages = [
+                    '/kalshiBot',
+                    '/cossmology',
+                    '/premedCopilot',
+                    '/longhornNeurotech',
+                    '/orcaStrike',
                     '/kneeEd',
                     '/fistbump',
                     '/stockSentiment',
@@ -306,5 +311,31 @@
         </script>
     
     
+
+        <script>
+            // The shared reveal above fires when an element's BOTTOM crosses the
+            // fold. That works for rows of images, but a prose block taller than
+            // the viewport never satisfies it, so the text sat at opacity 0 while
+            // you were reading it. Reveal those on their TOP entering the fold
+            // instead. Purely additive -- it only ever adds the class, and it
+            // re-queries on each scroll so content injected by the page loader
+            // below is covered too (an image page can inject a text page).
+            (function () {
+                function revealProse() {
+                    const fold = window.innerHeight - 120;
+                    document.querySelectorAll('.prose-block').forEach(block => {
+                        const wrap = block.closest('.selector-content');
+                        if (wrap && block.getBoundingClientRect().top <= fold) {
+                            wrap.classList.add('visible-selector-content');
+                        }
+                    });
+                }
+                window.addEventListener('scroll', revealProse, { passive: true });
+                window.addEventListener('resize', revealProse, { passive: true });
+                document.addEventListener('DOMContentLoaded', revealProse);
+                revealProse();
+            })();
+        </script>
+
 </body>
 </html>

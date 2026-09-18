@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/IndividualProjects/kneeEd.css') }}">
-    <title>kneeEd</title>
+    <meta name="description" content="A post-execution forensic debugger for multi-agent AI workflows.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/IndividualProjects/orcaStrike.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/AAlogo.png') }}" type="image/png">
+    <title>OrcaStrike</title>
 </head>
 <body>
 
-        <div> 
+        <div>
             <header class="header">
                 <a href="/" class="nav-text">Home</a>
                 <nav class="nav-bar">
@@ -17,49 +19,63 @@
                 </nav>
             </header>
             <main id="infinite-content">
-                <div style=" text-align: center;">
-                    <img class="img-background" src="{{ url_for('static', filename='images/kneeEd1.jpeg') }}" alt="fistbump home page">
+                <div class="project-hero">
+                    <p class="project-eyebrow">Apr 2026 &middot; AI Security Hackathon</p>
+                    <h1 class="project-title">OrcaStrike</h1>
+                    <p class="project-tagline">A post-execution forensic debugger for multi-agent AI workflows.</p>
+                    <ul class="stack-list">
+                            <li>FastAPI</li>
+                            <li>Next.js</li>
+                            <li>LangGraph</li>
+                            <li>MongoDB</li>
+                            <li>Groq llama-3.3-70B</li>
+                    </ul>
                 </div>
-    
+
                 <div class="selector-content">
-                    <div class="page-row-section">
-                        <div style="margin-top: 100px; margin-bottom: 100px; margin-left: 350px; margin-right: 350px;">
-                            <p class="page-text"> KneeEd is an AI-guided recovery and performance platform that turns rehab into simple daily “Recipes.” Each day you get a short set of movements tuned to your body and goals, you complete the session and do a 30-second check-in, and the plan adapts for tomorrow. The premise is that the hardest part of rehab is starting, so making that effortless is what compounds into real mobility and strength.</p>
-                            <p class="page-text" style="margin-top: 22px;"> Underneath, the plans come out of an 8-stage AI pipeline I built solo: extraction, protocol match, selection, safety validation, and an LLM-as-judge evaluator, running across 9 body-region clinical protocols. Safety validation and the evaluator stage matter more than anything else here — an AI that confidently recommends the wrong movement to someone recovering from surgery is worse than no AI at all.</p>
-                            <p class="page-text" style="margin-top: 22px;"> The production app is Next.js 16 and TypeScript on Supabase, currently 256 API routes and 81 row-level-security migrations, with Stripe and PayPal billing and MediaPipe pose tracking for form feedback. I have been building it since 2024 and it is still the project I spend the most time on.</p>
-                        </div>
+                    <div class="metric-row">
+                            <div class="metric">
+                                <span class="metric-value">5</span>
+                                <span class="metric-label">agent pipeline traced end to end</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">3</span>
+                                <span class="metric-label">questions answered per incident</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">1</span>
+                                <span class="metric-label">full exploit chain demoed</span>
+                            </div>
                     </div>
                 </div>
+
                 <div class="selector-content">
-                    <div class="page-row-section" style="margin-bottom: 100px;">
-                        <img style="margin-right: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd2.jpg') }}" alt="fistbump profile page">
-                        <img style="margin-left: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd3.jpg') }}" alt="fistbump picture page">
+                    <div class="prose-block">
+                        <h2 class="section-heading">The problem</h2>
+                            <p class="page-text">When a multi-agent AI workflow does something it should not have, the logs tell you what happened but not where it went wrong. Each agent behaved reasonably given its input. The compromise lives in the handoffs &mdash; in the moment one agent treated another&rsquo;s output as trustworthy when it was not.</p>
+                            <p class="page-text">Existing tooling traces execution. It does not trace <em>trust</em>.</p>
                     </div>
                 </div>
-               
+
                 <div class="selector-content">
-                    <div class="page-row-section" style="margin-bottom: 100px;">
-                        <img style="margin-right: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd4.jpg') }}" alt="fistbump profile page">
-                        <img style="margin-left: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd5.jpg') }}" alt="fistbump picture page">
+                    <div class="prose-block">
+                        <h2 class="section-heading">What it does</h2>
+                            <p class="page-text">OrcaStrike is a post-execution forensic debugger that answers three questions about a finished multi-agent run:</p>
+                            <ul class="bullet-list"><li><strong>Where did trust break?</strong> The specific boundary where unverified data was accepted as authoritative.</li><li><strong>How did tainted data propagate?</strong> The path the poisoned input travelled across agent handoffs.</li><li><strong>What was the minimum control that would have blocked it?</strong> Not a list of hardening suggestions &mdash; the single smallest intervention that stops this chain.</li></ul>
+                            <p class="page-text">It is built on FastAPI and Next.js, instruments LangGraph pipelines, stores traces in MongoDB, and uses Groq&rsquo;s llama-3.3-70B for the analysis passes.</p>
                     </div>
                 </div>
-           
+
                 <div class="selector-content">
-                    <div class="page-row-section" style="margin-bottom: 100px;">
-                        <img style="margin-right: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd6.jpg') }}" alt="fistbump profile page">
-                        <img style="margin-left: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd7.jpg') }}" alt="fistbump picture page">
+                    <div class="prose-block">
+                        <h2 class="section-heading">The demo</h2>
+                            <p class="page-text">We demonstrated a complete exploit chain rather than a synthetic example. A poisoned invoice enters a 5-agent LangGraph finance pipeline &mdash; document analyst, planner, policy, payment &mdash; and comes out the other side as an attacker-controlled ERP payment. Every individual agent did its job.</p>
+                            <p class="page-text">OrcaStrike then localised the break, and we proved the result by rerunning the pipeline with the recommended guard in place: it blocked the attack at exactly the trust boundary OrcaStrike had identified. Being able to verify the recommendation, not just produce it, was the part the judges cared about most.</p>
                     </div>
                 </div>
-             
-                <div class="selector-content">
-                    <div class="page-row-section" style="margin-bottom: 100px;">
-                        <img style="margin-right: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd8.jpg') }}" alt="fistbump profile page">
-                        <img style="margin-left: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd9.jpg') }}" alt="fistbump picture page">
-                    </div>
-                </div>
-             
+
                 <div class="page-column-section" style="position: relative; height: 100vh;">
-                    <div class="buffer-zone page-row-section" style="display: flex; align-items: flex-end; height: 100%;"> 
+                    <div class="buffer-zone page-row-section" style="display: flex; align-items: flex-end; height: 100%;">
                         <button class="load-button" style="margin-top: auto;">
                             <img class="buffer-img" style="position: relative;" src="{{ url_for('static', filename='images/slim_down_arrow.png') }}">
                         </button>
@@ -69,10 +85,10 @@
             </main>
             <div id="next-page-preview" class="hidden"></div>
         </div>
-    
+
         <div id="loading" style="display: none;">Loading...</div>
         <div id="input-blocker" class="hidden"></div>
-    
+
         <script>
             const pages = [
                     '/kalshiBot',
@@ -305,6 +321,7 @@
         </script>
     
     
+
 
         <script>
             // The shared reveal above fires when an element's BOTTOM crosses the

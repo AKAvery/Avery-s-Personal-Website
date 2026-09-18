@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/IndividualProjects/kneeEd.css') }}">
-    <title>kneeEd</title>
+    <meta name="description" content="A summer owning DevOps, an AI research pipeline, and production incidents on a live platform.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/IndividualProjects/cossmology.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/AAlogo.png') }}" type="image/png">
+    <title>Cossmology</title>
 </head>
 <body>
 
-        <div> 
+        <div>
             <header class="header">
                 <a href="/" class="nav-text">Home</a>
                 <nav class="nav-bar">
@@ -17,49 +19,80 @@
                 </nav>
             </header>
             <main id="infinite-content">
-                <div style=" text-align: center;">
-                    <img class="img-background" src="{{ url_for('static', filename='images/kneeEd1.jpeg') }}" alt="fistbump home page">
+                <div class="project-hero">
+                    <p class="project-eyebrow">Jun &ndash; Aug 2026 &middot; Software Engineering Intern</p>
+                    <h1 class="project-title">Chinstrap Ventures &mdash; Cossmology</h1>
+                    <p class="project-tagline">A summer owning DevOps, an AI research pipeline, and production incidents on a live platform.</p>
+                    <ul class="stack-list">
+                            <li>React</li>
+                            <li>TypeScript</li>
+                            <li>Supabase</li>
+                            <li>Postgres</li>
+                            <li>GitHub Actions</li>
+                            <li>Edge Functions</li>
+                            <li>Exa</li>
+                    </ul>
                 </div>
-    
+
                 <div class="selector-content">
-                    <div class="page-row-section">
-                        <div style="margin-top: 100px; margin-bottom: 100px; margin-left: 350px; margin-right: 350px;">
-                            <p class="page-text"> KneeEd is an AI-guided recovery and performance platform that turns rehab into simple daily “Recipes.” Each day you get a short set of movements tuned to your body and goals, you complete the session and do a 30-second check-in, and the plan adapts for tomorrow. The premise is that the hardest part of rehab is starting, so making that effortless is what compounds into real mobility and strength.</p>
-                            <p class="page-text" style="margin-top: 22px;"> Underneath, the plans come out of an 8-stage AI pipeline I built solo: extraction, protocol match, selection, safety validation, and an LLM-as-judge evaluator, running across 9 body-region clinical protocols. Safety validation and the evaluator stage matter more than anything else here — an AI that confidently recommends the wrong movement to someone recovering from surgery is worse than no AI at all.</p>
-                            <p class="page-text" style="margin-top: 22px;"> The production app is Next.js 16 and TypeScript on Supabase, currently 256 API routes and 81 row-level-security migrations, with Stripe and PayPal billing and MediaPipe pose tracking for form feedback. I have been building it since 2024 and it is still the project I spend the most time on.</p>
-                        </div>
+                    <div class="metric-row">
+                            <div class="metric">
+                                <span class="metric-value">80</span>
+                                <span class="metric-label">commits across 11 merged PRs</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">+50%</span>
+                                <span class="metric-label">candidate ceiling raised</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">8</span>
+                                <span class="metric-label">production bugs fixed</span>
+                            </div>
                     </div>
                 </div>
+
                 <div class="selector-content">
-                    <div class="page-row-section" style="margin-bottom: 100px;">
-                        <img style="margin-right: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd2.jpg') }}" alt="fistbump profile page">
-                        <img style="margin-left: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd3.jpg') }}" alt="fistbump picture page">
+                    <div class="prose-block">
+                        <h2 class="section-heading">The role</h2>
+                            <p class="page-text">I spent the summer of 2026 as a software engineering intern at Chinstrap Ventures, working on Cossmology &mdash; a production React, TypeScript, and Supabase platform with real users. This was my first time in a codebase where my mistakes were visible to people who did not know me, and it changed how I write code more than any course has.</p>
+                            <p class="page-text">Over the internship I shipped 80 commits across 11 merged pull requests, each one through adversarial pre-promotion review.</p>
                     </div>
                 </div>
-               
+
                 <div class="selector-content">
-                    <div class="page-row-section" style="margin-bottom: 100px;">
-                        <img style="margin-right: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd4.jpg') }}" alt="fistbump profile page">
-                        <img style="margin-left: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd5.jpg') }}" alt="fistbump picture page">
+                    <div class="prose-block">
+                        <h2 class="section-heading">DevOps overhaul</h2>
+                            <p class="page-text">The platform did not have real environment separation when I arrived, which meant every change was a bet. I stood up proper dev, staging, and production environments using Supabase branching.</p>
+                            <p class="page-text">The harder half was keeping staging useful. A staging database that drifts from production stops catching the bugs you built it to catch, but one that is blindly overwritten loses the fixture data the team relies on for testing. I built a nightly production-to-staging sync in GitHub Actions on top of <code class="inline-code">pg_dump</code> that refreshes real data while preserving staging-only fixtures.</p>
                     </div>
                 </div>
-           
+
                 <div class="selector-content">
-                    <div class="page-row-section" style="margin-bottom: 100px;">
-                        <img style="margin-right: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd6.jpg') }}" alt="fistbump profile page">
-                        <img style="margin-left: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd7.jpg') }}" alt="fistbump picture page">
+                    <div class="prose-block">
+                        <h2 class="section-heading">AI headline-research pipeline</h2>
+                            <p class="page-text">I rebuilt the platform&rsquo;s AI headline-research pipeline &mdash; a 2,000-line Supabase Edge Function. Three changes did most of the work:</p>
+                            <ul class="bullet-list"><li><strong>Entity-pinned Exa neural search</strong>, so results stayed anchored to the entity being researched instead of drifting to topically similar but irrelevant coverage.</li><li><strong>First-party domain capture</strong>, prioritising the source&rsquo;s own site over aggregators.</li><li><strong>Chunked parallel LLM-as-judge evaluation</strong>, which let the pipeline evaluate far more candidates within the same time budget.</li></ul>
+                            <p class="page-text">Together these raised the candidate ceiling by 50%.</p>
                     </div>
                 </div>
-             
+
                 <div class="selector-content">
-                    <div class="page-row-section" style="margin-bottom: 100px;">
-                        <img style="margin-right: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd8.jpg') }}" alt="fistbump profile page">
-                        <img style="margin-left: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd9.jpg') }}" alt="fistbump picture page">
+                    <div class="prose-block">
+                        <h2 class="section-heading">Admin curation console</h2>
+                            <p class="page-text">The internal console the team used every day had accumulated the kind of problems that are individually small and collectively exhausting. I fixed 8 production bugs, added sorting and filtering across 10 fields, and rebuilt the edit flow around a reducer-based staged-edit store.</p>
+                            <p class="page-text">That last change is the one I am happiest with. The old console fired a request per keystroke-ish interaction and re-fetched the full table on every save, so slow responses arrived out of order and silently clobbered newer edits. Staging edits locally and committing them deliberately eliminated both the stale-response races and the full-table refetches.</p>
                     </div>
                 </div>
-             
+
+                <div class="selector-content">
+                    <div class="prose-block">
+                        <h2 class="section-heading">Production incidents</h2>
+                            <p class="page-text">I also handled live incidents. The one I remember best was a row-level-security gap that blanked the entire site for every logged-in non-admin user &mdash; the worst possible audience, since anonymous visitors and admins both saw a working site. Tracking that down taught me to distrust the fact that something works when I look at it.</p>
+                    </div>
+                </div>
+
                 <div class="page-column-section" style="position: relative; height: 100vh;">
-                    <div class="buffer-zone page-row-section" style="display: flex; align-items: flex-end; height: 100%;"> 
+                    <div class="buffer-zone page-row-section" style="display: flex; align-items: flex-end; height: 100%;">
                         <button class="load-button" style="margin-top: auto;">
                             <img class="buffer-img" style="position: relative;" src="{{ url_for('static', filename='images/slim_down_arrow.png') }}">
                         </button>
@@ -69,10 +102,10 @@
             </main>
             <div id="next-page-preview" class="hidden"></div>
         </div>
-    
+
         <div id="loading" style="display: none;">Loading...</div>
         <div id="input-blocker" class="hidden"></div>
-    
+
         <script>
             const pages = [
                     '/kalshiBot',
@@ -305,6 +338,7 @@
         </script>
     
     
+
 
         <script>
             // The shared reveal above fires when an element's BOTTOM crosses the

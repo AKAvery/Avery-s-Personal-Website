@@ -24,7 +24,7 @@
                 <div class="selector-content">
                     <div class="page-row-section">
                         <div style="margin-top: 100px; margin-bottom: 100px; margin-left: 350px; margin-right: 350px;">
-                            <p1 class="page-text"> This was the very first website I ever built. Two friends and I started the Competitive Coding Club to give students a place to learn and compete in coding, and I created the website to share our mission, promote meetings, and highlight events. It became the hub for announcing friendly LeetCode battles and signing up for online hackathons. Building it taught me how to design, publish, and maintain a live site from scratch — and gave me confidence to keep creating bigger projects.</p1>
+                            <p class="page-text"> This was the very first website I ever built. Two friends and I started the Competitive Coding Club to give students a place to learn and compete in coding, and I created the website to share our mission, promote meetings, and highlight events. It became the hub for announcing friendly LeetCode battles and signing up for online hackathons. Building it taught me how to design, publish, and maintain a live site from scratch — and gave me confidence to keep creating bigger projects.</p>
                         </div>
                     </div>
                 </div>
@@ -53,8 +53,8 @@
                         <p class="buffer-text" aria-hidden="true">Placeholder<br>Text</p>
                     </div>
                 </div>
-                <div id="next-page-preview" class="hidden"></div>
             </main>
+            <div id="next-page-preview" class="hidden"></div>
         </div>
     
         <div id="loading" style="display: none;">Loading...</div>
@@ -62,6 +62,11 @@
     
         <script>
             const pages = [
+                    '/kalshiBot',
+                    '/cossmology',
+                    '/premedCopilot',
+                    '/longhornNeurotech',
+                    '/orcaStrike',
                     '/kneeEd',
                     '/fistbump',
                     '/stockSentiment',
@@ -287,5 +292,31 @@
         </script>
     
     
+
+        <script>
+            // The shared reveal above fires when an element's BOTTOM crosses the
+            // fold. That works for rows of images, but a prose block taller than
+            // the viewport never satisfies it, so the text sat at opacity 0 while
+            // you were reading it. Reveal those on their TOP entering the fold
+            // instead. Purely additive -- it only ever adds the class, and it
+            // re-queries on each scroll so content injected by the page loader
+            // below is covered too (an image page can inject a text page).
+            (function () {
+                function revealProse() {
+                    const fold = window.innerHeight - 120;
+                    document.querySelectorAll('.prose-block').forEach(block => {
+                        const wrap = block.closest('.selector-content');
+                        if (wrap && block.getBoundingClientRect().top <= fold) {
+                            wrap.classList.add('visible-selector-content');
+                        }
+                    });
+                }
+                window.addEventListener('scroll', revealProse, { passive: true });
+                window.addEventListener('resize', revealProse, { passive: true });
+                document.addEventListener('DOMContentLoaded', revealProse);
+                revealProse();
+            })();
+        </script>
+
 </body>
 </html>

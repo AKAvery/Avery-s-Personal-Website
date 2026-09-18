@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/IndividualProjects/kneeEd.css') }}">
-    <title>kneeEd</title>
+    <meta name="description" content="Gesture-controlled robotics. I owned the networking layer between Python and the ESP32.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/IndividualProjects/longhornNeurotech.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/AAlogo.png') }}" type="image/png">
+    <title>Longhorn Neurotech</title>
 </head>
 <body>
 
-        <div> 
+        <div>
             <header class="header">
                 <a href="/" class="nav-text">Home</a>
                 <nav class="nav-bar">
@@ -17,49 +19,69 @@
                 </nav>
             </header>
             <main id="infinite-content">
-                <div style=" text-align: center;">
-                    <img class="img-background" src="{{ url_for('static', filename='images/kneeEd1.jpeg') }}" alt="fistbump home page">
+                <div class="project-hero">
+                    <p class="project-eyebrow">Oct &ndash; Nov 2025 &middot; 1st Place, Fall Competition</p>
+                    <h1 class="project-title">Longhorn Neurotech &mdash; 1st Place</h1>
+                    <p class="project-tagline">Gesture-controlled robotics. I owned the networking layer between Python and the ESP32.</p>
+                    <ul class="stack-list">
+                            <li>Python</li>
+                            <li>UDP / TCP</li>
+                            <li>WiFi</li>
+                            <li>ESP32</li>
+                            <li>NumPy</li>
+                            <li>scikit-learn</li>
+                    </ul>
                 </div>
-    
+
                 <div class="selector-content">
-                    <div class="page-row-section">
-                        <div style="margin-top: 100px; margin-bottom: 100px; margin-left: 350px; margin-right: 350px;">
-                            <p class="page-text"> KneeEd is an AI-guided recovery and performance platform that turns rehab into simple daily “Recipes.” Each day you get a short set of movements tuned to your body and goals, you complete the session and do a 30-second check-in, and the plan adapts for tomorrow. The premise is that the hardest part of rehab is starting, so making that effortless is what compounds into real mobility and strength.</p>
-                            <p class="page-text" style="margin-top: 22px;"> Underneath, the plans come out of an 8-stage AI pipeline I built solo: extraction, protocol match, selection, safety validation, and an LLM-as-judge evaluator, running across 9 body-region clinical protocols. Safety validation and the evaluator stage matter more than anything else here — an AI that confidently recommends the wrong movement to someone recovering from surgery is worse than no AI at all.</p>
-                            <p class="page-text" style="margin-top: 22px;"> The production app is Next.js 16 and TypeScript on Supabase, currently 256 API routes and 81 row-level-security migrations, with Stripe and PayPal billing and MediaPipe pose tracking for form feedback. I have been building it since 2024 and it is still the project I spend the most time on.</p>
-                        </div>
+                    <div class="metric-row">
+                            <div class="metric">
+                                <span class="metric-value">1st</span>
+                                <span class="metric-label">place, Fall Competition</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">Zero</span>
+                                <span class="metric-label">dropped inputs in live demo</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">EMG + EEG</span>
+                                <span class="metric-label">classifiers integrated</span>
+                            </div>
                     </div>
                 </div>
+
                 <div class="selector-content">
-                    <div class="page-row-section" style="margin-bottom: 100px;">
-                        <img style="margin-right: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd2.jpg') }}" alt="fistbump profile page">
-                        <img style="margin-left: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd3.jpg') }}" alt="fistbump picture page">
+                    <div class="prose-block">
+                        <h2 class="section-heading">The competition</h2>
+                            <p class="page-text">Longhorn Neurotech&rsquo;s Fall Competition asks teams to control a robot using biosignals. Our entry was gesture-controlled: read the user&rsquo;s muscle and brain activity, classify the intended gesture, and drive the robot from it in real time. We took first place.</p>
                     </div>
                 </div>
-               
+
                 <div class="selector-content">
-                    <div class="page-row-section" style="margin-bottom: 100px;">
-                        <img style="margin-right: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd4.jpg') }}" alt="fistbump profile page">
-                        <img style="margin-left: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd5.jpg') }}" alt="fistbump picture page">
+                    <div class="prose-block">
+                        <h2 class="section-heading">Networking layer</h2>
+                            <p class="page-text">I owned the Python-to-ESP32 WiFi networking layer &mdash; the piece connecting the laptop running inference to the robot actually moving.</p>
+                            <p class="page-text">Discovery uses UDP broadcast, so the laptop finds the robot on whatever network the venue gives you rather than depending on a hardcoded address. Once found, commands stream over a persistent TCP channel, which keeps ordering and delivery guarantees for the control stream itself while leaving discovery connectionless.</p>
                     </div>
                 </div>
-           
+
                 <div class="selector-content">
-                    <div class="page-row-section" style="margin-bottom: 100px;">
-                        <img style="margin-right: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd6.jpg') }}" alt="fistbump profile page">
-                        <img style="margin-left: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd7.jpg') }}" alt="fistbump picture page">
+                    <div class="prose-block">
+                        <h2 class="section-heading">Command protocol</h2>
+                            <p class="page-text">A demo is an adversarial environment: crowded WiFi, one attempt, judges watching. I designed the command protocol with validation and acknowledgement retries, then tuned the reconnect logic specifically against dropped inputs. By the live demo it did not drop a single command.</p>
+                            <p class="page-text">Almost all of that tuning came from breaking it on purpose beforehand &mdash; pulling power, saturating the channel, and watching what the naive version did.</p>
                     </div>
                 </div>
-             
+
                 <div class="selector-content">
-                    <div class="page-row-section" style="margin-bottom: 100px;">
-                        <img style="margin-right: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd8.jpg') }}" alt="fistbump profile page">
-                        <img style="margin-left: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/kneeEd9.jpg') }}" alt="fistbump picture page">
+                    <div class="prose-block">
+                        <h2 class="section-heading">Classifiers</h2>
+                            <p class="page-text">Alongside the networking layer I contributed to the classifiers it carried: EMG hand-gesture and EEG motor-imagery models built from covariance features with logistic regression. I then integrated the trained models into the real-time inference pipeline sitting behind the network layer, so the path from electrode to motor was one continuous system rather than two projects meeting at a file boundary.</p>
                     </div>
                 </div>
-             
+
                 <div class="page-column-section" style="position: relative; height: 100vh;">
-                    <div class="buffer-zone page-row-section" style="display: flex; align-items: flex-end; height: 100%;"> 
+                    <div class="buffer-zone page-row-section" style="display: flex; align-items: flex-end; height: 100%;">
                         <button class="load-button" style="margin-top: auto;">
                             <img class="buffer-img" style="position: relative;" src="{{ url_for('static', filename='images/slim_down_arrow.png') }}">
                         </button>
@@ -69,10 +91,10 @@
             </main>
             <div id="next-page-preview" class="hidden"></div>
         </div>
-    
+
         <div id="loading" style="display: none;">Loading...</div>
         <div id="input-blocker" class="hidden"></div>
-    
+
         <script>
             const pages = [
                     '/kalshiBot',
@@ -305,6 +327,7 @@
         </script>
     
     
+
 
         <script>
             // The shared reveal above fires when an element's BOTTOM crosses the
