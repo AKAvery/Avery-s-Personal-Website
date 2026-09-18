@@ -18,7 +18,10 @@
             </nav>
         </header>
         <div class="page-column-section">
-            <img class="profile-picture" src="{{ url_for('static', filename='images/personal_picture.jpeg') }}">
+            <picture>
+              <source type="image/webp" srcset="{{ url_for('static', filename='images/personal_picture.webp') }}">
+              <img class="profile-picture" src="{{ url_for('static', filename='images/personal_picture.jpeg') }}" decoding="async" fetchpriority="high" alt="Avery Allen">
+            </picture>
             <h1 class="expand" style="font-size: 20px; margin-top: 30px; color: white;">Hi, I'm</h1>
             <h2 class="expand" style="font-size: 100px; color: rgb(255, 217, 0);">Avery Allen</h2>
         </div>
@@ -26,7 +29,10 @@
             <section>
                 <div class="selector-content">
                     <div class="page-row-section" style="margin-top: 100px;">
-                        <img style="margin-left: 200px; height: 25%; width: 25%; margin-bottom: 20px; border-radius: 5px;" src="{{ url_for('static', filename='images/index_about_me.jpeg') }}">
+                        <picture>
+                          <source type="image/webp" srcset="{{ url_for('static', filename='images/index_about_me.webp') }}">
+                          <img style="margin-left: 200px; height: 25%; width: 25%; margin-bottom: 20px; border-radius: 5px;" src="{{ url_for('static', filename='images/index_about_me.jpeg') }}" decoding="async" loading="lazy" alt="Avery Allen">
+                        </picture>
                         <div class="page-column-section">
                             <div class="page-text" style="width: 70%; margin-left: 150px; margin-right: 150px;">
                                 I'm Avery Allen, a Computer Science student at the University of Texas at Austin. I like building things that actually run in production — an async trading bot placing live orders on Kalshi, an AI rehab platform with 256 API routes behind it, a forensic debugger for multi-agent AI workflows. Most recently I spent a summer as a software engineering intern at Chinstrap Ventures, rebuilding their AI research pipeline and standing up real dev/staging/prod environments. This site is where I keep track of that work, and it's hand-built — every animation, SVG, and layout quirk here is mine. Have a look around.

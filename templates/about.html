@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="About Avery Allen — Computer Science student at UT Austin, software engineering intern at Chinstrap Ventures, and builder of AI and trading systems.">
+    <meta name="description" content="About Avery Allen, Computer Science student at UT Austin, software engineering intern at Chinstrap Ventures, and builder of AI and trading systems.">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css')}}">
     <link rel="icon" href="{{ url_for('static', filename='images/AAlogo.png') }}" type="image/png">
     <title>About</title>
@@ -23,12 +23,15 @@
         <div class="page-row-section" style="margin-right: 120px;"> 
             <div class='a' style="margin-right: 25px;">
                 <a href="https://www.duolingo.com/profile/AveryAllen360694" target="_blank" rel="noopener noreferrer" style="all: unset;">
-                    <img class="floating-img" src="{{ url_for('static', filename='images/Duolingo.avif')  }}" alt="duolingo icon">
+                    <img class="floating-img" src="{{ url_for('static', filename='images/Duolingo.avif')  }}" alt="duolingo icon" decoding="async" loading="lazy">
                 </a>
             </div>
             <div class='b'>
                 <a href="https://github.com/AKAvery" target="_blank" rel="noopener noreferrer" style="all: unset;">
-                <img class="floating-img" src="{{ url_for('static', filename='images/github_trans_icon.png') }}">
+                <picture>
+                  <source type="image/webp" srcset="{{ url_for('static', filename='images/github_trans_icon.webp') }}">
+                  <img class="floating-img" src="{{ url_for('static', filename='images/github_trans_icon.png') }}" decoding="async" loading="lazy" alt="GitHub">
+                </picture>
             </a>
             </div>
         </div>  
@@ -37,16 +40,28 @@
                 <div class="image-container">
                     <div class="image-wrapper">
                         <div>
-                            <img class="revolving-img" src="{{ url_for('static', filename='images/img1.jpeg')}}">
+                            <picture>
+                              <source type="image/webp" srcset="{{ url_for('static', filename='images/img1.webp') }}">
+                              <img class="revolving-img" src="{{ url_for('static', filename='images/img1.jpeg')}}" decoding="async" loading="lazy" alt="Photo of Avery">
+                            </picture>
                         </div>
                         <div>
-                            <img class="revolving-img" style="object-position: center 33%;" src="{{ url_for('static', filename='images/img2.jpeg')}}">
+                            <picture>
+                              <source type="image/webp" srcset="{{ url_for('static', filename='images/img2.webp') }}">
+                              <img class="revolving-img" style="object-position: center 33%;" src="{{ url_for('static', filename='images/img2.jpeg')}}" decoding="async" loading="lazy" alt="Photo of Avery">
+                            </picture>
                         </div>
                         <div>
-                            <img class="revolving-img" src="{{ url_for('static', filename='images/img3.jpeg')}}">
+                            <picture>
+                              <source type="image/webp" srcset="{{ url_for('static', filename='images/img3.webp') }}">
+                              <img class="revolving-img" src="{{ url_for('static', filename='images/img3.jpeg')}}" decoding="async" loading="lazy" alt="Photo of Avery">
+                            </picture>
                         </div>
                         <div>
-                            <img class="revolving-img" src="{{ url_for('static', filename='images/img4.jpeg')}}">
+                            <picture>
+                              <source type="image/webp" srcset="{{ url_for('static', filename='images/img4.webp') }}">
+                              <img class="revolving-img" src="{{ url_for('static', filename='images/img4.jpeg')}}" decoding="async" loading="lazy" alt="Photo of Avery">
+                            </picture>
                         </div>
                     </div>
                 </div>
@@ -70,23 +85,23 @@
             <div class="page-column-section" style="margin-top: none;">
                 <div class="content">
                     <p class="page-text">
-                        I’m a second-year Computer Science student at the University of Texas at Austin, graduating in May 2028. This past summer I was a software engineering intern at Chinstrap Ventures, working on their Cossmology platform. I started this website to share my projects, keep track of what I’m learning, and build something that feels a little more personal than a resume.</p>                </div>
+                        I’m a Computer Science student at the University of Texas at Austin. This past summer I was a software engineering intern at Chinstrap Ventures, working on their Cossmology platform. I started this website to share my projects, keep track of what I’m learning, and build something that feels a little more personal than a resume.</p>                </div>
             </div>
             <div class="page-column-section">
                 <div class="content">
                     <p class="page-text">
-                        When I’m not in class, I’m usually deep in a side project, playing tennis, hitting the gym, or picking up something new — piano, prediction markets, another language on Duolingo. I captained my high school tennis team at line #1 doubles and still play whenever I can. I also just love listening to music; it’s the background to pretty much everything I do.</p>                </div>
+                        When I’m not in class, I’m usually deep in a side project or out on a tennis court. Tennis is the one I always come back to: I captained my high school team at line #1 doubles and still play whenever I can. I’ll try just about any sport, though, and I’ve played soccer and sand volleyball too. The other thing I’m always in is the markets. I love digging into stocks, figuring out what’s moving and why, and that curiosity is what got me building trading projects in the first place. I watch a ton of sports as well, college and pro, especially football, tennis, and soccer. Past that it’s the gym, piano, another language on Duolingo, and music running in the background of pretty much everything I do.</p>                </div>
             </div>
             <div class="page-column-section">
                 <div class="content">
                     <p class="page-text">
-                        On the tech side, I work mostly in Python and TypeScript. Lately that has meant async systems — a live algorithmic trading bot on Kalshi that has moved $3.6K+ in real volume — and full-stack products on Next.js and Supabase, including an AI rehab platform with 256 API routes and 81 row-level-security migrations behind it. I spend a lot of time on LangGraph multi-agent pipelines and on how to actually evaluate them, which is what led to OrcaStrike, a forensic debugger that traces where trust breaks in a multi-agent workflow. I also won first place at the Longhorn Neurotech Fall Competition owning the Python-to-ESP32 networking layer for a gesture-controlled robot, and I got my start writing Java for FRC robotics. Every one of these pushed me somewhere new, which is the point.</p>
+                        On the tech side, I work mostly in Python and TypeScript. Lately that has meant async systems, like a live algorithmic trading bot on Kalshi that has moved $3.6K+ in real volume, and full-stack products on Next.js and Supabase, including an AI rehab platform with 256 API routes and 81 row-level-security migrations behind it. I spend a lot of time on LangGraph multi-agent pipelines and on how to actually evaluate them, which is what led to OrcaStrike, a forensic debugger that traces where trust breaks in a multi-agent workflow. I also won first place at the Longhorn Neurotech Fall Competition owning the Python-to-ESP32 networking layer for a gesture-controlled robot, and I got my start writing Java for FRC robotics. Every one of these pushed me somewhere new, which is the point.</p>
                 </div>
             </div>
             <div class="page-column-section">
                 <div class="content">
                     <p class="page-text">
-                        Thanks for stopping by — feel free to click around the floating icons, or head to my <a class="link-text" href="/projects">projects</a> to see the details. Adios!</p>
+                        Thanks for stopping by, and feel free to click around the floating icons, or head to my <a class="link-text" href="/projects">projects</a> to see the details. Adios!</p>
                 </div>
             </div>
         </div>
@@ -95,12 +110,18 @@
               </div>
                     <div class="c">
                         <a href="https://www.linkedin.com/in/averykallen/" target="_blank" rel="noopener noreferrer" style="all: unset;">
-                            <img class="floating-img" src="{{ url_for('static', filename='images/linkedin_trans_icon.png') }}">
+                            <picture>
+                              <source type="image/webp" srcset="{{ url_for('static', filename='images/linkedin_trans_icon.webp') }}">
+                              <img class="floating-img" src="{{ url_for('static', filename='images/linkedin_trans_icon.png') }}" decoding="async" loading="lazy" alt="LinkedIn">
+                            </picture>
                         </a>
                     </div>
                     <div class="d" style="margin-left: 25px;">
                         <a href="https://app.utrsports.net/profiles/2804949" target="_blank" rel="noopener noreferrer" style="all: unset;">
-                            <img class="floating-img" src="{{ url_for('static', filename='images/UTR_trans_icon.png')}}">
+                            <picture>
+                              <source type="image/webp" srcset="{{ url_for('static', filename='images/UTR_trans_icon.webp') }}">
+                              <img class="floating-img" src="{{ url_for('static', filename='images/UTR_trans_icon.png')}}" decoding="async" loading="lazy" alt="UTR tennis profile">
+                            </picture>
                         </a>
                     </div>
                 </div>

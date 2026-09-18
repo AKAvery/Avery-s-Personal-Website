@@ -85,7 +85,10 @@
                 <div class="page-column-section" style="position: relative; height: 100vh;">
                     <div class="buffer-zone page-row-section" style="display: flex; align-items: flex-end; height: 100%;">
                         <button class="load-button" style="margin-top: auto;">
-                            <img class="buffer-img" style="position: relative;" src="{{ url_for('static', filename='images/slim_down_arrow.png') }}">
+                            <picture>
+                              <source type="image/webp" srcset="{{ url_for('static', filename='images/slim_down_arrow.webp') }}">
+                              <img class="buffer-img" alt="" style="position: relative;" src="{{ url_for('static', filename='images/slim_down_arrow.png') }}" decoding="async" loading="lazy">
+                            </picture>
                         </button>
                         <p class="buffer-text" aria-hidden="true">Placeholder<br>Text</p>
                     </div>

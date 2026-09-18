@@ -17,7 +17,10 @@
         </header>
         <main id="infinite-content">
             <div style="text-align: center;">
-                <img class="img-background" src="{{ url_for('static', filename='images/fistbumpHome.jpeg') }}" alt="fistbump home page">
+                <picture>
+                  <source type="image/webp" srcset="{{ url_for('static', filename='images/fistbumpHome.webp') }}">
+                  <img class="img-background" src="{{ url_for('static', filename='images/fistbumpHome.jpeg') }}" alt="fistbump home page" decoding="async" fetchpriority="high">
+                </picture>
             </div>
 
             <div class="selector-content">
@@ -44,14 +47,23 @@
             </div>    
             <div class="selector-content">
                 <div class="page-row-section" style="margin-bottom: 100px;">
-                    <img style="margin-right: 100px;" class="img-vertical" src="{{ url_for('static', filename='images/fistbumpProfile.jpeg') }}" alt="fistbump profile page">
-                    <img style="margin-left: 100px;" class="img-vertical" src="{{ url_for('static', filename='images/fistbumpPhoto.jpeg') }}" alt="fistbump picture page">
+                    <picture>
+                      <source type="image/webp" srcset="{{ url_for('static', filename='images/fistbumpProfile.webp') }}">
+                      <img style="margin-right: 100px;" class="img-vertical" src="{{ url_for('static', filename='images/fistbumpProfile.jpeg') }}" alt="fistbump profile page" decoding="async" loading="lazy">
+                    </picture>
+                    <picture>
+                      <source type="image/webp" srcset="{{ url_for('static', filename='images/fistbumpPhoto.webp') }}">
+                      <img style="margin-left: 100px;" class="img-vertical" src="{{ url_for('static', filename='images/fistbumpPhoto.jpeg') }}" alt="fistbump picture page" decoding="async" loading="lazy">
+                    </picture>
                 </div>
             </div>
             <div class="page-column-section" style="position: relative; height: 100vh;">
                 <div class="buffer-zone page-row-section" style="display: flex; align-items: flex-end; height: 100%;"> 
                     <button class="load-button" style="margin-top: auto;">
-                        <img class="buffer-img" style="position: relative;" src="{{ url_for('static', filename='images/slim_down_arrow.png') }}">
+                        <picture>
+                          <source type="image/webp" srcset="{{ url_for('static', filename='images/slim_down_arrow.webp') }}">
+                          <img class="buffer-img" alt="" style="position: relative;" src="{{ url_for('static', filename='images/slim_down_arrow.png') }}" decoding="async" loading="lazy">
+                        </picture>
                     </button>
                     <p class="buffer-text" aria-hidden="true">Placeholder<br>Text</p>
                 </div>

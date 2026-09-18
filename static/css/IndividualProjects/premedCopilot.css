@@ -483,3 +483,10 @@ a {
 #infinite-content > .hidden-content {
     display: none;
 }
+
+/* <picture> is display:inline, so it sits on a text baseline and adds
+   descender space under every image. Removing its box from the tree makes the
+   <img> the direct child again, exactly as it was before the webp wrapping. */
+picture {
+    display: contents;
+}

@@ -18,7 +18,10 @@
             </header>
             <main id="infinite-content">
                 <div style=" text-align: center;">
-                    <img class="img-background" src="{{ url_for('static', filename='images/anderson_coding_club.jpeg') }}" alt="fistbump home page">
+                    <picture>
+                      <source type="image/webp" srcset="{{ url_for('static', filename='images/anderson_coding_club.webp') }}">
+                      <img class="img-background" src="{{ url_for('static', filename='images/anderson_coding_club.jpeg') }}" alt="Anderson Coding Club website" decoding="async" fetchpriority="high">
+                    </picture>
                 </div>
     
                 <div class="selector-content">
@@ -30,25 +33,43 @@
                 </div>
                 <div class="selector-content">
                     <div class="page-row-section" style="margin-bottom: 100px;">
-                        <img style="margin-right: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/club1.jpeg') }}" alt="fistbump profile page">
-                        <img style="margin-left: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/club2.jpeg') }}" alt="fistbump picture page">
+                        <picture>
+                          <source type="image/webp" srcset="{{ url_for('static', filename='images/club1.webp') }}">
+                          <img style="margin-right: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/club1.jpeg') }}" alt="Coding club members at a meeting" decoding="async" loading="lazy">
+                        </picture>
+                        <picture>
+                          <source type="image/webp" srcset="{{ url_for('static', filename='images/club2.webp') }}">
+                          <img style="margin-left: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/club2.jpeg') }}" alt="Coding club event photo" decoding="async" loading="lazy">
+                        </picture>
                     </div>
                 </div>
                 <div class="selector-content">
                     <div class="page-row-section" style="margin-bottom: 100px;">
-                        <img style="margin-right: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/club3.jpeg') }}" alt="fistbump profile page">
-                        <img style="margin-left: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/club4.jpeg') }}" alt="fistbump picture page">
+                        <picture>
+                          <source type="image/webp" srcset="{{ url_for('static', filename='images/club3.webp') }}">
+                          <img style="margin-right: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/club3.jpeg') }}" alt="Coding club members at a meeting" decoding="async" loading="lazy">
+                        </picture>
+                        <picture>
+                          <source type="image/webp" srcset="{{ url_for('static', filename='images/club4.webp') }}">
+                          <img style="margin-left: 50px;" class="img-horizontal" src="{{ url_for('static', filename='images/club4.jpeg') }}" alt="Coding club event photo" decoding="async" loading="lazy">
+                        </picture>
                     </div>
                 </div>
                 <div class="selector-content">
                     <div class="page-row-section" style="margin-bottom: 100px;">
-                        <img style="margin-right: 0px;" class="img-horizontal" src="{{ url_for('static', filename='images/club5.jpeg') }}" alt="fistbump profile page">
+                        <picture>
+                          <source type="image/webp" srcset="{{ url_for('static', filename='images/club5.webp') }}">
+                          <img style="margin-right: 0px;" class="img-horizontal" src="{{ url_for('static', filename='images/club5.jpeg') }}" alt="Coding club members at a meeting" decoding="async" loading="lazy">
+                        </picture>
                     </div>
                 </div>
                 <div class="page-column-section" style="position: relative; height: 100vh;">
                     <div class="buffer-zone page-row-section" style="display: flex; align-items: flex-end; height: 100%;"> 
                         <button class="load-button" style="margin-top: auto;">
-                            <img class="buffer-img" style="position: relative;" src="{{ url_for('static', filename='images/slim_down_arrow.png') }}">
+                            <picture>
+                              <source type="image/webp" srcset="{{ url_for('static', filename='images/slim_down_arrow.webp') }}">
+                              <img class="buffer-img" alt="" style="position: relative;" src="{{ url_for('static', filename='images/slim_down_arrow.png') }}" decoding="async" loading="lazy">
+                            </picture>
                         </button>
                         <p class="buffer-text" aria-hidden="true">Placeholder<br>Text</p>
                     </div>

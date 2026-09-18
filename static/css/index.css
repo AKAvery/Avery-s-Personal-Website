@@ -17,6 +17,10 @@ body::before {
     inset: 0;
     z-index: -1;
     background-image: url('/static/images/city_background_day.jpg');
+    /* browsers that understand image-set take the webp; the plain
+       url() above stays as the fallback */
+    background-image: image-set(url('/static/images/city_background_day.webp') type('image/webp'),
+                                url('/static/images/city_background_day.jpg') type('image/jpeg'));
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -245,6 +249,10 @@ a {
   .scroller { 
     display: grid;
     background-image: url('/static/images/leaves_background.jpg');
+    /* browsers that understand image-set take the webp; the plain
+       url() above stays as the fallback */
+    background-image: image-set(url('/static/images/leaves_background.webp') type('image/webp'),
+                                url('/static/images/leaves_background.jpg') type('image/jpeg'));
     background-size: cover;         /* ⬅️ fills the width */
     background-position: center; 
   }
