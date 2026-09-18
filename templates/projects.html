@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/projects.css')}}">
     <link rel="icon" href="{{ url_for('static', filename='images/AAlogo.png') }}" type="image/png">
-    <title>About</title>
+    <title>Projects</title>
 </head>
 <body>
     <header class="header">
-        <a href="/" class="nav-text" id="home-link">Home
+        <a href="/" class="nav-text" id="home-link">Home</a>
         <nav class="nav-bar" style="margin-left: 60%;">
             <a href="{{ url_for('about') }}" class="nav-text" id="about-link">About Me</a>
                 <a href="{{ url_for('projects') }}" class="nav-text" id="projects-link">Projects</a>
@@ -19,6 +19,121 @@
     <main> 
         <div class="page-row-section">
             <div class="page-column-section">
+                <a href="{{ url_for('kalshi_bot') }}">
+                    <div class="selector-content">
+                        <div class="content text-mode">
+                            <div class="page-column-section card-body">
+                                <p class="card-eyebrow">Oct 2025 &ndash; Present &middot; Solo Project</p>
+                                <h1 class="card-title">Kalshi Algorithmic Trading Bot</h1>
+                                <p class="card-subtitle">A live algorithmic trading bot placing real orders on Kalshi prediction markets &mdash; $3.6K+ in live volume</p>
+                                <ul class="card-stack">
+                                        <li>Python</li>
+                                        <li>asyncio</li>
+                                        <li>REST + WebSockets</li>
+                                        <li>Live execution</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <hr class="gradient-hr">
+        <div class="page-row-section">
+            <div class="page-column-section">
+                <a href="{{ url_for('cossmology') }}">
+                    <div class="selector-content">
+                        <div class="content text-mode">
+                            <div class="page-column-section card-body">
+                                <p class="card-eyebrow">Jun &ndash; Aug 2026 &middot; Software Engineering Intern</p>
+                                <h1 class="card-title">Chinstrap Ventures &mdash; Cossmology</h1>
+                                <p class="card-subtitle">A summer owning DevOps, an AI research pipeline, and production incidents on a live platform</p>
+                                <ul class="card-stack">
+                                        <li>React</li>
+                                        <li>TypeScript</li>
+                                        <li>Supabase</li>
+                                        <li>GitHub Actions</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <hr class="gradient-hr">
+        <div class="page-row-section">
+            <div class="page-column-section">
+                <a href="{{ url_for('premed_copilot') }}">
+                    <div class="selector-content">
+                        <div class="content text-mode">
+                            <div class="page-column-section card-body">
+                                <p class="card-eyebrow">Spring 2026 &middot; Tech Lead, Convergent</p>
+                                <h1 class="card-title">UT Premed AI Copilot</h1>
+                                <p class="card-subtitle">A data-driven medical school admissions copilot for UT premeds, built by a team of four</p>
+                                <ul class="card-stack">
+                                        <li>Next.js 14</li>
+                                        <li>TypeScript</li>
+                                        <li>Postgres RLS</li>
+                                        <li>Claude Sonnet</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <hr class="gradient-hr">
+        <div class="page-row-section">
+            <div class="page-column-section">
+                <a href="{{ url_for('longhorn_neurotech') }}">
+                    <div class="selector-content">
+                        <div class="content text-mode">
+                            <div class="page-column-section card-body">
+                                <p class="card-eyebrow">Oct &ndash; Nov 2025 &middot; 1st Place</p>
+                                <h1 class="card-title">Longhorn Neurotech</h1>
+                                <p class="card-subtitle">Gesture-controlled robotics &mdash; I owned the networking layer between Python and the ESP32</p>
+                                <ul class="card-stack">
+                                        <li>Python</li>
+                                        <li>UDP / TCP</li>
+                                        <li>ESP32</li>
+                                        <li>scikit-learn</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <hr class="gradient-hr">
+        <div class="page-row-section">
+            <div class="page-column-section">
+                <a href="{{ url_for('orca_strike') }}">
+                    <div class="selector-content">
+                        <div class="content text-mode">
+                            <div class="page-column-section card-body">
+                                <p class="card-eyebrow">Apr 2026 &middot; AI Security Hackathon</p>
+                                <h1 class="card-title">OrcaStrike</h1>
+                                <p class="card-subtitle">A post-execution forensic debugger for multi-agent AI workflows</p>
+                                <ul class="card-stack">
+                                        <li>FastAPI</li>
+                                        <li>Next.js</li>
+                                        <li>LangGraph</li>
+                                        <li>MongoDB</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <p class="section-label">Earlier work</p>
+        <div class="page-row-section">
+            <div class="page-column-section">
                 <a href="{{ url_for('knee_ed') }}">
                 <div class="selector-content">
                         <div class="content default-mode">
@@ -26,7 +141,7 @@
                                 <img class="project-img" src="{{ url_for('static', filename='images/kneeEd1.jpeg')}}">
                                 <div class="page-column-section inner-column-section">
                                     <h1 class="page-text" style="font-size: 45px;">KneeEd</h1>
-                                    <p class="page-text" style="font-size: 20px; color: darkgrey;">Reimagining Injury Rehab and Performance Training</p>
+                                    <p class="page-text" style="font-size: 20px; color: darkgrey;">An AI rehab platform in production &mdash; 256 API routes, 81 RLS migrations, 9 clinical protocols</p>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +210,7 @@
                     <div class="selector-content">
                         <div class="content default-mode">
                             <div class="page-row-section inner-row-section">
-                                <img class="project-img" src="{{ url_for('static', filename='images/CANKiosk3.png')}}">
+                                <img class="project-img" src="{{ url_for('static', filename='images/CANKiosk3.jpg')}}">
                                 <div class="page-column-section inner-column-section">
                                     <h1 class="page-text" style="font-size: 45px;">canKiosk</h1>
                                     <p class="page-text" style="font-size: 20px; color: darkgrey;">A Custom Kiosk Site Built to Support my Robotics Team</p>
@@ -110,40 +225,54 @@
 
 
     <script>
+        // One rAF-batched, passive scroll pipeline instead of two unthrottled
+        // non-passive listeners that each re-queried the DOM every event.
         const headerEl = document.querySelector('.header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                headerEl.classList.add('header-scrolled');
-            }
-            else if (window.scrollY <= 50) {
-                headerEl.classList.remove('header-scrolled');
-            }
-        });
+        let revealTargets = [];
+        let queued = false;
 
-        function checkVisibility() {
-            var elements = document.querySelectorAll('.selector-content');
-            elements.forEach(function(footerEl) {
-                const rect = footerEl.getBoundingClientRect();
-                if (rect.bottom <= (window.innerHeight + 300)) {
-                    footerEl.classList.add('visible-selector-content')
-                }
-                else {
-                    footerEl.classList.remove('visible-selector-content')
-                }
-            });
+        function update() {
+            queued = false;
+            headerEl.classList.toggle('header-scrolled', window.scrollY > 50);
+            const fold = window.innerHeight + 300;
+            for (let i = 0; i < revealTargets.length; i++) {
+                const el = revealTargets[i];
+                el.classList.toggle('visible-selector-content',
+                                    el.getBoundingClientRect().bottom <= fold);
+            }
         }
-        
-        window.addEventListener('scroll', checkVisibility);
-        window.addEventListener('resize', checkVisibility);
-        document.addEventListener('DOMContentLoaded',function() {
-            checkVisibility(); 
-        
-            const navLinks = document.querySelectorAll('.nav-text');
-            navLinks.forEach(link => {
-                if (link.href === window.location.href) {
+
+        function queueUpdate() {
+            if (queued) return;
+            queued = true;
+            requestAnimationFrame(update);
+        }
+
+        window.addEventListener('scroll', queueUpdate, { passive: true });
+        window.addEventListener('resize', queueUpdate, { passive: true });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            revealTargets = Array.from(document.querySelectorAll('.selector-content'));
+            update();
+
+            const here = window.location.pathname;
+            document.querySelectorAll('.nav-text').forEach(link => {
+                if (new URL(link.href, window.location.origin).pathname === here) {
                     link.classList.add('active');
                 }
             });
+
+            // Pause the infinite border-radius ripple while a card is off screen.
+            const cards = document.querySelectorAll('.content');
+            if (cards.length && 'IntersectionObserver' in window) {
+                const rippleObserver = new IntersectionObserver(entries => {
+                    entries.forEach(e => e.target.classList.toggle('ripple-paused', !e.isIntersecting));
+                }, { rootMargin: '100px' });
+                // Don't pre-pause: that would delay the animation start and shift
+                // its phase. The observer pauses the off-screen ones on its first
+                // callback instead.
+                cards.forEach(card => rippleObserver.observe(card));
+            }
         });
     </script>
     

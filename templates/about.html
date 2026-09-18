@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Avery Allen — Computer Science student at UT Austin, software engineering intern at Chinstrap Ventures, and builder of AI and trading systems.">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css')}}">
     <link rel="icon" href="{{ url_for('static', filename='images/AAlogo.png') }}" type="image/png">
-    <title>Projects</title>
+    <title>About</title>
 </head>
 
 
 
 <body>
-    ​<div id="glowing-circle"></div>
     <header class="header">
         <a href="/" class="nav-text" id="home-link"> Home </a>
         <nav class="nav-bar">
@@ -22,12 +22,12 @@
     <div class="page-row-section">
         <div class="page-row-section" style="margin-right: 120px;"> 
             <div class='a' style="margin-right: 25px;">
-                <a href="https://www.duolingo.com/profile/AveryAllen360694" target="_blank" style="all: unset;">
+                <a href="https://www.duolingo.com/profile/AveryAllen360694" target="_blank" rel="noopener noreferrer" style="all: unset;">
                     <img class="floating-img" src="{{ url_for('static', filename='images/Duolingo.avif')  }}" alt="duolingo icon">
                 </a>
             </div>
             <div class='b'>
-                <a href="https://github.com/AKAvery" target="_blank" style="all: unset;">
+                <a href="https://github.com/AKAvery" target="_blank" rel="noopener noreferrer" style="all: unset;">
                 <img class="floating-img" src="{{ url_for('static', filename='images/github_trans_icon.png') }}">
             </a>
             </div>
@@ -70,23 +70,23 @@
             <div class="page-column-section" style="margin-top: none;">
                 <div class="content">
                     <p class="page-text">
-                        I’m a freshman at the University of Texas at Austin, studying Computer Science. I started this website as a way to share my projects, keep track of what I’m learning, and create something that feels a little more personal.                </div>
+                        I’m a second-year Computer Science student at the University of Texas at Austin, graduating in May 2028. This past summer I was a software engineering intern at Chinstrap Ventures, working on their Cossmology platform. I started this website to share my projects, keep track of what I’m learning, and build something that feels a little more personal than a resume.</p>                </div>
             </div>
             <div class="page-column-section">
                 <div class="content">
                     <p class="page-text">
-                        When I’m not in class, I’m usually working on coding projects, playing tennis, hitting the gym, or picking up new hobbies like piano, exploring the stock market, or learning different languages. I also just love listening to music—it’s the background to pretty much everything I do.                </div>
+                        When I’m not in class, I’m usually deep in a side project, playing tennis, hitting the gym, or picking up something new — piano, prediction markets, another language on Duolingo. I captained my high school tennis team at line #1 doubles and still play whenever I can. I also just love listening to music; it’s the background to pretty much everything I do.</p>                </div>
             </div>
             <div class="page-column-section">
                 <div class="content">
                     <p class="page-text">
-                        On the tech side, I’ve gained experience with Python, Java, C++, SQL, HTML/CSS, and React Native, as well as working with MongoDB through Atlas, LangChain chat prompting, AI agents, and user authentication systems. Each project, whether it’s for class, a hackathon, or just for fun, has pushed me to learn something new and keep building.
+                        On the tech side, I work mostly in Python and TypeScript. Lately that has meant async systems — a live algorithmic trading bot on Kalshi that has moved $3.6K+ in real volume — and full-stack products on Next.js and Supabase, including an AI rehab platform with 256 API routes and 81 row-level-security migrations behind it. I spend a lot of time on LangGraph multi-agent pipelines and on how to actually evaluate them, which is what led to OrcaStrike, a forensic debugger that traces where trust breaks in a multi-agent workflow. I also won first place at the Longhorn Neurotech Fall Competition owning the Python-to-ESP32 networking layer for a gesture-controlled robot, and I got my start writing Java for FRC robotics. Every one of these pushed me somewhere new, which is the point.</p>
                 </div>
             </div>
             <div class="page-column-section">
                 <div class="content">
                     <p class="page-text">
-                        Thanks for stopping by—feel free to click around the floating icons to see more. Adios!
+                        Thanks for stopping by — feel free to click around the floating icons, or head to my <a class="link-text" href="/projects">projects</a> to see the details. Adios!</p>
                 </div>
             </div>
         </div>
@@ -94,19 +94,17 @@
             <div>
               </div>
                     <div class="c">
-                        <a href="https://www.linkedin.com/in/averykallen/" target="_blank" style="all: unset;">
+                        <a href="https://www.linkedin.com/in/averykallen/" target="_blank" rel="noopener noreferrer" style="all: unset;">
                             <img class="floating-img" src="{{ url_for('static', filename='images/linkedin_trans_icon.png') }}">
                         </a>
                     </div>
                     <div class="d" style="margin-left: 25px;">
-                        <a href="https://app.utrsports.net/profiles/2804949" target="_blank" style="all: unset;">
+                        <a href="https://app.utrsports.net/profiles/2804949" target="_blank" rel="noopener noreferrer" style="all: unset;">
                             <img class="floating-img" src="{{ url_for('static', filename='images/UTR_trans_icon.png')}}">
                         </a>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
     <script>
 
@@ -115,22 +113,51 @@
         const c = document.querySelector('.c');
         const d = document.querySelector('.d');
         const headerEl = document.querySelector('.header');
+        const floaters = [a, b, c, d];
 
-
-        function checkHeaderScrolled() {
-            if (window.scrollY > 30 || areDivsTouching(a, b, c, d, headerEl)) {
-                headerEl.classList.add('header-scrolled');
-            }
-            else {
-                headerEl.classList.remove('header-scrolled');
-            }
+        function areDivsTouching() {
+            const rectH = headerEl.getBoundingClientRect();
+            return floaters.some(el => {
+                const r = el.getBoundingClientRect();
+                return r.top - 50 <= rectH.bottom && r.bottom + 50 >= rectH.bottom;
+            });
         }
 
-        window.addEventListener('resize', checkHeaderScrolled);
-        window.addEventListener('scroll', checkHeaderScrolled);
+        function checkHeaderScrolled() {
+            headerEl.classList.toggle('header-scrolled',
+                                      window.scrollY > 30 || areDivsTouching());
+        }
 
-        setInterval(checkHeaderScrolled, 100);
+        // areDivsTouching() forces layout (5 getBoundingClientRect calls), so it
+        // runs at most once per frame. It used to also be polled on a 100ms
+        // setInterval that was never cleared -- 50 forced layouts a second on an
+        // idle page. The bounce animations move the floaters continuously, so a
+        // rAF tick keeps the header in sync without the timer.
+        let headerQueued = false;
+        function queueHeaderCheck() {
+            if (headerQueued) return;
+            headerQueued = true;
+            requestAnimationFrame(() => { headerQueued = false; checkHeaderScrolled(); });
+        }
 
+        window.addEventListener('resize', queueHeaderCheck, { passive: true });
+        window.addEventListener('scroll', queueHeaderCheck, { passive: true });
+
+        // The floaters drift under CSS animation, so the overlap still has to be
+        // sampled on a timer. Same 100ms cadence as before (so the header behaves
+        // identically), but it now stops while the tab is in the background
+        // instead of running forever.
+        let headerTimer = 0;
+        function startHeaderPoll() {
+            if (!headerTimer) headerTimer = setInterval(checkHeaderScrolled, 100);
+        }
+        function stopHeaderPoll() { clearInterval(headerTimer); headerTimer = 0; }
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) stopHeaderPoll(); else startHeaderPoll();
+        });
+        startHeaderPoll();
+
+        /* ---------------- carousel ---------------- */
         const imageWrapper = document.querySelector('.image-wrapper');
         const imageItems = document.querySelectorAll('.image-wrapper > *');
         const imageLength = imageItems.length;
@@ -143,27 +170,41 @@
             imageWrapper.insertAdjacentHTML('beforeend', imageItems[i].outerHTML)
         }
 
+        // Measured once instead of on every 7.5s tick; refreshed only on resize.
+        let slideWidth = 0;
+        function measureSlide() {
+            const first = imageWrapper.firstElementChild;
+            slideWidth = (first ? first.offsetWidth : 0) + 24;
+        }
+        measureSlide();
+        window.addEventListener('resize', measureSlide, { passive: true });
+
         let autoScroll = setInterval(scrolling, delay)
-        
+
         function scrolling() {
             totalScroll++
             if(totalScroll == imageLength + 1) {
                 clearInterval(autoScroll)
                 totalScroll = 1
+                // Snap back with no animation. The reflow is what makes the snap
+                // actually happen -- without it both writes coalesce into one
+                // frame and the strip slides all the way back instead.
                 imageWrapper.style.transition = '0s'
-                imageWrapper.style.left = '0'
+                imageWrapper.style.transform = 'translateX(0px)'
+                void imageWrapper.offsetWidth
+                imageWrapper.style.transition = ''
                 autoScroll = setInterval(scrolling, delay)
             }
-            const widthEl = document.querySelector('.image-wrapper > :first-child').offsetWidth + 24
-            imageWrapper.style.left = `-${totalScroll * widthEl}px`
-            imageWrapper.style.transition = '1s'
+            // translateX instead of `left`: `left` is a layout property, so the
+            // 1s tween relayed out the grid every frame. The stylesheet already
+            // declares `transition: transform 1s` for exactly this.
+            imageWrapper.style.transform = `translateX(-${totalScroll * slideWidth}px)`
             highlightCenterImage()
-
         }
 
         function highlightCenterImage() {
-            const allItems = document.querySelectorAll('.image-wrapper > *');
-            allItems.forEach(item => item.classList.remove('center-image'));
+            const allItems = imageWrapper.children;
+            for (const item of allItems) item.classList.remove('center-image');
             let centerIndex = totalScroll + Math.floor(perView / 2);
             if (centerIndex >= allItems.length) {
                 centerIndex = centerIndex % imageLength;
@@ -171,116 +212,38 @@
             allItems[centerIndex].classList.add('center-image');
         }
 
-        highlightCenterImage();
-
-    
-
-        function updateAnimationRandomsA() {
-            var randomHeightA = (Math.random() * 300) + 300;
-            var randomTimeA = (Math.random() * 5) + 25;
-            var aElement = document.querySelector('.a');
-
-            aElement.style.animation = 'none';
-            document.documentElement.style.setProperty('--animation-height-a', randomHeightA + 'px');
-            document.documentElement.style.setProperty('--animation-time-a', randomTimeA + 's');
-            aElement.offsetHeight;
-            aElement.style.animation = 'bounce1 var(--animation-time-a) infinite';
-        }
-        
-        function updateAnimationRandomsB() {
-            var randomHeightB = (Math.random() * 300) + 300;
-            var randomTimeB = (Math.random() * 5) + 25;
-            var bElement = document.querySelector('.b');
-
-            bElement.style.animation = 'none';
-            document.documentElement.style.setProperty('--animation-height-b', randomHeightB + 'px');
-            document.documentElement.style.setProperty('--animation-time-b', randomTimeB + 's');
-            bElement.offsetHeight;
-            bElement.style.animation = 'bounce2 var(--animation-time-b) infinite';
+        /* ------------- floating icon bounce ------------- */
+        // Was four copy-pasted functions differing only by letter.
+        function makeBounceRandomiser(el, key, keyframe) {
+            return function update() {
+                const randomHeight = (Math.random() * 300) + 300;
+                const randomTime = (Math.random() * 5) + 25;
+                el.style.animation = 'none';
+                document.documentElement.style.setProperty(`--animation-height-${key}`, randomHeight + 'px');
+                document.documentElement.style.setProperty(`--animation-time-${key}`, randomTime + 's');
+                void el.offsetHeight;
+                el.style.animation = `${keyframe} var(--animation-time-${key}) infinite`;
+            };
         }
 
-        function updateAnimationRandomsC() {
-            var randomHeightC = (Math.random() * 300) + 300;
-            var randomTimeC = (Math.random() * 5) + 25;
-            var cElement = document.querySelector('.c');
-
-            cElement.style.animation = 'none';
-            document.documentElement.style.setProperty('--animation-height-c', randomHeightC+ 'px');
-            document.documentElement.style.setProperty('--animation-time-c', randomTimeC + 's');
-            cElement.offsetHeight;
-            cElement.style.animation = 'bounce3 var(--animation-time-c) infinite'; 
-        }
-
-        function updateAnimationRandomsD() {
-            var randomHeightD = (Math.random() * 300) + 300;
-            var randomTimeD = (Math.random() * 5) + 25;
-            var dElement = document.querySelector('.d');
-
-            dElement.style.animation = 'none';
-            document.documentElement.style.setProperty('--animation-height-d', randomHeightD + 'px');
-            document.documentElement.style.setProperty('--animation-time-d', randomTimeD + 's');
-            dElement.offsetHeight;
-            dElement.style.animation = 'bounce4 var(--animation-time-d) infinite';
-        }
-
-        function areDivsTouching(a, b, c, d, header) {
-            const rect1 = a.getBoundingClientRect();
-            const rect2 = b.getBoundingClientRect();
-            const rect3 = c.getBoundingClientRect();
-            const rect4 = d.getBoundingClientRect();
-            const rectH = header.getBoundingClientRect();
-
-            return (
-                (rect1.top - 50 <= rectH.bottom && rect1.bottom + 50 >= rectH.bottom) ||
-                (rect2.top - 50 <= rectH.bottom && rect2.bottom  + 50 >= rectH.bottom) ||
-                (rect3.top - 50 <= rectH.bottom && rect3.bottom + 50 >=rectH.bottom) ||
-                (rect4.top - 50 <= rectH.bottom && rect4.bottom + 50 >= rectH.bottom) 
-            );
-        }
-
-        const glowingCircle = document.getElementById('glowing-circle');
-        let mouseX = 0;
-        let mouseY = 0;
-
-        function updateGlowingCircle() {
-            glowingCircle.style.left = `${mouseX + window.scrollX}px`;
-            glowingCircle.style.top = `${mouseY + window.scrollY}px`;
-        }
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            updateGlowingCircle();
+        [[a, 'a', 'bounce1'], [b, 'b', 'bounce2'],
+         [c, 'c', 'bounce3'], [d, 'd', 'bounce4']].forEach(([el, key, keyframe]) => {
+            const update = makeBounceRandomiser(el, key, keyframe);
+            update();
+            el.addEventListener('animationiteration', update);
         });
 
-        window.addEventListener('scroll', updateGlowingCircle);
+        highlightCenterImage();
 
         document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('.nav-text');
-            navLinks.forEach(link => {
-                if (link.href === window.location.href) {
+            const here = window.location.pathname;
+            document.querySelectorAll('.nav-text').forEach(link => {
+                if (new URL(link.href, window.location.origin).pathname === here) {
                     link.classList.add('active');
                 }
             });
         });
 
-                
-            
-            updateAnimationRandomsA();
-            updateAnimationRandomsB();
-            updateAnimationRandomsC();
-            updateAnimationRandomsD();
-            highlightCenterImage();
-
-            
-
-            document.querySelector('.a').addEventListener('animationiteration', updateAnimationRandomsA);
-            document.querySelector('.b').addEventListener('animationiteration', updateAnimationRandomsB);
-            document.querySelector('.c').addEventListener('animationiteration', updateAnimationRandomsC);
-            document.querySelector('.d').addEventListener('animationiteration', updateAnimationRandomsD);
-        
-
-
     </script>
 </body>
-</html
+</html>

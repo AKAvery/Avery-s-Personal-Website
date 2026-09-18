@@ -181,7 +181,6 @@ body {
 .content:hover {
     animation: bigRippleEffect .7s ease-in-out forwards;
     transform: scale(1.03, 1.03);
-    box-shadow: 0 3px 10px 1px rgb(0, 0, 0, 0.2);
 }
 
 
@@ -198,25 +197,8 @@ body {
     transform: scale(1.0);
 }
 
-.content.alt-mode::before {
-    background: transparent;
-    box-shadow: none;
-}
 
-.content.alt-mode:hover::before {
-    background: white; 
-    animation: animationOne 0.5s forwards ease-out,
-               animationTwo 0.5s 0.5s forwards ease-in,
-               animationThree 0.5s 1s forwards ease-out,
-               animationFour 0.3s 1.5s forwards ease-in;
-}
 
-.content.alt-mode:hover .page-text {
-    animation: animationOne 0.5s forwards ease-out,
-    animationTwo 0.5s 0.5s forwards ease-in,
-    animationThree 0.5s 1s forwards ease-out,
-    animationFour 0.3s 1.5s forwards ease-in;
-}
 
 a {
     text-decoration: none;
@@ -287,14 +269,14 @@ img {
         border-radius: 5% 5% / 5% 5%; 
     }
 
+    9% {
+        border-radius: 30% 20% 30% 20% / 20% 30% 20% 30%; 
+    }
     14% {
         border-radius: 40% 15% 40% 15% / 15% 40% 15% 40%; 
     }
     27% {
         border-radius: 35% 25% 35% 25% / 25% 35% 25% 35%; 
-    }
-    9% {
-        border-radius: 30% 20% 30% 20% / 20% 30% 20% 30%; 
     }
     50% {
         border-radius: 25% 15% 25% 15% / 15% 25% 15% 25%; 
@@ -349,5 +331,128 @@ img {
     90% {
     }
     100% {
+    }
+}
+
+
+/* ---------------------------------------------------------------------------
+   Text-forward cards, for the projects that have no screenshot yet. Same
+   .content shell (and the same ripple/hover behaviour) as the image cards, so
+   the two kinds sit together on the page; only the interior changes.
+   ------------------------------------------------------------------------ */
+
+.content.text-mode {
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 20px clamp(28px, 5vw, 70px);
+    box-sizing: border-box;
+}
+
+.card-body {
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    width: 100%;
+    height: 100%;
+}
+
+.card-eyebrow {
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgb(130, 130, 130);
+    margin-bottom: 18px;
+}
+
+.card-title {
+    /* The card sits inside an <a>, and the sheet only resets text-decoration
+       on links, not colour -- without this the heading inherits link blue. */
+    color: black;
+    font-size: clamp(30px, 3.6vw, 45px);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+}
+
+.card-subtitle {
+    font-size: 20px;
+    line-height: 1.5;
+    color: darkgrey;
+    max-width: 48ch;
+    margin-bottom: 26px;
+}
+
+.card-stack {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    padding: 0;
+}
+
+.card-stack li {
+    font-size: 13px;
+    padding: 6px 13px;
+    border-radius: 999px;
+    background: rgb(246, 246, 246);
+    color: rgb(70, 70, 70);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.08);
+}
+
+/* Divider between current work and the earlier projects below it. */
+.section-label {
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgb(140, 140, 140);
+    margin-top: 140px;
+}
+
+@media (max-width: 800px) {
+    .header,
+    .header-scrolled {
+        padding: 20px 24px;
+    }
+
+    .nav-bar {
+        margin-left: auto !important;
+        padding-right: 0;
+    }
+
+    .content {
+        width: 88vw;
+        height: auto;
+        min-height: 360px;
+    }
+
+    .content.text-mode {
+        padding: 32px 26px;
+    }
+
+    .card-subtitle {
+        font-size: 17px;
+    }
+}
+
+/* Pause the infinite border-radius repaint for off-screen cards. */
+.content.ripple-paused {
+    animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .content,
+    .content:hover {
+        animation: none;
+    }
+    .visible-selector-content {
+        animation: none;
+        opacity: 1;
+    }
+    .project-img,
+    .page-text,
+    .header {
+        transition: none;
     }
 }
