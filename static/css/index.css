@@ -5,13 +5,21 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    height: 100vh;
+}
+
+/* Same look as `background-attachment: fixed`, but on its own composited
+   layer. A fixed background attachment forces the browser to repaint the
+   whole viewport on every scroll frame; this does not. */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
     background-image: url('/static/images/city_background_day.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
-    background-attachment: fixed;
-    z-index: -9999;
 }
 
 
@@ -227,6 +235,9 @@ a {
   background: transparent;
   padding-left: clamp(16px, 6vw, 350px);
   padding-right: clamp(16px, 6vw, 350px);
+  /* Without this the auto rows stretch to fill the (taller) scroller, padding
+     every card out with ~80px of dead space. */
+  align-content: start;
 }
 
   
@@ -242,11 +253,19 @@ a {
 
 /* Sticky scribble behind the timeline, with lightening blend */
 .mask{
-  position: sticky;
-  top: 100px;                  /* clear the fixed header; tweak if needed */
+  /* `position: sticky` was measured to have ZERO travel here (this box is a
+     grid item exactly as tall as its container), so it never moved -- it only
+     promoted a 1440x5000 blended layer. WebKit tiles above 2048px and is known
+     to drop the blend when such a layer re-tiles mid-scroll. */
   mix-blend-mode: lighten;
   z-index: 2;
   background: rgb(248,252,252);
+  /* No JS -> no scribble -> this sheet would hide the entire timeline. */
+  display: none;
+}
+
+.mask.is-ready {
+  display: block;
 }
 
 /* Make the SVG span the viewport width */
@@ -256,30 +275,20 @@ a {
 #scribble path {
     stroke: black;
     fill: none;
-    stroke-width: 84px;          /* adjust to taste */
+    stroke-width: 110px;         /* adjust to taste */
     stroke-linecap: round;
     stroke-linejoin: round;
-    vector-effect: non-scaling-stroke;   /* ← keeps thickness constant */
-  
+
+    /* hidden until the reveal sets real values, so the finished line never
+       flashes on screen before JS runs */
     stroke-dasharray: 1;
     stroke-dashoffset: 1;
-    transition: stroke-dashoffset 0.06s linear;
-    will-change: stroke-dashoffset;
   }
   
 
 
 .scroller svg { width: 100%; height: 100%; }
 
-
-/* Keep the scribble in place as content scrolls under it */
-.mask {
-    position: sticky;
-    top: 100px;          /* clear your fixed header */
-    mix-blend-mode: lighten;
-    z-index: 2;
-    background: rgb(248,252,252);
-  }
 
 
 @keyframes draw {
@@ -362,7 +371,10 @@ a {
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 10px;
     width: 90vw;
-    height: 50vh;
+    /* Was a hard height: 50vh, which clipped the card copy on shorter laptop
+       screens (the items are overflow: hidden). min-height keeps the same
+       proportions when the text fits and lets the row grow when it does not. */
+    min-height: 50vh;
     margin: 0 auto;
 }
 
@@ -395,12 +407,6 @@ a {
     transform: scale(1.2);
     z-index: 15;
 
-}
-
-.link-text {
-    text-decoration: none;
-    color: crimson;
-    font-weight: bold;
 }
 
 
@@ -437,14 +443,14 @@ a {
         border-radius: 5% 5% / 5% 5%; 
     }
 
+    9% {
+        border-radius: 30% 20% 30% 20% / 20% 30% 20% 30%; 
+    }
     14% {
         border-radius: 40% 15% 40% 15% / 15% 40% 15% 40%; 
     }
     27% {
         border-radius: 35% 25% 35% 25% / 25% 35% 25% 35%; 
-    }
-    9% {
-        border-radius: 30% 20% 30% 20% / 20% 30% 20% 30%; 
     }
     50% {
         border-radius: 25% 15% 25% 15% / 15% 25% 15% 25%; 
@@ -481,3 +487,35 @@ html, body {
 
 /* tame the space between cards a touch */
 .timeline-component { margin: 0 20px 14px; }
+
+
+/* The ripple animates border-radius, which repaints every frame. Off-screen
+   cards get paused by the IntersectionObserver in index.html so idle CPU
+   stays at zero; the wobble is unchanged while a card is actually visible. */
+.grid-item.ripple-paused {
+    animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .grid-item,
+    .grid-item:hover {
+        animation: none;
+    }
+    .visible-selector-content {
+        animation: none;
+        opacity: 1;
+    }
+    .expand,
+    .button-link,
+    .scroll-button {
+        transition: none;
+    }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+    /* Correct behaviour is "already drawn", never "hidden". */
+    #scribble path {
+        stroke-dashoffset: 0 !important;
+    }
+}

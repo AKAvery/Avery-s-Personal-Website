@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="My name is Avery Allen, a high school student passionate about computer science. Feel free to explore my projects and achievements. Enjoy browsing my page and discovering what it has to offer!">
+    <meta name="description" content="Avery Allen — Computer Science student at UT Austin (B.S. 2028) building AI systems, trading infrastructure, and full-stack products. Software engineering intern at Chinstrap Ventures. Explore my projects and experience.">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}">
     <link rel="icon" href="{{ url_for('static', filename='images/AAlogo.png') }}" type="image/png">
     <title>Avery's Website</title>
@@ -29,7 +29,7 @@
                         <img style="margin-left: 200px; height: 25%; width: 25%; margin-bottom: 20px; border-radius: 5px;" src="{{ url_for('static', filename='images/index_about_me.jpeg') }}">
                         <div class="page-column-section">
                             <div class="page-text" style="width: 70%; margin-left: 150px; margin-right: 150px;">
-                                I'm Avery Allen and this is my Personal Website! I love pushing the boundaries of coding and exploring the different possibilities that can be achieved from code! While I am learning different Algorithms, Data Structures, Machine Learning Model, and various software for Robotics skills, this website was made to hone my front-end and back-end skills for Web Design/App Development and really show who I am! I hope you explore my whole website and enjoy the extra visual features I added!
+                                I'm Avery Allen, a Computer Science student at the University of Texas at Austin. I like building things that actually run in production — an async trading bot placing live orders on Kalshi, an AI rehab platform with 256 API routes behind it, a forensic debugger for multi-agent AI workflows. Most recently I spent a summer as a software engineering intern at Chinstrap Ventures, rebuilding their AI research pipeline and standing up real dev/staging/prod environments. This site is where I keep track of that work, and it's hand-built — every animation, SVG, and layout quirk here is mine. Have a look around.
                             </div>
                             <a href="/about" class="button-link">About Me</a>
                         </div>
@@ -42,27 +42,27 @@
                     <div class="grid-container selector-content" style="margin-top: 75px; margin-bottom: 75px;">
                         <div class="grid-item">
                             <h1>Python</h1>
-                            <p style="margin-top: 15%; line-height: 1.4;">I have ample experience with Python due to various online resources and problem sets. I've completed <a class="link-text" href="https://pll.harvard.edu/course/cs50-introduction-computer-science" target="_blank">CS50's Introduction to Computer Science</a>, Intro To Python Book, and <a class="link-text" href="https://www.youtube.com/playlist?list=PLeo1K3hjS3uu_n_a__MI_KktGTLYopZ12" target="_blank">Data Structures & Algorithms Tutorial</a> on Youtube as well as actively completing many easy and medium problems on <a class="link-text" href="https://leetcode.com/progress/?page=1" target="_blank">Leetcode</a> with Python3.</p>
+                            <p style="font-size: 14.8px; margin-top: 12%; line-height: 1.4;">My strongest language. I use it for async systems &mdash; my <a class="link-text" href="/kalshiBot">Kalshi trading bot</a> runs REST and WebSocket feeds with live order execution &mdash; and for ML work with scikit-learn, NumPy, and pandas. It is also behind the <a class="link-text" href="/premedCopilot">premed copilot</a> data pipeline and the <a class="link-text" href="/longhornNeurotech">Longhorn Neurotech</a> networking layer.</p>
                         </div>
                         <div class="grid-item">
-                            <h1>Java</h1>
-                            <p style="margin-top: 15%; line-height: 1.4;">I am very comfortable with Java as a result of my school courses and being involved in robotics. I was familiarized with Java learning from <a class="link-text" href="https://runestone.academy/ns/books/published/csawesome/index.html" target="_blank"> CSAwesome's AP CSA Java Course</a> and furthered my Java understanding working on Motor Controls with PID's and LazerCAN sensor's for the AustinCAN's FRC Robot.</p>
+                            <h1>TypeScript, Next.js</h1>
+                            <p style="margin-top: 15%; line-height: 1.4;">My default stack for shipping products. <a class="link-text" href="/kneeEd">KneeEd</a> is a Next.js 16 app with 256 API routes in production; I architected the <a class="link-text" href="/premedCopilot">premed copilot</a> across 20+ routes, and spent the summer in a React/TypeScript codebase at <a class="link-text" href="/cossmology">Cossmology</a>.</p>
                         </div>
                         <div class="grid-item">
-                            <h1>HTML, CSS, JavaScript</h1>
-                            <p style="margin-top: 15%; line-height: 1.4;">I've worked on numerous projects with my friends and by myself using HTML/CSS/JavaScript such as <a class="link-text" href="/andersonCodingClub">my coding club's web page</a>, various hackathon projects, and this <a class="link-text" href="place-holder">personal website</a>.</p>
+                            <h1 style="font-size: 17px;">AI &amp; Agent Engineering</h1>
+                            <p style="font-size: 14.8px; margin-top: 15%; line-height: 1.4;">Building with LLMs as components, not chatbots. LangGraph multi-agent pipelines and the forensic debugger for them in <a class="link-text" href="/orcaStrike">OrcaStrike</a>; an 8-stage rehab-plan pipeline with an LLM-as-judge evaluator in <a class="link-text" href="/kneeEd">KneeEd</a>; chunked parallel eval harnesses at <a class="link-text" href="/cossmology">Cossmology</a>.</p>
                         </div>
                         <div class="grid-item">
-                            <h1>React Native, TypeScript</h1>
-                            <p style="margin-top: 15%; line-height: 1.4;">Due to my work on <a class="link-text" href="/fistbump">Fistbump</a>, I have gained front-end skills working with React Native/TypeScript. With continuous work and goals to expand this app as well as hopes of creating many more apps in the future, I know these skills will continue to grow.</p>
+                            <h1 style="font-size: 17px;">Postgres, Supabase</h1>
+                            <p style="font-size: 14.8px; margin-top: 15%; line-height: 1.4;">Schema design and the security model on top of it. 81 row-level-security migrations across <a class="link-text" href="/kneeEd">KneeEd</a>, RLS and Google OAuth on the <a class="link-text" href="/premedCopilot">premed copilot</a>, and at <a class="link-text" href="/cossmology">Cossmology</a> I found and fixed an RLS gap that was blanking the site for every logged-in non-admin user.</p>
                         </div>
                         <div class="grid-item">
-                            <h1 style="font-size: 17px;">Machine Learning, Artificial Intelligence</h1>
-                            <p style="font-size: 14.8px; margin-top: 15%; line-height: 1.4;">Over the past year I have had substantial involvement with machine learning taking <a class="link-text" href="https://www.inspiritai.com/" target="_blank">Inspirit AI's Scholar</a> program, <a class="link-text" href="https://www.inspiritai.com/blogs/ai-student-blog/inspirit-ai-overview-by-an-ai-ambassador" target="_blank">Inspirit AI's Ambassador</a> program (link to blog page by fellow ambassador), and am currently taking <a class="link-text" href="https://www.inspiritai.com/returning-students" target="_blank">Inspirit AI's Independent Project Mentorship</a> program where I am in the process of making a research paper using CNN and NLP models.</p>
+                            <h1>Java, C/C++</h1>
+                            <p style="font-size: 14.8px; margin-top: 12%; line-height: 1.4;">Where I started. Two seasons of FRC robotics on <a class="link-text" href="/canKiosk">AusTINCANs</a> &mdash; 20+ autonomous routines and PID movement primitives in Java/PathPlanner, plus my school's first LaserCAN integration. C/C++ came back around through Computer Architecture at UT.</p>
                         </div>
                         <div class="grid-item">
-                            <h1>C++, SQL</h1>
-                            <p style="margin-top: 15%; line-height: 1.4;">I have a sufficient understanding of C++ and SQL as I learned the fundamentals of these languages in <a class="link-text" href="https://pll.harvard.edu/course/cs50-introduction-computer-science" target="_blank">CS50's Introduction to Computer Science</a>.</p>
+                            <h1 style="font-size: 17px;">DevOps &amp; Infrastructure</h1>
+                            <p style="font-size: 14.8px; margin-top: 15%; line-height: 1.4;">At <a class="link-text" href="/cossmology">Cossmology</a> I owned the DevOps overhaul: dev&rarr;staging&rarr;prod environments on Supabase branching with a nightly prod&rarr;staging sync in GitHub Actions. Day to day that means Git, Linux, Vercel, and CI &mdash; 80 commits across 11 merged PRs that summer. More on <a class="link-text" href="https://github.com/AKAvery" target="_blank">GitHub</a>.</p>
                         </div>
                     </div>
                 </div>
@@ -165,9 +165,10 @@
                         <div class="timeline-component timeline-component-bg">
                             <h2 class="timeline-title">KneeEd</h2>
                             <p class="timeline-paragraph">
-                                KneeEd is my AI-guided recovery and performance platform. I’m building the website/app from scratch—
-                                daily “recipes,” check-ins, and adaptive plans—while learning full-stack, databases, and AI integration.
-                                </p>                            </p>
+                                KneeEd is my AI-guided recovery and performance platform, and the project I have kept returning to
+                                longest. It has grown from a first attempt at full-stack into a production Next.js 16 and Supabase app
+                                with 256 API routes, 81 row-level-security migrations, and an 8-stage AI rehab-plan pipeline behind it.
+                            </p>
                         </div>
                         <div class="timeline-middle">
                             <div class="timeline-point"></div>
@@ -186,7 +187,7 @@
                             <p class="timeline-paragraph">
                                 An interactive kiosk for robotics competitions that let judges, students, and other teams explore our robot,
                                 strategy, and results when we weren’t at the pit. It tracked every click so we could see what visitors cared about
-                                and refine our presentation.
+                                and refine our presentation.</p>
                         </div>
                     
                         <div class="timeline-component timeline-component-bg">
@@ -202,6 +203,94 @@
                         <div class="timeline-component">
                             <div class="timeline-date">Feb 15th, 2025</div>
                         </div>
+                        <div class="timeline-component">
+                            <div class="timeline-date timeline-date-right">Aug 2025 &ndash; Present</div>
+                        </div>
+                        <div class="timeline-middle">
+                            <div class="timeline-point"></div>
+                        </div>
+                        <div class="timeline-component timeline-component-bg">
+                            <h2 class="timeline-title">Started at UT Austin</h2>
+                            <p class="timeline-paragraph">
+                                Began my B.S. in Computer Science at the University of Texas at Austin, on track to graduate May 2028.
+                                Coursework in Data Structures &amp; Algorithms, Discrete Math, Computer Architecture, Linear Algebra, and
+                                Calculus III gave me the formal grounding that the self-taught years had been missing.
+                            </p>
+                        </div>
+                        <div class="timeline-component timeline-component-bg">
+                            <h2 class="timeline-title">Kalshi Algorithmic Trading Bot</h2>
+                            <p class="timeline-paragraph">
+                                Built and solo-deployed a live algorithmic trading bot on Kalshi prediction markets &mdash; over $3.6K in live
+                                volume across near-expiry sports, weather, and economic markets plus S&amp;P 500 tail-bracket mispricing.
+                                This was my first time being responsible for code that moves real money, which taught me a lot about
+                                circuit breakers, position limits, and crash recovery.
+                            </p>
+                        </div>
+                        <div class="timeline-middle">
+                            <div class="timeline-point"></div>
+                        </div>
+                        <div class="timeline-component">
+                            <div class="timeline-date">Oct 2025 &ndash; Present</div>
+                        </div>
+                        <div class="timeline-component">
+                            <div class="timeline-date timeline-date-right">Oct &ndash; Nov 2025</div>
+                        </div>
+                        <div class="timeline-middle">
+                            <div class="timeline-point"></div>
+                        </div>
+                        <div class="timeline-component timeline-component-bg">
+                            <h2 class="timeline-title">Longhorn Neurotech &mdash; 1st Place</h2>
+                            <p class="timeline-paragraph">
+                                Won first place in the Longhorn Neurotech Fall Competition with a gesture-controlled robotics entry.
+                                I owned the Python-to-ESP32 WiFi networking layer &mdash; UDP broadcast discovery, a persistent TCP channel,
+                                and reconnect logic that held up through a live demo &mdash; and contributed to the EMG and EEG classifiers
+                                behind it.
+                            </p>
+                        </div>
+                        <div class="timeline-component timeline-component-bg">
+                            <h2 class="timeline-title">Tech Lead &mdash; UT Premed AI Copilot</h2>
+                            <p class="timeline-paragraph">
+                                Led a 4-person tech team through Convergent to build a medical school admissions copilot for UT premed
+                                students, and presented it to CEOs and investors at the end-of-semester showcase. My first time being
+                                responsible for other people's work as well as my own.
+                            </p>
+                        </div>
+                        <div class="timeline-middle">
+                            <div class="timeline-point"></div>
+                        </div>
+                        <div class="timeline-component">
+                            <div class="timeline-date">Spring 2026</div>
+                        </div>
+                        <div class="timeline-component">
+                            <div class="timeline-date timeline-date-right">Apr 2026</div>
+                        </div>
+                        <div class="timeline-middle">
+                            <div class="timeline-point"></div>
+                        </div>
+                        <div class="timeline-component timeline-component-bg">
+                            <h2 class="timeline-title">OrcaStrike &mdash; AI Security Hackathon</h2>
+                            <p class="timeline-paragraph">
+                                Built a post-execution forensic debugger for multi-agent AI workflows: it pinpoints where trust broke,
+                                traces how tainted data propagated across agent handoffs, and names the minimum control that would have
+                                stopped it. We demoed a full exploit chain through a 5-agent finance pipeline, then proved a guarded
+                                rerun blocked it at the exact trust boundary.
+                            </p>
+                        </div>
+                        <div class="timeline-component timeline-component-bg">
+                            <h2 class="timeline-title">Software Engineering Intern &mdash; Chinstrap Ventures</h2>
+                            <p class="timeline-paragraph">
+                                My first industry internship, working on Cossmology&rsquo;s production React/TypeScript/Supabase platform.
+                                I owned a DevOps overhaul, rebuilt a 2,000-line AI headline-research pipeline, overhauled the admin
+                                curation console, and fixed production incidents &mdash; 80 commits across 11 merged PRs. Working in a
+                                codebase where mistakes were visible to real users changed how I write code.
+                            </p>
+                        </div>
+                        <div class="timeline-middle">
+                            <div class="timeline-point"></div>
+                        </div>
+                        <div class="timeline-component">
+                            <div class="timeline-date">Jun &ndash; Aug 2026</div>
+                        </div>
                         <div style="margin-bottom: 100px;"></div>
                     </div>
                 </div>
@@ -209,8 +298,7 @@
                     <button class="scroll-button" onclick="scrollToTopButton()">Back To Top</button>
                 </div>
             </section>
-       
-
+        </div>
     </div>
     <script>
         function scrollToTopButton() {
@@ -219,51 +307,80 @@
             });
         }
 
-        function myFunction() {
-            var element = document.body
-            element.classList.toggle("background-change");
+        // One rAF-batched scroll pipeline for the whole page. Previously three
+        // separate non-passive scroll listeners each did their own DOM reads.
+        const headerEl = document.querySelector('.header');
+        let scrollQueued = false;
+        const onScrollTasks = [];
+
+        function runScrollTasks() {
+            scrollQueued = false;
+            for (let i = onScrollTasks.length - 1; i >= 0; i--) {
+                if (onScrollTasks[i]() === 'done') onScrollTasks.splice(i, 1);
+            }
+            if (!onScrollTasks.length) {
+                window.removeEventListener('scroll', queueScroll);
+                window.removeEventListener('resize', queueScroll);
+            }
         }
 
-        const headerEl = document.querySelector('.header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                headerEl.classList.add('header-scrolled');
-            } else if (window.scrollY < 100) {
-                headerEl.classList.remove('header-scrolled');
-            }
+        function queueScroll() {
+            if (scrollQueued) return;
+            scrollQueued = true;
+            requestAnimationFrame(runScrollTasks);
+        }
+
+        window.addEventListener('scroll', queueScroll, { passive: true });
+        window.addEventListener('resize', queueScroll, { passive: true });
+
+        onScrollTasks.push(function headerShadow() {
+            headerEl.classList.toggle('header-scrolled', window.scrollY > 100);
         });
 
         document.addEventListener('DOMContentLoaded', function () {
-            const navLinks = document.querySelectorAll('.nav-text');
-            navLinks.forEach(link => {
-                if (link.href === window.location.href) {
+            const here = window.location.pathname;
+            document.querySelectorAll('.nav-text').forEach(link => {
+                if (new URL(link.href, window.location.origin).pathname === here) {
                     link.classList.add('active');
                 }
             });
 
+            // Same reveal rule as before (bottom within 150px of the fold), but
+            // the list is cached, each element is dropped once it has been
+            // revealed, and the whole task retires when nothing is left.
+            let pending = Array.from(document.querySelectorAll('.selector-content'));
+
             function checkVisibility() {
-                const elements = document.querySelectorAll('.selector-content');
-                elements.forEach(footerEl => {
-                    const rect = footerEl.getBoundingClientRect();
-                    if (rect.bottom <= (window.innerHeight + 150)) {
-                        footerEl.classList.add('visible-selector-content');
+                const fold = window.innerHeight + 150;
+                for (let i = pending.length - 1; i >= 0; i--) {
+                    if (pending[i].getBoundingClientRect().bottom <= fold) {
+                        pending[i].classList.add('visible-selector-content');
+                        pending.splice(i, 1);
                     }
-                })
+                }
+                return pending.length ? undefined : 'done';
             }
 
-            window.addEventListener('scroll', checkVisibility);
-            window.addEventListener('resize', checkVisibility);
-            checkVisibility();
+            if (checkVisibility() !== 'done') onScrollTasks.push(checkVisibility);
 
+            // The ripple animates border-radius, which repaints every frame and
+            // never stops. Pause it whenever a card is not on screen.
+            const cards = document.querySelectorAll('.grid-item');
+            if (cards.length && 'IntersectionObserver' in window) {
+                const rippleObserver = new IntersectionObserver(entries => {
+                    entries.forEach(e => e.target.classList.toggle('ripple-paused', !e.isIntersecting));
+                }, { rootMargin: '100px' });
+                // Don't pre-pause: that would delay the animation start and shift
+                // its phase. The observer pauses the off-screen ones on its first
+                // callback instead.
+                cards.forEach(card => rippleObserver.observe(card));
+            }
         });
-
-        
 
     </script>
     <script>
 (function () {
   /* ===== Aesthetics / feel ===== */
-  const SPEED = 1.2;          // 1 = baseline reveal speed
   const STEP  = 120;          // nominal vertical distance per wave
   const EXTRA_WAVES = 0;      // keep unless you want more length
 
@@ -336,70 +453,147 @@
   }
 
   /* ---------- Guard-rails & reveal ---------- */
-  let path, len = 0, startY = 0, endY = 0;
+  let chunks = [];
+  let svgTop = 0;
   let settleAttempts = 0, lastH = -1, stableFrames = 0;
+  let timelineEl = null;
+  const timeline = () => (timelineEl ||= document.querySelector('.timeline'));
 
-  const LEAD_IN_SCREENS  = 0.8;
-  const TAIL_OUT_SCREENS = 0.10;
-  const START_PIXEL_OFFSET = 20;
+  /* Where the pen sits, measured UP from the bottom of the screen. */
+  const DRAW_EDGE_SCREENS = 0.12;
+  const CHUNK_PX   = 500;   // vertical size of each sub-path
+  const LUT_POINTS = 48;    // Y->length samples per chunk
+
+  /* Splitting the scribble into sub-paths is the whole point: only the ONE
+     chunk under the pen carries a stroke-dasharray, so Skia re-measures ~17
+     curve segments per frame instead of all ~170. Chunks above the pen are
+     plain undashed strokes (no dash work at all); chunks below are hidden. */
+  function splitIntoChunks(d) {
+    const head = d.match(/^M\s*(-?[\d.]+)[\s,]+(-?[\d.]+)/);
+    if (!head) return [];
+    let curX = parseFloat(head[1]), curY = parseFloat(head[2]);
+    const cmds = d.slice(head[0].length).match(/C[^C]*/g) || [];
+    const out = [];
+    let startX = curX, startY = curY, acc = '', y0 = curY;
+    for (const c of cmds) {
+      acc += ' ' + c.trim();
+      const n = c.replace('C', '').trim().split(/[\s,]+/).map(Number);
+      if (n.length >= 6) { curX = n[4]; curY = n[5]; }
+      if (curY - y0 >= CHUNK_PX) {
+        out.push({ d: `M ${startX} ${startY}${acc}`, y0, y1: curY });
+        startX = curX; startY = curY; acc = ''; y0 = curY;
+      }
+    }
+    if (acc) out.push({ d: `M ${startX} ${startY}${acc}`, y0, y1: curY });
+    return out;
+  }
+
+  function buildChunkLut(ch) {
+    const table = new Float64Array(LUT_POINTS + 1);
+    let maxY = ch.y0;
+    for (let i = 0; i <= LUT_POINTS; i++) {
+      try {
+        const y = ch.el.getPointAtLength((i / LUT_POINTS) * ch.len).y;
+        if (y > maxY) maxY = y;
+      } catch {}
+      table[i] = maxY;
+    }
+    ch.lut = table;
+  }
+
+  function lengthForY(ch, targetY) {
+    const lut = ch.lut;
+    if (!lut) return 0;
+    if (targetY <= lut[0]) return 0;
+    if (targetY >= lut[LUT_POINTS]) return ch.len;
+    let lo = 1, hi = LUT_POINTS;
+    while (lo < hi) {
+      const mid = (lo + hi) >> 1;
+      if (lut[mid] < targetY) lo = mid + 1; else hi = mid;
+    }
+    const y0 = lut[lo - 1], y1 = lut[lo];
+    const f = y1 > y0 ? (targetY - y0) / (y1 - y0) : 0;
+    return ((lo - 1 + f) / LUT_POINTS) * ch.len;
+  }
 
   function computeBounds() {
-    const tl  = document.querySelector('.timeline');
-    const vh  = window.innerHeight || document.documentElement.clientHeight;
-    const top = tl.getBoundingClientRect().top + window.scrollY;
-    const height = tl.scrollHeight;
-    const leadIn  = vh * LEAD_IN_SCREENS + START_PIXEL_OFFSET;
-    const tailOut = vh * TAIL_OUT_SCREENS;
-    startY = top - leadIn;
-    endY   = top + height - tailOut;
+    const svg = document.getElementById('scribble');
+    if (!svg) return;
+    svgTop = svg.getBoundingClientRect().top + window.scrollY;
   }
 
   function forceRevealNow() {
-    if (!path || !len) return;
-    const span = Math.max(1, endY - startY);
-    let base = (window.scrollY - startY) / span;
-    base = Math.max(0, Math.min(1, base * SPEED));
-    path.style.strokeDashoffset = `${len * (1 - base)}`;
+    if (!chunks.length) return;
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    const targetY = (window.scrollY + vh - vh * DRAW_EDGE_SCREENS) - svgTop;
+
+    for (let i = 0; i < chunks.length; i++) {
+      const ch = chunks[i];
+      if (targetY >= ch.y1) {
+        if (ch.state !== 2) {               // done: drop the dash entirely
+          ch.el.style.strokeDasharray = 'none';
+          ch.el.style.strokeDashoffset = '0';
+          ch.state = 2;
+        }
+      } else if (targetY <= ch.y0) {
+        if (ch.state !== 0) {               // not reached yet
+          ch.el.style.strokeDasharray = `${ch.len}`;
+          ch.el.style.strokeDashoffset = `${ch.len}`;
+          ch.state = 0;
+        }
+      } else {                               // the one being drawn
+        if (ch.state !== 1) {
+          ch.el.style.strokeDasharray = `${ch.len}`;
+          ch.state = 1;
+        }
+        ch.el.style.strokeDashoffset = `${ch.len - lengthForY(ch, targetY)}`;
+      }
+    }
   }
 
   function sizeScribble() {
-    const tl  = document.querySelector('.timeline');
+    const tl  = timeline();
     const svg = document.getElementById('scribble');
     if (!tl || !svg) return;
 
     const W = Math.max(window.innerWidth, document.documentElement.clientWidth);
-    const H = tl.scrollHeight + 300 + (EXTRA_WAVES * STEP);
+
+    /* tl.scrollHeight is the STRETCHED height and this SVG is what stretches
+       it, so feeding it back in grew the section on every resize. */
+    const tlStyle = getComputedStyle(tl);
+    const rowsH = tlStyle.gridTemplateRows.split(' ')
+                    .reduce((a, b) => a + (parseFloat(b) || 0), 0);
+    const contentH = (rowsH || tl.scrollHeight)
+                   + (parseFloat(tlStyle.paddingTop) || 0)
+                   + (parseFloat(tlStyle.paddingBottom) || 0);
+    const H = contentH + 300 + (EXTRA_WAVES * STEP);
 
     const { d, height, width } = buildScribblePath(H, W, { step: STEP });
 
+    const NS = 'http://www.w3.org/2000/svg';
     svg.innerHTML = '';
-    path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    path.setAttribute('d', d);
-    path.setAttribute('vector-effect', 'non-scaling-stroke');
-    svg.appendChild(path);
+    chunks = splitIntoChunks(d).map(ch => {
+      const el = document.createElementNS(NS, 'path');
+      el.setAttribute('d', ch.d);
+      svg.appendChild(el);
+      ch.el = el;
+      ch.len = el.getTotalLength();
+      ch.state = -1;
+      buildChunkLut(ch);
+      return ch;
+    });
 
     svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
     svg.style.width  = '100vw';
     svg.style.height = `${height}px`;
 
-    // get path length (retry if we get 0 during layout)
-    len = path.getTotalLength();
-    if (!len || len === 0) {
-      requestAnimationFrame(() => {
-        try { len = path.getTotalLength(); } catch {}
-        finalizeRevealFrame();
-      });
-    } else {
-      finalizeRevealFrame();
-    }
+    finalizeRevealFrame();
   }
 
   function finalizeRevealFrame() {
-    if (!path) return;
-    path.style.strokeDasharray  = `${len}`;
-    path.style.strokeDashoffset = `${len}`;
+    if (!chunks.length) return;
+    document.querySelector('.mask')?.classList.add('is-ready');
     computeBounds();
-    // Force correct position immediately + on the next frames (covers scroll restoration)
     forceRevealNow();
     requestAnimationFrame(forceRevealNow);
     setTimeout(forceRevealNow, 60);
@@ -408,10 +602,11 @@
 
   // Wait for layout to settle (heights stable) before building the path
   function settleLayoutThenDraw() {
-    const tl = document.querySelector('.timeline');
+    const tl = timeline();
     if (!tl) return;
 
-    const h = tl.scrollHeight;
+    const h = getComputedStyle(tl).gridTemplateRows.split(' ')
+                .reduce((a, b) => a + (parseFloat(b) || 0), 0) || tl.scrollHeight;
     if (h <= 0) {
       if (settleAttempts++ < 60) return requestAnimationFrame(settleLayoutThenDraw);
       // give up gracefully
@@ -453,9 +648,11 @@
   });
 
   // Normal scroll reveal updates
+  let revealQueued = false;
   window.addEventListener('scroll', () => {
-    // If len is 0 because draw hasn’t settled yet, we’ll force after settle
-    if (len) forceRevealNow();
+    if (!chunks.length || revealQueued) return;
+    revealQueued = true;
+    requestAnimationFrame(() => { revealQueued = false; forceRevealNow(); });
   }, { passive: true });
 
   kick();
