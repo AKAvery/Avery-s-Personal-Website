@@ -131,6 +131,8 @@ header {
     margin: 0 auto;
     background: white;
     margin-top: 210px;
+    /* breathing room between the hero photo's edge and the first card */
+    padding-top: 100px;
 }
 
 .profile-picture {
@@ -267,7 +269,7 @@ a {
      to drop the blend when such a layer re-tiles mid-scroll. */
   mix-blend-mode: lighten;
   z-index: 2;
-  background: rgb(248,252,252);
+  background: white;   /* must match the section behind it (lighten blend) */
   /* No JS -> no scribble -> this sheet would hide the entire timeline. */
   display: none;
 }
@@ -355,35 +357,114 @@ a {
     opacity: 0;
 }
 
+/* Same slide-in-from-the-right as the Projects page cards. */
 .visible-selector-content {
-    animation: appear 1.25s forwards;
-
+    animation: slidingAnimationRight 1s ease-out forwards;
 }
 
-@keyframes appear {
+@keyframes slidingAnimationRight {
     0% {
-        transform: translateY(10%);
+        opacity: 0;
+        transform: translateX(100%);
     }
-    15% {
-        transform: translateY(9%);
-    }
-    100% {  
+    100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateX(0%);
     }
+}
+
+/* Rainbow hairline between sections, copied from projects.css. */
+.gradient-hr {
+    border: 0;
+    height: 2px;
+    background: linear-gradient(to right, lightblue, lightgreen, pink);
+    width: 75%;
+    margin: 100px auto;
+}
+
+/* White rounded panel with a soft shadow, matching the Projects cards,
+   including their idle wobble and hover ripple (projects.css .content). */
+.home-card {
+    box-sizing: border-box;
+    width: 75vw;
+    max-width: 1200px;
+    padding: 60px 80px;
+    background: white;
+    box-shadow: 0 3px 10px 1px rgb(0, 0, 0, 0.2);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    animation: subtleRippleEffect 5s infinite ease-in-out alternate;
+}
+
+.home-card:hover {
+    animation: bigRippleEffect .7s ease-in-out forwards;
+    transform: scale(1.03, 1.03);
+}
+
+.home-card-heading {
+    margin: 0 0 50px;
+    font-size: 35px;
+    text-align: center;
+}
+
+.home-bio {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 60px;
+}
+
+.home-bio-img {
+    display: block;
+    width: 100%;
+    border-radius: 12px;
+}
+
+.home-bio picture {
+    flex: 0 0 22%;
+}
+
+.home-bio-text {
+    flex: 1;
+    align-items: center;
+}
+
+.home-bio-text .page-text {
+    margin: 0;
+}
+
+.home-timeline {
+    width: 100%;
+}
+
+.timeline-heading {
+    font-size: 45px;
+    text-align: center;
+    margin: 0 0 75px;
 }
 
 .grid-container {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-gap: 10px;
-    width: 90vw;
-    /* Was a hard height: 50vh, which clipped the card copy on shorter laptop
-       screens (the items are overflow: hidden). min-height keeps the same
-       proportions when the text fits and lets the row grow when it does not. */
-    min-height: 50vh;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 24px;
+    width: 100%;
+    /* No fixed height: rows size to their copy (items are overflow: hidden,
+       so a hard height clipped text on shorter screens). */
     margin: 0 auto;
+}
+
+@media (max-width: 1000px) {
+    .grid-container { grid-template-columns: repeat(2, 1fr); }
+    .home-card { width: 90vw; padding: 40px; }
+    .home-bio { flex-direction: column; gap: 30px; }
+    .home-bio picture { flex-basis: auto; width: 40%; }
+}
+
+@media (max-width: 600px) {
+    .grid-container { grid-template-columns: 1fr; }
+    .home-card { padding: 28px 20px; }
+    .gradient-hr { margin: 60px auto; }
+    .timeline-heading { font-size: 32px; }
 }
 
 .grid-item {
@@ -500,15 +581,19 @@ html, body {
 /* The ripple animates border-radius, which repaints every frame. Off-screen
    cards get paused by the IntersectionObserver in index.html so idle CPU
    stays at zero; the wobble is unchanged while a card is actually visible. */
-.grid-item.ripple-paused {
+.grid-item.ripple-paused,
+.home-card.ripple-paused {
     animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
     .grid-item,
-    .grid-item:hover {
+    .grid-item:hover,
+    .home-card,
+    .home-card:hover {
         animation: none;
     }
+    .home-card { border-radius: 24px; }
     .visible-selector-content {
         animation: none;
         opacity: 1;

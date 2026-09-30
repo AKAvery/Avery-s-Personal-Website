@@ -52,7 +52,7 @@
                 <div class="selector-content">
                     <div class="prose-block">
                         <h2 class="section-heading">Overview</h2>
-                            <p class="page-text">Kalshi is a regulated prediction market: contracts settle at $1 or $0 depending on whether an event happens. That makes it an unusually clean place to test an execution system &mdash; the payoff is binary, settlement is unambiguous, and the interesting edge sits in the last minutes before expiry, where prices drift away from what the underlying data already implies.</p>
+                            <p class="page-text">Kalshi is a regulated prediction market: contracts settle at $1 or $0 depending on whether an event happens. That makes it an unusually clean place to test an execution system: the payoff is binary, settlement is unambiguous, and the interesting edge sits in the last minutes before expiry, where prices drift away from what the underlying data already implies.</p>
                             <p class="page-text">I built and deployed this bot end to end by myself. It has traded over $3.6K in live volume. Everything below runs against real money, which is the part that taught me the most: a bug here is not a failing test, it is a filled order.</p>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                     <div class="prose-block">
                         <h2 class="section-heading">Strategies</h2>
                             <p class="page-text">The bot runs several strategies concurrently, each with its own risk budget:</p>
-                            <ul class="bullet-list"><li><strong>Near-expiry sports markets</strong> &mdash; contracts minutes from settlement where the live game state has effectively already decided the outcome.</li><li><strong>Weather markets</strong> &mdash; temperature and precipitation contracts checked against forecast and observation data.</li><li><strong>Economic markets</strong> &mdash; event contracts on scheduled data releases.</li><li><strong>S&amp;P 500 tail-bracket mispricing</strong> &mdash; far out-of-the-money daily brackets that stay bid above their fair value.</li></ul>
+                            <ul class="bullet-list"><li><strong>Near-expiry sports markets:</strong> contracts minutes from settlement where the live game state has effectively already decided the outcome.</li><li><strong>Weather markets:</strong> temperature and precipitation contracts checked against forecast and observation data.</li><li><strong>Economic markets:</strong> event contracts on scheduled data releases.</li><li><strong>S&amp;P 500 tail-bracket mispricing:</strong> far out-of-the-money daily brackets that stay bid above their fair value.</li></ul>
                     </div>
                 </div>
 

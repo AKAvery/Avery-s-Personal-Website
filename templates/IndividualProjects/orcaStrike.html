@@ -52,7 +52,7 @@
                 <div class="selector-content">
                     <div class="prose-block">
                         <h2 class="section-heading">The problem</h2>
-                            <p class="page-text">When a multi-agent AI workflow does something it should not have, the logs tell you what happened but not where it went wrong. Each agent behaved reasonably given its input. The compromise lives in the handoffs &mdash; in the moment one agent treated another&rsquo;s output as trustworthy when it was not.</p>
+                            <p class="page-text">When a multi-agent AI workflow does something it should not have, the logs tell you what happened but not where it went wrong. Each agent behaved reasonably given its input. The compromise lives in the handoffs, in the moment one agent treated another&rsquo;s output as trustworthy when it was not.</p>
                             <p class="page-text">Existing tooling traces execution. It does not trace <em>trust</em>.</p>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                     <div class="prose-block">
                         <h2 class="section-heading">What it does</h2>
                             <p class="page-text">OrcaStrike is a post-execution forensic debugger that answers three questions about a finished multi-agent run:</p>
-                            <ul class="bullet-list"><li><strong>Where did trust break?</strong> The specific boundary where unverified data was accepted as authoritative.</li><li><strong>How did tainted data propagate?</strong> The path the poisoned input travelled across agent handoffs.</li><li><strong>What was the minimum control that would have blocked it?</strong> Not a list of hardening suggestions &mdash; the single smallest intervention that stops this chain.</li></ul>
+                            <ul class="bullet-list"><li><strong>Where did trust break?</strong> The specific boundary where unverified data was accepted as authoritative.</li><li><strong>How did tainted data propagate?</strong> The path the poisoned input travelled across agent handoffs.</li><li><strong>What was the minimum control that would have blocked it?</strong> Not a list of hardening suggestions. It is the single smallest intervention that stops this chain.</li></ul>
                             <p class="page-text">It is built on FastAPI and Next.js, instruments LangGraph pipelines, stores traces in MongoDB, and uses Groq&rsquo;s llama-3.3-70B for the analysis passes.</p>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                 <div class="selector-content">
                     <div class="prose-block">
                         <h2 class="section-heading">The demo</h2>
-                            <p class="page-text">We demonstrated a complete exploit chain rather than a synthetic example. A poisoned invoice enters a 5-agent LangGraph finance pipeline &mdash; document analyst, planner, policy, payment &mdash; and comes out the other side as an attacker-controlled ERP payment. Every individual agent did its job.</p>
+                            <p class="page-text">We demonstrated a complete exploit chain rather than a synthetic example. A poisoned invoice enters a 5-agent LangGraph finance pipeline (document analyst, planner, policy, payment) and comes out the other side as an attacker-controlled ERP payment. Every individual agent did its job.</p>
                             <p class="page-text">OrcaStrike then localised the break, and we proved the result by rerunning the pipeline with the recommended guard in place: it blocked the attack at exactly the trust boundary OrcaStrike had identified. Being able to verify the recommendation, not just produce it, was the part the judges cared about most.</p>
                     </div>
                 </div>

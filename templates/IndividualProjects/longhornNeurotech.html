@@ -21,7 +21,7 @@
             <main id="infinite-content">
                 <div class="project-hero">
                     <p class="project-eyebrow">Oct &ndash; Nov 2025 &middot; 1st Place, Fall Competition</p>
-                    <h1 class="project-title">Longhorn Neurotech &mdash; 1st Place</h1>
+                    <h1 class="project-title">Longhorn Neurotech &middot; 1st Place</h1>
                     <p class="project-tagline">Gesture-controlled robotics. I owned the networking layer between Python and the ESP32.</p>
                     <ul class="stack-list">
                             <li>Python</li>
@@ -60,7 +60,7 @@
                 <div class="selector-content">
                     <div class="prose-block">
                         <h2 class="section-heading">Networking layer</h2>
-                            <p class="page-text">I owned the Python-to-ESP32 WiFi networking layer &mdash; the piece connecting the laptop running inference to the robot actually moving.</p>
+                            <p class="page-text">I owned the Python-to-ESP32 WiFi networking layer, the piece connecting the laptop running inference to the robot actually moving.</p>
                             <p class="page-text">Discovery uses UDP broadcast, so the laptop finds the robot on whatever network the venue gives you rather than depending on a hardcoded address. Once found, commands stream over a persistent TCP channel, which keeps ordering and delivery guarantees for the control stream itself while leaving discovery connectionless.</p>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                     <div class="prose-block">
                         <h2 class="section-heading">Command protocol</h2>
                             <p class="page-text">A demo is an adversarial environment: crowded WiFi, one attempt, judges watching. I designed the command protocol with validation and acknowledgement retries, then tuned the reconnect logic specifically against dropped inputs. By the live demo it did not drop a single command.</p>
-                            <p class="page-text">Almost all of that tuning came from breaking it on purpose beforehand &mdash; pulling power, saturating the channel, and watching what the naive version did.</p>
+                            <p class="page-text">Almost all of that tuning came from breaking it on purpose beforehand: pulling power, saturating the channel, and watching what the naive version did.</p>
                     </div>
                 </div>
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Avery Allen — Computer Science student at UT Austin (B.S. 2028) building AI systems, trading infrastructure, and full-stack products. Software engineering intern at Chinstrap Ventures. Explore my projects and experience.">
+    <meta name="description" content="Avery Allen is a Computer Science student at UT Austin (B.S. 2028) building AI systems, trading infrastructure, and full-stack products. Software engineering intern at Chinstrap Ventures. Explore my projects and experience.">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}">
     <link rel="icon" href="{{ url_for('static', filename='images/AAlogo.png') }}" type="image/png">
     <title>Avery's Website</title>
@@ -28,54 +28,57 @@
         <div class="content page-column-section" style="padding-bottom: 0px;">
             <section>
                 <div class="selector-content">
-                    <div class="page-row-section" style="margin-top: 100px;">
+                    <div class="home-card home-bio">
                         <picture>
                           <source type="image/webp" srcset="{{ url_for('static', filename='images/index_about_me.webp') }}">
-                          <img style="margin-left: 200px; height: 25%; width: 25%; margin-bottom: 20px; border-radius: 5px;" src="{{ url_for('static', filename='images/index_about_me.jpeg') }}" decoding="async" loading="lazy" alt="Avery Allen">
+                          <img class="home-bio-img" src="{{ url_for('static', filename='images/index_about_me.jpeg') }}" decoding="async" loading="lazy" alt="Avery Allen">
                         </picture>
-                        <div class="page-column-section">
-                            <div class="page-text" style="width: 70%; margin-left: 150px; margin-right: 150px;">
-                                I'm Avery Allen, a Computer Science student at the University of Texas at Austin. I like building things that actually run in production — an async trading bot placing live orders on Kalshi, an AI rehab platform with 256 API routes behind it, a forensic debugger for multi-agent AI workflows. Most recently I spent a summer as a software engineering intern at Chinstrap Ventures, rebuilding their AI research pipeline and standing up real dev/staging/prod environments. This site is where I keep track of that work, and it's hand-built — every animation, SVG, and layout quirk here is mine. Have a look around.
+                        <div class="page-column-section home-bio-text">
+                            <div class="page-text">
+                                I'm Avery Allen, a Computer Science student at the University of Texas at Austin. I like building things that actually run in production: an async trading bot placing live orders on Kalshi, an AI rehab platform with 256 API routes behind it, a forensic debugger for multi-agent AI workflows. Most recently I spent a summer as a software engineering intern at Chinstrap Ventures, rebuilding their AI research pipeline and standing up real dev/staging/prod environments. This site is where I keep track of that work, and it's hand-built. Every animation, SVG, and layout quirk here is mine. Have a look around.
                             </div>
-                            <a href="/about" class="button-link">About Me</a>
+                            <a href="/projects" class="button-link">My Projects</a>
                         </div>
                     </div>
                 </div>
             </section>
+            <hr class="gradient-hr">
             <section>
-                <div class="page-column-section" style="background-color: rgb(248, 252, 252); width: 100vw; margin-top: 75px;">
-                    <h1 style="margin-top: 75px; font-size: 35px;">Skills</h1>
-                    <div class="grid-container selector-content" style="margin-top: 75px; margin-bottom: 75px;">
+                <div class="selector-content">
+                  <div class="home-card">
+                    <h1 class="home-card-heading">Skills</h1>
+                    <div class="grid-container">
                         <div class="grid-item">
                             <h1>Python</h1>
-                            <p style="font-size: 14.8px; margin-top: 12%; line-height: 1.4;">My strongest language. I use it for async systems &mdash; my <a class="link-text" href="/kalshiBot">Kalshi trading bot</a> runs REST and WebSocket feeds with live order execution &mdash; and for ML work with scikit-learn, NumPy, and pandas. It is also behind the <a class="link-text" href="/premedCopilot">premed copilot</a> data pipeline and the <a class="link-text" href="/longhornNeurotech">Longhorn Neurotech</a> networking layer.</p>
+                            <p style="font-size: 14.8px; margin-top: 12%; line-height: 1.4;">My strongest language. I use it for async systems and ML. My <a class="link-text" href="/kalshiBot">Kalshi trading bot</a> runs REST and WebSocket feeds with live order execution, and my ML work runs on scikit-learn, NumPy, and pandas. It is also behind the <a class="link-text" href="/premedCopilot">premed copilot</a> data pipeline and the <a class="link-text" href="/longhornNeurotech">Longhorn Neurotech</a> networking layer.</p>
                         </div>
                         <div class="grid-item">
                             <h1>TypeScript, Next.js</h1>
-                            <p style="margin-top: 15%; line-height: 1.4;">My default stack for shipping products. <a class="link-text" href="/kneeEd">KneeEd</a> is a Next.js 16 app with 256 API routes in production; I architected the <a class="link-text" href="/premedCopilot">premed copilot</a> across 20+ routes, and spent the summer in a React/TypeScript codebase at <a class="link-text" href="/cossmology">Cossmology</a>.</p>
+                            <p style="margin-top: 15%; line-height: 1.4;">My default stack for shipping products. <a class="link-text" href="/kneeEd">KneeEd</a> is a Next.js 16 app with 256 API routes in production; I architected the <a class="link-text" href="/premedCopilot">premed copilot</a> across 20+ routes, and spent the summer in a React/TypeScript codebase at <a class="link-text" href="https://cossmology.com" target="_blank" rel="noopener">Cossmology</a>.</p>
                         </div>
                         <div class="grid-item">
                             <h1 style="font-size: 17px;">AI &amp; Agent Engineering</h1>
-                            <p style="font-size: 14.8px; margin-top: 15%; line-height: 1.4;">Building with LLMs as components, not chatbots. LangGraph multi-agent pipelines and the forensic debugger for them in <a class="link-text" href="/orcaStrike">OrcaStrike</a>; an 8-stage rehab-plan pipeline with an LLM-as-judge evaluator in <a class="link-text" href="/kneeEd">KneeEd</a>; chunked parallel eval harnesses at <a class="link-text" href="/cossmology">Cossmology</a>.</p>
+                            <p style="font-size: 14.8px; margin-top: 15%; line-height: 1.4;">Building with LLMs as components, not chatbots. LangGraph multi-agent pipelines and the forensic debugger for them in <a class="link-text" href="/orcaStrike">OrcaStrike</a>; an 8-stage rehab-plan pipeline with an LLM-as-judge evaluator in <a class="link-text" href="/kneeEd">KneeEd</a>; chunked parallel eval harnesses at <a class="link-text" href="https://cossmology.com" target="_blank" rel="noopener">Cossmology</a>.</p>
                         </div>
                         <div class="grid-item">
                             <h1 style="font-size: 17px;">Postgres, Supabase</h1>
-                            <p style="font-size: 14.8px; margin-top: 15%; line-height: 1.4;">Schema design and the security model on top of it. 81 row-level-security migrations across <a class="link-text" href="/kneeEd">KneeEd</a>, RLS and Google OAuth on the <a class="link-text" href="/premedCopilot">premed copilot</a>, and at <a class="link-text" href="/cossmology">Cossmology</a> I found and fixed an RLS gap that was blanking the site for every logged-in non-admin user.</p>
+                            <p style="font-size: 14.8px; margin-top: 15%; line-height: 1.4;">Schema design and the security model on top of it. 81 row-level-security migrations across <a class="link-text" href="/kneeEd">KneeEd</a>, RLS and Google OAuth on the <a class="link-text" href="/premedCopilot">premed copilot</a>, and at <a class="link-text" href="https://cossmology.com" target="_blank" rel="noopener">Cossmology</a> I found and fixed an RLS gap that was blanking the site for every logged-in non-admin user.</p>
                         </div>
                         <div class="grid-item">
                             <h1>Java, C/C++</h1>
-                            <p style="font-size: 14.8px; margin-top: 12%; line-height: 1.4;">Where I started. Two seasons of FRC robotics on <a class="link-text" href="/canKiosk">AusTINCANs</a> &mdash; 20+ autonomous routines and PID movement primitives in Java/PathPlanner, plus my school's first LaserCAN integration. C/C++ came back around through Computer Architecture at UT.</p>
+                            <p style="font-size: 14.8px; margin-top: 12%; line-height: 1.4;">Where I started. Two seasons of FRC robotics on <a class="link-text" href="/canKiosk">AusTINCANs</a>, where I wrote 20+ autonomous routines and PID movement primitives in Java/PathPlanner, plus my school's first LaserCAN integration. C/C++ came back around through Computer Architecture at UT.</p>
                         </div>
                         <div class="grid-item">
                             <h1 style="font-size: 17px;">DevOps &amp; Infrastructure</h1>
-                            <p style="font-size: 14.8px; margin-top: 15%; line-height: 1.4;">At <a class="link-text" href="/cossmology">Cossmology</a> I owned the DevOps overhaul: dev&rarr;staging&rarr;prod environments on Supabase branching with a nightly prod&rarr;staging sync in GitHub Actions. Day to day that means Git, Linux, Vercel, and CI &mdash; 80 commits across 11 merged PRs that summer. More on <a class="link-text" href="https://github.com/AKAvery" target="_blank">GitHub</a>.</p>
+                            <p style="font-size: 14.8px; margin-top: 15%; line-height: 1.4;">At <a class="link-text" href="https://cossmology.com" target="_blank" rel="noopener">Cossmology</a> I owned the DevOps overhaul: dev&rarr;staging&rarr;prod environments on Supabase branching with a nightly prod&rarr;staging sync in GitHub Actions. Day to day that means Git, Linux, Vercel, and CI. I landed 80 commits across 11 merged PRs that summer. More on <a class="link-text" href="https://github.com/AKAvery" target="_blank">GitHub</a>.</p>
                         </div>
                     </div>
+                  </div>
                 </div>
             </section>
-            <section style="background-color: rgb(248, 252, 252);">
-                <div class="spacer"></div>
-                <h1 style="font-size: 45px; margin-top: -50px; text-align: center; margin-bottom: 75px;">My Computer Science Timeline</h1>
+            <hr class="gradient-hr">
+            <section class="home-timeline">
+                <h1 class="timeline-heading">My Computer Science Timeline</h1>
               
                 <div class="scroller">
                   <!-- Sticky mask that holds the SVG scribble -->
@@ -199,7 +202,7 @@
                         <div class="timeline-component timeline-component-bg">
                             <h2 class="timeline-title">Admitted to UT Austin</h2>
                             <p class="timeline-paragraph">
-                                Admitted for Fall 2025—one of my proudest milestones, reflecting years of projects, leadership, and growth.
+                                Admitted for Fall 2025, one of my proudest milestones, reflecting years of projects, leadership, and growth.
 
                             </p>
                         </div>
@@ -226,7 +229,7 @@
                         <div class="timeline-component timeline-component-bg">
                             <h2 class="timeline-title">Kalshi Algorithmic Trading Bot</h2>
                             <p class="timeline-paragraph">
-                                Built and solo-deployed a live algorithmic trading bot on Kalshi prediction markets &mdash; over $3.6K in live
+                                Built and solo-deployed a live algorithmic trading bot on Kalshi prediction markets, with over $3.6K in live
                                 volume across near-expiry sports, weather, and economic markets plus S&amp;P 500 tail-bracket mispricing.
                                 This was my first time being responsible for code that moves real money, which taught me a lot about
                                 circuit breakers, position limits, and crash recovery.
@@ -245,16 +248,16 @@
                             <div class="timeline-point"></div>
                         </div>
                         <div class="timeline-component timeline-component-bg">
-                            <h2 class="timeline-title">Longhorn Neurotech &mdash; 1st Place</h2>
+                            <h2 class="timeline-title">Longhorn Neurotech &middot; 1st Place</h2>
                             <p class="timeline-paragraph">
                                 Won first place in the Longhorn Neurotech Fall Competition with a gesture-controlled robotics entry.
-                                I owned the Python-to-ESP32 WiFi networking layer &mdash; UDP broadcast discovery, a persistent TCP channel,
-                                and reconnect logic that held up through a live demo &mdash; and contributed to the EMG and EEG classifiers
+                                I owned the Python-to-ESP32 WiFi networking layer: UDP broadcast discovery, a persistent TCP channel,
+                                and reconnect logic that held up through a live demo. I also contributed to the EMG and EEG classifiers
                                 behind it.
                             </p>
                         </div>
                         <div class="timeline-component timeline-component-bg">
-                            <h2 class="timeline-title">Tech Lead &mdash; UT Premed AI Copilot</h2>
+                            <h2 class="timeline-title">Tech Lead &middot; UT Premed AI Copilot</h2>
                             <p class="timeline-paragraph">
                                 Led a 4-person tech team through Convergent to build a medical school admissions copilot for UT premed
                                 students, and presented it to CEOs and investors at the end-of-semester showcase. My first time being
@@ -274,7 +277,7 @@
                             <div class="timeline-point"></div>
                         </div>
                         <div class="timeline-component timeline-component-bg">
-                            <h2 class="timeline-title">OrcaStrike &mdash; AI Security Hackathon</h2>
+                            <h2 class="timeline-title">OrcaStrike &middot; AI Security Hackathon</h2>
                             <p class="timeline-paragraph">
                                 Built a post-execution forensic debugger for multi-agent AI workflows: it pinpoints where trust broke,
                                 traces how tainted data propagated across agent handoffs, and names the minimum control that would have
@@ -283,11 +286,11 @@
                             </p>
                         </div>
                         <div class="timeline-component timeline-component-bg">
-                            <h2 class="timeline-title">Software Engineering Intern &mdash; Chinstrap Ventures</h2>
+                            <h2 class="timeline-title">Software Engineering Intern &middot; Chinstrap Ventures</h2>
                             <p class="timeline-paragraph">
                                 My first industry internship, working on Cossmology&rsquo;s production React/TypeScript/Supabase platform.
                                 I owned a DevOps overhaul, rebuilt a 2,000-line AI headline-research pipeline, overhauled the admin
-                                curation console, and fixed production incidents &mdash; 80 commits across 11 merged PRs. Working in a
+                                curation console, and fixed production incidents, landing 80 commits across 11 merged PRs. Working in a
                                 codebase where mistakes were visible to real users changed how I write code.
                             </p>
                         </div>
@@ -300,7 +303,7 @@
                         <div style="margin-bottom: 100px;"></div>
                     </div>
                 </div>
-                <div style="background-color: rgb(248, 252, 252); display: flex; justify-content: center;">
+                <div style="display: flex; justify-content: center;">
                     <button class="scroll-button" onclick="scrollToTopButton()">Back To Top</button>
                 </div>
             </section>
@@ -351,15 +354,16 @@
                 }
             });
 
-            // Same reveal rule as before (bottom within 150px of the fold), but
-            // the list is cached, each element is dropped once it has been
+            // Reveal once an element's top edge is 100px inside the viewport.
+            // (Keying on the bottom edge left the tall Skills card invisible
+            // while it filled the screen.) The list is cached, each element is dropped once it has been
             // revealed, and the whole task retires when nothing is left.
             let pending = Array.from(document.querySelectorAll('.selector-content'));
 
             function checkVisibility() {
-                const fold = window.innerHeight + 150;
+                const fold = window.innerHeight - 100;
                 for (let i = pending.length - 1; i >= 0; i--) {
-                    if (pending[i].getBoundingClientRect().bottom <= fold) {
+                    if (pending[i].getBoundingClientRect().top <= fold) {
                         pending[i].classList.add('visible-selector-content');
                         pending.splice(i, 1);
                     }
@@ -371,7 +375,7 @@
 
             // The ripple animates border-radius, which repaints every frame and
             // never stops. Pause it whenever a card is not on screen.
-            const cards = document.querySelectorAll('.grid-item');
+            const cards = document.querySelectorAll('.grid-item, .home-card');
             if (cards.length && 'IntersectionObserver' in window) {
                 const rippleObserver = new IntersectionObserver(entries => {
                     entries.forEach(e => e.target.classList.toggle('ripple-paused', !e.isIntersecting));
